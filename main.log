@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999995 (TeX Live 2023) (preloaded format=xelatex 2023.5.8)  9 MAY 2023 10:14
+This is XeTeX, Version 3.141592653-2.6-0.999995 (TeX Live 2023) (preloaded format=xelatex 2023.5.8)  9 MAY 2023 15:23
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1146,6 +1146,17 @@ Package: enumitem 2019/06/20 v3.9 Customized lists
 \enitdp@description=\count499
 ) (/usr/local/texlive/2023/texmf-dist/tex/latex/relsize/relsize.sty
 Package: relsize 2013/03/29 ver 4.1
+) (/usr/local/texlive/2023/texmf-dist/tex/latex/footmisc/footmisc.sty
+Package: footmisc 2022/03/08 v6.0d a miscellany of footnote facilities
+\FN@temptoken=\toks49
+\footnotemargin=\dimen334
+\@outputbox@depth=\dimen335
+Package footmisc Info: Declaring symbol style bringhurst on input line 695.
+Package footmisc Info: Declaring symbol style chicago on input line 703.
+Package footmisc Info: Declaring symbol style wiley on input line 712.
+Package footmisc Info: Declaring symbol style lamport-robust on input line 723.
+Package footmisc Info: Declaring symbol style lamport* on input line 743.
+Package footmisc Info: Declaring symbol style lamport*-robust on input line 764.
 ))
 \@quotelevel=\count500
 \@quotereset=\count501
@@ -1385,13 +1396,10 @@ Chapter 1.
 
 ]
 
-LaTeX Warning: Reference `theorem: compl-class' on page 2 undefined on input line 17.
+LaTeX Warning: Reference `theorem: compl-class' on page 2 undefined on input line 19.
 
-
-Underfull \vbox (badness 2809) has occurred while \output is active []
-
- [2] [3] [4]
-Underfull \hbox (badness 1259) in paragraph at lines 111--112
+[2] [3] [4]
+Underfull \hbox (badness 1259) in paragraph at lines 113--114
 []\TU/lmr/m/n/12 Perfect distinguishability implies statistical indistinguishability as 0 is negligible.
  []
 
@@ -1400,31 +1408,28 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [5]
 
-LaTeX Warning: Reference `subsec:LWE' on page 6 undefined on input line 123.
+LaTeX Warning: Reference `subsec:LWE' on page 6 undefined on input line 125.
 
 [6] [7] (./figures/decryption-homomorphism.tex) [8] [9] [10]
-Underfull \hbox (badness 2126) in paragraph at lines 262--263
+Underfull \hbox (badness 2126) in paragraph at lines 264--265
 [][]\TU/lmr/bx/n/12 Definition 22 \TU/lmr/m/n/12 (Indistinguishability of encryptions)\TU/lmr/bx/n/12 . []\TU/lmr/m/n/12 An encryption scheme has
  []
 
 [11]
 
-LaTeX Warning: Reference `subsec:LWE' on page 12 undefined on input line 274.
+LaTeX Warning: Reference `subsec:LWE' on page 12 undefined on input line 276.
 
 [12]
 Underfull \vbox (badness 1377) has occurred while \output is active []
 
  [13]
-Underfull \hbox (badness 1087) in paragraph at lines 322--323
+Underfull \hbox (badness 1087) in paragraph at lines 324--325
 \TU/lmr/m/n/12 bootstrapping round $\OML/cmm/m/it/12 i$\TU/lmr/m/n/12 , where $\OML/cmm/m/it/12 i \OT1/cmr/m/n/12 = 0$ \TU/lmr/m/n/12 represents the first round, let $\OML/cmm/m/it/12 m[] []
  []
 
-
-Underfull \vbox (badness 1642) has occurred while \output is active []
-
- [14] [15]
-./sections/1-theory.tex:406: Misplaced alignment tab character &.
-l.406 ...ps://www.youtube.com/watch?v=487AjvFW1lk&
+[14] [15]
+./sections/1-theory.tex:408: Misplaced alignment tab character &.
+l.408 ...ps://www.youtube.com/watch?v=487AjvFW1lk&
                                                   t=2s
 I can't figure out why you would want to use a tab mark
 here. If you just want an ampersand, the remedy is
@@ -1434,7 +1439,7 @@ you're probably due for more error messages, and you
 might try typing `S' now just to see what is salvageable.
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 406--407
+Underfull \hbox (badness 10000) in paragraph at lines 408--409
 \TU/lmr/m/n/12 Gentry did good rundown. See
  []
 
@@ -1524,10 +1529,10 @@ Package logreq Info: Writing requests to 'main.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 43179 strings out of 476683
- 938258 string characters out of 5804048
+ 43314 strings out of 476683
+ 940811 string characters out of 5804048
  1861018 words of memory out of 5000000
- 62711 multiletter control sequences out of 15000+600000
+ 62842 multiletter control sequences out of 15000+600000
  524875 words of font info for 114 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
  99i,18n,95p,1327b,5351s stack positions out of 10000i,1000n,20000p,200000b,200000s

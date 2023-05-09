@@ -2,13 +2,15 @@
 
 INTRODUCTION
 
+% Give short server-client introduction
+
 \section{Computation theory}
  In this section, it is assumed that the reader has prior knowledge of deterministic- and probabilistic Turing machines as a model of computation (an excellent introduction can be found in \cite{Gol01}). We introduce an alternative model of computation based on sets of circuits for the purpose of protection against stronger adversaries. We include the basics needed to understand cryptography and homomorphic encryption in particular. 
 
  \subsection*{Digital logic}
 
 \begin{definition}[Circuit]
-For $n, m \in \mathbb{N}$ and any field $(\mathbb{F},+,\times)$, an arithmetic circuit is a polynomial $C \colon \mathbb{F}^{n} \to \mathbb{F}^m$. 
+For $n, m \in \mathbb{N}$ and any field $(\mathbb{F},+,\times)$, an arithmetic circuit is a vector-valued polynomial function $C \colon \mathbb{F}^{n} \to \mathbb{F}^m$. 
 \end{definition}
 
 A circuit $C$ is represented by a finite directed acyclic graph with $n$ source nodes (the $n$ inputs) and $m$ sink nodes (the $m$ outputs). The internal nodes of the circuit are called gates. For more details about the structure of a circuit, see \cite{goldreich_2008} or \cite{MF21}. The number of nodes in $C$ is called its \textit{size} and is denoted $|C|$. The longest path in $C$ is called its \textit{depth}.
@@ -304,7 +306,7 @@ We first introduce notation and then explain bootstrapping further. Let $m'$ den
 
 \mbnote{Showing how a bootstrapping subroutine works}
 
-Consider a circular secure bootstrappable homomorphic encryption scheme $\mathcal{E}$ and assume we need the homomorphic multiplication\footnote{The case for addition of ciphertexts works the exact same way. We focus on multiplication here since addition usually only increases the noice slightly.} of two ciphertexts $m_1', m_2'$ encrypted under $pk$, but that the noise of the resulting evaluated ciphertext would cause decryption to fail. Consider instead the less noisy ciphertext $m_{1,2}' \stackrel{\mathrm{def}}{=} B_{m_1',m_2'}^{(mult)}(sk')$. In other words, encrypt the secret key and pass it as input to the circuit.
+Consider a circular secure bootstrappable homomorphic encryption scheme $\mathcal{E}$ and assume we need the homomorphic multiplication\footnote{The case for addition of ciphertexts works the exact same way. We focus on multiplication here since addition usually only increases the noise slightly.} of two ciphertexts $m_1', m_2'$ encrypted under $pk$, but that the noise of the resulting evaluated ciphertext would cause decryption to fail. Consider instead the less noisy ciphertext $m_{1,2}' \stackrel{\mathrm{def}}{=} B_{m_1',m_2'}^{(mult)}(sk')$. In other words, encrypt the secret key and pass it as input to the circuit.
 
 \mbnote{Pseudocode for bootstrapping algorithm here?}
 
