@@ -5,6 +5,7 @@
     style=alphabetic,
     sorting=nty, % Name, title, year
     maxbibnames=99, % Make sure we are printing all authors in the appendix
+    backend=biber
     ]{biblatex}
 
 \addbibresource{references.bib}
@@ -22,6 +23,7 @@
 \usepackage{tikz}
 \usetikzlibrary{fadings}
 \usepackage{setspace}
+\usepackage[hidelinks]{hyperref}		% Clickable links
 % \tocloftpagestyle{plain}  
 %\usepackage{chngcntr}					% Count figures within chapters
 \usepackage{booktabs}					% Table formatting
@@ -29,7 +31,6 @@
 \usepackage{fancyhdr}					% Setting the style for header and footer.
 \usepackage{tabularx}
 \usepackage{multirow}                   % For better tables 
-\usepackage[hidelinks]{hyperref}		% Clickable links
 \usepackage{nameref}					% References with names
 \usepackage[parfill]{parskip}			% New line instead of indent for sections
 \usepackage{tcolorbox}					% Create boxes around content
@@ -55,6 +56,11 @@
 \usepackage{sectsty}
 \usepackage{tocloft}
 \usepackage{etoc} 						% Separate tocs for appendix and the rest  
+% GPT4 suggested packages
+\makeatletter
+\newcount\Etoc@savedtocdepth
+\makeatother
+
 
 \usepackage[printonlyused]{acronym}
 
@@ -138,5 +144,3 @@
 
 \renewcommand{\thefigure}{\arabic{figure}}
 \usepackage{relsize} % For big \sigma
-\usepackage[bottom]{footmisc} % So that footnotes are at the bottom of the page
-

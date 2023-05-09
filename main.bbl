@@ -132,6 +132,30 @@
       \field{title}{Computational Complexity: A Modern Approach}
       \field{year}{2009}
     \endentry
+    \entry{Bra18-survey}{article}{}
+      \name{author}{1}{}{%
+        {{hash=9a0f2b40e3163796c628306096e94fd6}{%
+           family={Brakerski},
+           familyi={B\bibinitperiod},
+           given={Zvika},
+           giveni={Z\bibinitperiod}}}%
+      }
+      \strng{namehash}{9a0f2b40e3163796c628306096e94fd6}
+      \strng{fullhash}{9a0f2b40e3163796c628306096e94fd6}
+      \strng{bibnamehash}{9a0f2b40e3163796c628306096e94fd6}
+      \strng{authorbibnamehash}{9a0f2b40e3163796c628306096e94fd6}
+      \strng{authornamehash}{9a0f2b40e3163796c628306096e94fd6}
+      \strng{authorfullhash}{9a0f2b40e3163796c628306096e94fd6}
+      \field{labelalpha}{Bra18}
+      \field{sortinit}{B}
+      \field{sortinithash}{d7095fff47cda75ca2589920aae98399}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Electronic Colloquium on Computational Complexity}
+      \field{number}{125}
+      \field{title}{Fundamentals of Fully Homomorphic Encryption - A Survey}
+      \field{year}{2018}
+    \endentry
     \entry{BGV12-no-bootstrap}{article}{}
       \name{author}{3}{}{%
         {{hash=9a0f2b40e3163796c628306096e94fd6}{%
@@ -545,7 +569,6 @@
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{booktitle}{2011 IEEE 52nd Annual Symposium on Foundations of Computer Science}
-      \field{note}{Supported by an NSERC Discovery Grant and by DARPA under Agreement number FA875011-2-0225. The U.S. Government is authorized to reproduce and distribute reprints for Governmental purposes notwithstanding any copyright notation thereon. The views and conclusions contained herein are those of the author and should not be interpreted as necessarily representing the official policies or endorsements, either expressed or implied, of DARPA or the U.S. Government.}
       \field{title}{Computing Blindfolded: New Developments in Fully Homomorphic Encryption}
       \field{year}{2011}
       \verb{doi}
