@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999995 (TeX Live 2023) (preloaded format=xelatex 2023.5.8)  15 MAY 2023 18:39
+This is XeTeX, Version 3.141592653-2.6-0.999995 (TeX Live 2023) (preloaded format=xelatex 2023.5.8)  16 MAY 2023 12:44
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1133,8 +1133,7 @@ Package: relsize 2013/03/29 ver 4.1
 \@quotelevel=\count501
 \@quotereset=\count502
 Package translations Info: No language package found. I am going to use `english' as default language. on input line 13.
-
-No file main.aux.
+ (./main.aux (./setup/title-page.aux) (./sections/0-pre-content.aux) (./sections/1-theory.aux) (./sections/appendices.aux) (./back-cover.aux))
 \openout1 = `main.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 13.
@@ -1147,7 +1146,7 @@ LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 13.
 LaTeX Font Info:    ... okay on input line 13.
 LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 13.
 LaTeX Font Info:    Trying to load font information for TS1+cmr on input line 13.
-(/usr/local/texlive/2023/texmf-dist/tex/latex/base/ts1cmr.fd
+ (/usr/local/texlive/2023/texmf-dist/tex/latex/base/ts1cmr.fd
 File: ts1cmr.fd 2022/07/10 v2.5l Standard LaTeX font definitions
 )
 LaTeX Font Info:    ... okay on input line 13.
@@ -1269,9 +1268,6 @@ Package biblatex Info: Reference segment=0 on input line 13.
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
 Package hyperref Info: Link coloring OFF on input line 13.
-
-Package hyperref Warning: Rerun to get /PageLabels entry.
-
 (/usr/local/texlive/2023/texmf-dist/tex/latex/translations/translations-basic-dictionary-english.trsl
 File: translations-basic-dictionary-english.trsl (english translation file `translations-basic-dictionary')
 )
@@ -1289,11 +1285,10 @@ LaTeX Info: Redefining \micro on input line 13.
 Package gensymb Info: Using \textmu for \micro on input line 13.
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: End \AtBeginDocument code.
-
-No file main.toc.
+\Etoc@tf=\read5
 \openout2 = `setup/title-page.aux'.
 
-(./setup/title-page.tex
+ (./setup/title-page.tex
 File: setup/img/kth-logo.jpg Graphic file (type bmp)
 <setup/img/kth-logo.jpg>
 LaTeX Font Info:    Font shape `TU/lmss/m/it' in size <12> not available
@@ -1351,12 +1346,11 @@ Underfull \hbox (badness 10000) in paragraph at lines 3--4
 
 ] (./sections/0.1-acronyms.tex) [6
 
-]
-No file main.toc.
+] (./main.toc)
 \tf@toc=\write5
 \openout5 = `main.toc'.
 
-[7])
+ [7])
 \openout2 = `sections/1-theory.aux'.
 
  (./sections/1-theory.tex
@@ -1366,79 +1360,52 @@ Chapter 1.
 
 
 
-]
-
-LaTeX Warning: Reference `thm:compl-class' on page 2 undefined on input line 19.
-
-[2] [3] [4]
+] [2] [3] [4]
 Underfull \hbox (badness 1259) in paragraph at lines 106--107
 []\TU/lmr/m/n/12 Perfect distinguishability implies statistical indistinguishability as 0 is negligible.
  []
 
-
-LaTeX Warning: Reference `subsec:LWE' on page 5 undefined on input line 118.
-
 [5]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [6] [7] (./figures/decryption-homomorphism.tex) [8] [9] [10]
-Underfull \hbox (badness 2126) in paragraph at lines 257--258
+ [6] [7] (./figures/decryption-homomorphism.tex) [8] [9]
+Underfull \vbox (badness 1033) has occurred while \output is active []
+
+ [10]
+Underfull \hbox (badness 2126) in paragraph at lines 258--259
 [][]\TU/lmr/bx/n/12 Definition 21 \TU/lmr/m/n/12 (Indistinguishability of encryptions)\TU/lmr/bx/n/12 . []\TU/lmr/m/n/12 An encryption scheme has
  []
 
-Runaway argument?
-{ IDEA FOR OUTLINE: 
-./sections/1-theory.tex:282: Paragraph ended before \@textcolor was complete.
-<to be read again> 
-                   \par 
-l.282 }
-       
-I suspect you've forgotten a `}', causing me to apply this
-control sequence to too much text. How can we recover?
-My plan is to forget the whole thing and hope for the best.
-
-./sections/1-theory.tex:282: Missing $ inserted.
-<inserted text> 
-                $
-l.282 }
-       
-I've inserted a begin-math/end-math symbol since I think
-you left one out. Proceed, with fingers crossed.
-
-./sections/1-theory.tex:282: Missing $ inserted.
-<inserted text> 
-                $
-l.282 }
-       
-I've inserted a begin-math/end-math symbol since I think
-you left one out. Proceed, with fingers crossed.
-
 [11]
-./sections/1-theory.tex:282: Too many }'s.
-\mbnote #1->\textcolor {blue}{#1}
-                                 
-l.282 }
-       
-You've closed more groups than you opened.
-Such booboos are generally harmless, so keep going.
+Underfull \vbox (badness 1418) has occurred while \output is active []
+
+ [12] [13]
+Underfull \hbox (badness 1102) in paragraph at lines 351--352
+\TU/lmr/m/n/12 Since HE schemes are designed with the constraint of supporting homomorphic
+ []
 
 
-LaTeX Warning: Reference `subsec:LWE' on page 12 undefined on input line 285.
+Underfull \hbox (badness 2368) in paragraph at lines 353--354
+[]\TU/lmr/m/n/12 Let $\OT1/cmr/m/n/12 ([])$ \TU/lmr/m/n/12 be a homomorphic encryption scheme and
+ []
 
-[12]
-Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [13]
-Underfull \hbox (badness 1087) in paragraph at lines 328--329
+Underfull \vbox (badness 2134) has occurred while \output is active []
+
+ [14] [15]
+Underfull \hbox (badness 1087) in paragraph at lines 419--420
 \TU/lmr/m/n/12 bootstrapping round $\OML/cmm/m/it/12 i$\TU/lmr/m/n/12 , where $\OML/cmm/m/it/12 i \OT1/cmr/m/n/12 = 0$ \TU/lmr/m/n/12 represents the first round, let $\OML/cmm/m/it/12 m[] []
  []
 
-[14] [15]) [16]
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [16]) [17]
 Underfull \hbox (badness 6188) in paragraph at lines 31--31
 \TU/lmr/m/n/12 Fully Homomorphic Encryption Without Bootstrapping”. In: \TU/lmr/m/it/12 ACM
  []
 
-[17
+[18
 
 
 
@@ -1447,22 +1414,22 @@ Underfull \hbox (badness 3078) in paragraph at lines 31--31
 \TU/lmr/m/it/12 of Cryptography\TU/lmr/m/n/12 . Ed. by Yehuda Lindell. Information Security and
  []
 
-[18]
+[19]
 \openout2 = `sections/appendices.aux'.
 
  (./sections/appendices.tex (./main.toc)
 \tf@toc=\write6
 \openout6 = `main.toc'.
 
- [19
+ [20
 
 ]
 Appendix A.
-[20
+[21
 
 ]
 Appendix B.
-) [21
+) [22
 
 ]
 \openout2 = `back-cover.aux'.
@@ -1470,28 +1437,17 @@ Appendix B.
 
 No file back-cover.tex.
 (./main.aux (./setup/title-page.aux) (./sections/0-pre-content.aux) (./sections/1-theory.aux) (./sections/appendices.aux) (./back-cover.aux))
-
-LaTeX Warning: There were undefined references.
-
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
-
-
-Package biblatex Warning: Please (re)run Biber on the file:
-(biblatex)                main
-(biblatex)                and rerun LaTeX afterwards.
-
 Package logreq Info: Writing requests to 'main.run.xml'.
 \openout1 = `main.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 43063 strings out of 476683
- 933785 string characters out of 5804048
+ 43082 strings out of 476683
+ 934308 string characters out of 5804048
  1862018 words of memory out of 5000000
  62610 multiletter control sequences out of 15000+600000
- 524875 words of font info for 114 fonts, out of 8000000 for 9000
+ 524915 words of font info for 119 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
- 99i,18n,95p,1332b,5361s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 99i,18n,95p,1332b,5357s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on main.pdf (28 pages).
+Output written on main.pdf (29 pages).
