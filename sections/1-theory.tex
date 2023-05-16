@@ -57,7 +57,7 @@ Informally speaking, circuit families is a stronger model of computation than th
 \end{theorem}
     
 
-The first inclusion follows from the fact that if there exists a deterministic Turing machine that decides a language, then that same machine can be seen as a PPT machine that ignores a given input sequence of coin tosses. For the second inclusion, consider a language $\mathscr{L} \in \operatorname{BPP}$ and a corresponding PPT machine $M$ for $\mathscr{L}$. Then, for any given input $x_n$ with length $n$, at least $2/3$ of the set of all possible coin toss sequences are good (good $r$ means $M(x_n;r) = 1 \iff x_n \in \mathscr{L}$). This means that there exists at least 1 sequence of coin tosses that yields the correct result for $2/3$ of the possible inputs of length $n$. By using an alternative (but equivalent) definition of $\operatorname{BPP}$, it can be shown that there actually exist a coin toss sequence, $r_n$, that yields the correct result for all inputs of length $n$ (see \cite{Adleman1978TwoTO,Gol01} for more detail). Consider circuit $C_n \colon \{0,1\}^{n+|r_n|} \to \{0,1\}$ with $r_n$ hardcoded as inputs where $C_n$ simulates $M$ using $r_n$, i.e., $C_n(x_n) = M(x;r)$. Therefore $C_n(x) = 1 \iff x \in \mathscr{L}$ and $C$ decides $\mathscr{L}$.
+The first inclusion follows from the fact that if there exists a deterministic Turing machine that decides a language, then that same machine can be seen as a PPT machine that ignores a given input sequence of coin tosses. For the second inclusion, consider a language $\mathscr{L} \in \operatorname{BPP}$ and a corresponding PPT machine $M$ for $\mathscr{L}$. Then, for any given input $x_n$ with length $n$, at least $2/3$ of the set of all possible coin toss sequences are good (good $r$ means $M(x_n;r) = 1 \iff x_n \in \mathscr{L}$). This means that there exists at least 1 sequence of coin tosses that yields the correct result for $2/3$ of the possible inputs of length $n$. \mbnote{By using an alternative (but equivalent) definition} of $\operatorname{BPP}$, it can be shown that there actually exist a coin toss sequence, $r_n$, that yields the correct result for all inputs of length $n$ (see \cite{Adleman1978TwoTO,Gol01} for more detail). Consider circuit $C_n \colon \{0,1\}^{n+|r_n|} \to \{0,1\}$ with $r_n$ hardcoded as inputs where $C_n$ simulates $M$ using $r_n$, i.e., $C_n(x_n) = M(x;r)$. Therefore $C_n(x) = 1 \iff x \in \mathscr{L}$ and $C$ decides $\mathscr{L}$.
 
 Interestingly the first inclusion is speculated to be set equivalence \cite[pp. 126]{Arora}, meaning that a deterministic machine could decide the same languages as a probabilistic one. The second inclusion is proper since every unary language is in $\operatorname{P/poly}$ whereas undecidable ones are not in $\operatorname{BPP}$ (see \cite[pp. 110]{Arora} for details). In this sense, circuit families are a stronger model of computation than PPT Turing machines. We capture this notion with uniformity. 
 
@@ -65,7 +65,7 @@ Interestingly the first inclusion is speculated to be set equivalence \cite[pp. 
 A circuit family $\{C_n\}_{n \in \mathbb{N}}$ is uniform if there exists a polynomial-time Turing machine $M$ such that $M(1^n)$ outputs the description of $C_n$ for all $n\in \mathbb{N}$.
 \end{definition}
 
-A uniform circuit family is polynomial size. The converse is not necessarily true. A family that is not uniform is said to be a non-uniform circuit family. Note that Turing machines are at least as strong as uniform circuit families. More formally, if a uniform circuit family decides $\mathscr{L}$ then there exists a polynomial-time Turing machine that decides $\mathscr{L}$.\footnote{The converse is also true, meaning deterministic polynomial-time Turing machines are exactly as powerful as uniform circuit families. See \cite[pp. 111]{Arora} for details} Simply construct the polynomial-time Turing machine that given any input $x \in \mathscr{L}$, first generates a description of $C_{|x|}$ and then simulates $C_{|x|}(x)$. In other words, the non-uniform circuit families are stronger than the polynomial-time Turing machines.\footnote{Note however that set of languages solvable by a Turing machine that takes polynomial size advice is equivalent to $\operatorname{P/poly}$.}
+A uniform circuit family is polynomial size. The converse is not necessarily true. A family that is not uniform is said to be a non-uniform circuit family. Note that Turing machines are at least as strong as uniform circuit families. More formally, if a uniform circuit family decides $\mathscr{L}$ then there exists a polynomial-time Turing machine that decides $\mathscr{L}$.\footnote{The converse is also true, meaning deterministic polynomial-time Turing machines are exactly as powerful as uniform circuit families. See \cite[pp. 111]{Arora} for details} Simply construct the polynomial-time Turing machine that given any input $x \in \mathscr{L}$, first generates a description of $C_{|x|}$ and then simulates $C_{|x|}(x)$. In other words, the non-uniform circuit families are stronger than the polynomial-time Turing machines.
 
 \section{Probability Theory}
 
@@ -101,7 +101,7 @@ For example, the encryption function is a random variable (PPT algorithm), meani
     The randomness is taken over the outcomes of the random variables $X_n$ and $Y_n$.
 \end{definition}
 
-$C(X_n), C(Y_n)$ means that the adversary has access to random oracle returning a sample from $X_n$ and $Y_n$ respectively. Here the outputs 1 are immaterial. The point is that, for every adversary $C$ guessing the samples are from one of the random variables (1 in this case represents from $Y_n$), the probability of being correct is, up to negligible difference, equal to the probability of being incorrect. For example, an adversary always guessing 1 has 100\% probability of being incorrect when given samples from $X_n$ and 100\% probability of being correct when given samples from $Y_n$. The intuition is that the advantage in distinguishing the random variables in the ensembles goes to zero fast (faster than the inverse of all polynomials).
+$C(X_n), C(Y_n)$ means that the adversary has access to random oracle returning a sample from $X_n$ and $Y_n$ respectively. The point is that, for every adversary $C$ guessing the samples are from one of the random variables (1 in this case represents from $Y_n$), the probability of being correct is, up to negligible error, equal to the probability of being incorrect. For example, an adversary always guessing 1 has 100\% probability of being incorrect when given samples from $X_n$ and 100\% probability of being correct when given samples from $Y_n$. The intuition is that the advantage in distinguishing the random variables in the ensembles goes to zero fast (faster than the inverse of all polynomials).
 
 Perfect distinguishability implies statistical indistinguishability as 0 is negligible. Statistical indistinguishability implies computational indistinguishability. To see why, assume $\Delta_{X,Y}(n) = \operatorname{negl}(n)$ and consider any circuit family $C$. Since $X_n$ and $Y_n$ are defined on the same sample space we have
 
@@ -130,7 +130,7 @@ We say that $\chi$ is the distribution or\textit{law} of $X$, denoted $\mathcal{
     Since $\chi$ is a measure on a discrete space, the description of the singletons are sufficient. More explicitly, $\chi(A) = \sum_{x \in A} \operatorname{Pr}[X = x] \quad A \in \mathcal{S}$
 \end{remark}
 \begin{remark}
-     Two different random variables can have the same distribution and one random variable can have two different distributions. See \cite{cont-finance} for a formal and excellent discussion.
+     Two different random variables can have the same distribution and \mbnote{one random variable can have two different distributions}. See \cite{cont-finance} for a formal and excellent discussion.
 \end{remark}
 
 A distribution measure for a random variable is a probability measure on the sample space $(S,\mathcal{S})$, as opposed to on the outcome space $(\Omega, \mathcal{F})$. For a given probability space, any random variable $X$ defined on it has a distribution associated with it. We write $x \leftarrow X$ or $x \leftarrow \chi$ for sampling the outcome $x$ from $X$ assuming $\chi$ is its distribution. When $X$ is a space we mean that $x$ is uniformly sampled from $X$.
@@ -159,7 +159,7 @@ A correct asymmetric encryption scheme $\mathcal{E} = (\text{KeyGen, Enc, Dec})$
 \begin{enumerate}[label={$\bullet$}]
     \item KeyGen $\colon \{1\}^* \to \mathcal{K}$ is PPT given by $1^{\lambda} \mapsto (pk,sk)$.
     \item Enc $\colon \mathcal{K}_{pk} \times \mathcal{X} \to \mathcal{Y}$ is PPT given by $(pk,m) \mapsto c$.
-    \item Dec $\colon \mathcal{K}_{sk} \times \mathcal{Y} \to \mathcal{X}$ is deterministic and satisfies $(pk, sk) \leftarrow \operatorname{KeyGen}(1^{\lambda}) \Rightarrow \operatorname{Dec}(sk, \operatorname{Enc}(pk,m)) = m$.
+    \item Dec $\colon \mathcal{K}_{sk} \times \mathcal{Y} \to \mathcal{X}$ is deterministic and satisfies $(pk, sk) \leftarrow \operatorname{KeyGen}(1^{\lambda}) \implies \operatorname{Dec}(sk, \operatorname{Enc}(pk,m)) = m$.
 \end{enumerate}
 \end{definition}
 \begin{remark}
@@ -170,7 +170,7 @@ In this paper, we consider homomorphic encryption (HE) schemes. These schemes in
 \begin{definition}[$\mathcal{C}$-homomorphic encryption scheme]
 An encryption scheme $\mathcal{E}$ is a $\mathcal{C}$-homomorphic encryption scheme for the set of circuits $\mathcal{C}$ if there exists an extra algorithm Eval such that for any $C \in \mathcal{C}$ taking $t$ inputs the following condition holds:
 \begin{enumerate}[label={$\bullet$}]
-    \item  Eval$ \colon  \mathcal{K}_{pk} \times \mathcal{C} \times \mathcal{Y}^* \to \mathcal{Y}$ is PPT and satisfies $(pk,sk) \leftarrow \operatorname{KeyGen}(1^{\lambda}) \Rightarrow \operatorname{Dec}(sk, \operatorname{Eval}(pk, C, \left\langle \operatorname{Enc}(pk, m_1), \dots , \operatorname{Enc}(pk, m_t) \right\rangle)) = C(m_1, \ldots, m_t)$
+    \item  Eval$ \colon  \mathcal{K}_{pk} \times \mathcal{C} \times \mathcal{Y}^* \to \mathcal{Y}$ is PPT and satisfies $(pk,sk) \leftarrow \operatorname{KeyGen}(1^{\lambda}) \implies \operatorname{Dec}(sk, \operatorname{Eval}(pk, C, \left\langle \operatorname{Enc}(pk, m_1), \dots , \operatorname{Enc}(pk, m_t) \right\rangle)) = C(m_1, \ldots, m_t)$
 \end{enumerate}
 We say $\mathcal{E}$ can evaluate all circuits in $\mathcal{C}$ and is $\mathcal{C}$-homomorphic.
 \end{definition}
@@ -180,7 +180,7 @@ We say $\mathcal{E}$ can evaluate all circuits in $\mathcal{C}$ and is $\mathcal
 % Consider therefore the algorithms EvalMult$(c_1,c_2)$ and EvalAdd$(c_1,c_2)$ outputting the product and the sum of ciphertexts respectively.
 % }
 
-The evaluation algorithm runs the ciphertexts through the permissible circuit while also satisfying the requirement that decrypting the resulting ciphertext yields the same result as the plaintexts running through the circuit. To its disposal, the evaluation algorithm is given the public key. The ciphertexts returned by the Eval algorithm are called \textit{evaluated ciphertexts} (suggesting the circuit has evaluated the ciphertexts) and those returned by the encryption algorithm are called \textit{fresh ciphertexts}. If the circuit corresponds to the computable function $f$ acting on a vector $c$ of ciphertexts, we denote the evaluated ciphertexts $c_f$ (i.e., $c_f \stackrel{\mathrm{def}}{=} \operatorname{Eval}(pk, f, c)$). Similarly, for the vector $m$ of plaintexts, we denote the evaluated plaintexts $m_f$ (i.e., $m_f \stackrel{\mathrm{def}}{=} f(m)$). Thus, the condition for the Eval algorithm can be written $(pk,sk) \leftarrow \operatorname{KeyGen}(1^{\lambda}) \Rightarrow \operatorname{Dec}(sk, c_f) = m_f$.
+The evaluation algorithm runs the ciphertexts through the permissible circuit while also satisfying the requirement that decrypting the resulting ciphertext yields the same result as the plaintexts running through the circuit. To its disposal, the evaluation algorithm is given the public key. The ciphertexts returned by the Eval algorithm are called \textit{evaluated ciphertexts} (suggesting the circuit has evaluated the ciphertexts) and those returned by the encryption algorithm are called \textit{fresh ciphertexts}. Remark that correctness is only guaranteed if the Eval algorithm is given fresh ciphertexts. If the circuit corresponds to the computable function $f$ acting on a vector $c$ of ciphertexts, we denote the evaluated ciphertexts $c_f$ (i.e., $c_f \stackrel{\mathrm{def}}{=} \operatorname{Eval}(pk, f, c)$). Similarly, for the vector $m$ of plaintexts, we denote the evaluated plaintexts $m_f$ (i.e., $m_f \stackrel{\mathrm{def}}{=} f(m)$). Thus, the condition for the Eval algorithm can be written $(pk,sk) \leftarrow \operatorname{KeyGen}(1^{\lambda}) \implies \operatorname{Dec}(sk, c_f) = m_f$.
 
 \begin{figure}
     \input{figures/decryption-homomorphism}
@@ -236,7 +236,7 @@ It's not always clear what the depth of the circuit is. Therefore, it may be nee
 
 In this paper, semantic security refers to security against chosen-plaintext attack (CPA). The definition relates to the following game where the challenger possess the secret key and the player is the adversary trying to break the scheme. Consider encryption scheme $(\text{KeyGen, Enc, Dec, Eval})$ and polynomial-size Boolean circuit family $C = \{C_n\}_{n\in \mathbb{N}}$. The CPA game is defined with the Boolean function $\operatorname{CPA}_{C}(\lambda)$ as follows:
 \begin{enumerate}
-  \item \textbf{Setup}: Challenger samples $(pk, sk) \leftarrow \operatorname{KeyGen}(1^{\lambda})$ and sends player $pk$.
+  \item \textbf{Setup}: Challenger samples $pk \leftarrow \operatorname{KeyGen}(1^{\lambda})$ and sends it to player.
   \item \textbf{Choose}: Player $C$ selects two distinct plaintext messages $(m_0, m_1) \leftarrow C(pk)$ of the same length, and sends them to the challenger.
   \item \textbf{Encrypt}: The challenger randomly picks a bit $b \in \{0, 1\}$ and encrypts the message $m_b$. The encrypted message $c \stackrel{\mathrm{def}}{=} \operatorname{Enc}(pk, m_b)$ is sent to the player.
   \item \textbf{Guess}: Player $C$ output guess $b' \in \{0,1\}$.
@@ -257,15 +257,29 @@ Semantic security means that there exists no algorithm in $\operatorname{P/poly}
     An encryption scheme has indistinguishable encryptions if for any key $(pk,sk) \leftarrow \operatorname{KeyGen}(1^{\lambda})$ and any two distinct messages $m_1, m_2$ of equal length, the ensembles $\{\operatorname{Enc}(pk,m_1)\}_{\lambda \in \mathbb{N}}$ and $\{\operatorname{Enc}(pk,m_2)\}_{\lambda \in \mathbb{N}}$ are computationally indistinguishable.
 \end{definition}
 
+\mbnote{Talk about CCA usually is required. CCA means that the adversary can decrypt ciphertexts in the choose phase. This is not possible in a homomorphic encryption scheme.}
+
 Although semantic security suggests adversary cannot distinguish plaintexts by only observing ciphertexts, it does not mean that ciphertexts give no information about messages. In fact, the ciphertexts in a homomorphic encryption scheme must leak information in some sense. To see why, for any message $m$ and any circuit $C$ that the homomorphic encryption scheme evaluates, $\operatorname{Eval}(pk,C,\operatorname{Enc}(pk,m))$ is a valid ciphertext of $C(m)$, meaning that the ciphertext of the message leaks information about valid encryptions of messages directly related to $m$. In particular, the adversary can sample polynomially many valid encryptions of the message itself. However, if semantic security holds, the ensemble of ciphertexts generated by the message is computationally indistinguishable from any other ensemble of ciphertexts. By its very nature, homomorphic encryption schemes are what we call \textit{malleable}.
 
-One last security definition that will be relevant in the next section is circular security
+One last security definition that will be relevant later is circular security
 \begin{definition}[Circular security]
     A semantically secure homomorphic encryption scheme is circular secure if it is semantically secure even when the adversary is given encryptions of the secret key.
 \end{definition}
 \begin{remark}
     Circular security is not implied by semantic security because an adversary with a random access oracle cannot efficiently query encryptions of the secret key \cite{Bra18-survey}.
 \end{remark}
+
+\mbnote{
+IDEA FOR OUTLINE:
+
+- Introduce noise issue
+
+- Introduce single hop/multihop. Idea: If we have a fresh ciphertext c and a permissable function f, server can evaluate f,c. For multihop (i-hop), the ciphertext does not need to be fresh. Server can evaluate on eval-ciphertext up to i times.
+
+- Introduce key switching (possible if single hop). Idea: We want to evaluate (f, c). However, if circuit f_c is permissable, we insead evaluate $(f_c, c')$ where c' is encryption of NH secret key under H public key. This is faster since the long message does not need to be encrypted with the slow H scheme, but we do it on the short NH private key.
+
+- Introduce bootstrapping. Idea: Assume only single hop scheme. Then, when we always send the same ciphertext, an H encryption of secret key, the server returns an eval ciphertexxt that is low noise. We embedd the ciphertext into the function and since the scheme is bootstrappable, the circuit is permissible and we can repeat the process. Essentially, the computation on the ciphertext is embedded in the circuit and upon decryption, one layer get decrypted at a time (show with induction).
+}
 
 \subsection*{Bootstrapping}
 Most (if not all) homomorphic encryption scheme is based on introducing noise to ciphertexts in the encryption process, which is useful for protecting against linear algebra attacks (see Section \ref{subsec:LWE}). The evaluation process operates on ciphertexts using the homomorphic properties of the scheme to yield new ciphertexts corresponding to the same operations on the underlying plaintexts. Unfortunately, each operation increases the noise of the resulting ciphertexts. For a leveled FHE scheme with depth parameter set to $L$, ciphertexts with any more than $L$ operations are not guaranteed to decrypt correctly. Bootstrapping is a technique introduced by Craig Gentry in his seminal PHD thesis \cite{Gentry-Thesis}, where he showed FHE is possible. Bootstrapping is an algorithm that produces a new valid ciphertext with less noise by encrypting the secret key and decrypting the ciphertext homomorphically. In short, the client gives the server an encryption of the secret key and the server runs the decryption algorithm on the messages using the encrypted secret key.
@@ -345,7 +359,7 @@ The requirement is $q(n) = \Omega(n)$\mrnote{(Is this true?)}, $m = \Theta(n \lo
 I think this is requirement for hardness, not for the problem itself.
 This means that as the dimension grows and q also grows, each component of the error grows (assuming a doesnt decrease fast than q)}
 
-Consider the space of $n \times m$ matrices $\mathbb{Z}_q^{n \times m}$ with uniform distribution $\mu$, $\mathbb{Z}_q^{m}$ with discrete distribution $\chi^m$, the probability space $(\mathbb{Z}_q^{n \times m} \times \mathbb{Z}_q^m, \mathcal{P}, \mu \otimes \chi^m)$ equipped with power set sigma algebra $\mathcal{P}$ and product measure $\mu \otimes \chi^m$, a uniformly random\footnote{Secret $s$ can also be chosen with respect to distribution $\chi^n$. See \cite{Applebaum}.} $s \in \mathbb{Z}_q^n$ and the random variable $A_{s, n, q, \chi, m}$ defined on the probability space as follows
+Consider the space of $n \times m$ matrices $\mathbb{Z}_q^{n \times m}$ with uniform distribution $\mu$, $\mathbb{Z}_q^{m}$ with discrete distribution $\chi^m$, the probability space $(\mathbb{Z}_q^{n \times m} \times \mathbb{Z}_q^m, \mathcal{P}, \mu \otimes \chi^m)$ equipped \mbnote{Explain why using power set} with power set $\mathcal{P}$ and product measure $\mu \otimes \chi^m$, a uniformly random\footnote{Secret $s$ can also be chosen with respect to distribution $\chi^n$. See \cite{Applebaum}.} $s \in \mathbb{Z}_q^n$ and the random variable $A_{s, n, q, \chi, m}$ defined on the probability space as follows
 \begin{equation*}
 \begin{aligned}
     A_{s, n, q, \chi, m} \colon \mathbb{Z}_q^{n \times m} \times \mathbb{Z}_q^m &\to \mathbb{Z}_q^{n \times m} \times \mathbb{Z}_q^m\\
@@ -384,7 +398,7 @@ Note that the $\operatorname{LWE}$ distribution is not the same as the product m
     \mrnote{Connect to ensembles being computationally indistinguishable}
 \end{definition}
 \begin{remark}
-    Since the requirement is that $s$ is randomly chosen instead of arbitrarily chosen, the problem refers to average-case hardness as opposed to worst-case hardness. Although this appears to be careless in the context of cryptography, it is actually equivalent. In other words, if average keys are easy to guess, then all keys are easy to guess. See \cite{Reg10} for proof.
+    Since the requirement is that $s$ is randomly chosen instead of arbitrarily chosen, the problem refers to average-case hardness as opposed to worst-case hardness. This is actually equivalent, meaning if average keys are easy to guess, then all keys are easy to guess. See \cite{Reg10} for proof.
 \end{remark}
 
 The LWE search and decision problem are equivalent when $q$ is prime and $q(n) = \operatorname{poly}(n)$.
