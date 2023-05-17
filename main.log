@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999995 (TeX Live 2023) (preloaded format=xelatex 2023.5.8)  16 MAY 2023 12:44
+This is XeTeX, Version 3.141592653-2.6-0.999995 (TeX Live 2023) (preloaded format=xelatex 2023.5.8)  17 MAY 2023 21:49
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1127,9 +1127,9 @@ Package: enumitem 2019/06/20 v3.9 Customized lists
 \enit@inbox=\box134
 \enit@count@id=\count499
 \enitdp@description=\count500
-)) (/usr/local/texlive/2023/texmf-dist/tex/latex/relsize/relsize.sty
+) (/usr/local/texlive/2023/texmf-dist/tex/latex/relsize/relsize.sty
 Package: relsize 2013/03/29 ver 4.1
-)
+))
 \@quotelevel=\count501
 \@quotereset=\count502
 Package translations Info: No language package found. I am going to use `english' as default language. on input line 13.
@@ -1293,18 +1293,8 @@ File: setup/img/kth-logo.jpg Graphic file (type bmp)
 <setup/img/kth-logo.jpg>
 LaTeX Font Info:    Font shape `TU/lmss/m/it' in size <12> not available
 (Font)              Font shape `TU/lmss/m/sl' tried instead on input line 10.
-
-Underfull \hbox (badness 10000) in paragraph at lines 12--13
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 27--27
-
- []
-
 LaTeX Font Info:    Trying to load font information for OMX+yhex on input line 27.
-(/usr/local/texlive/2023/texmf-dist/tex/latex/yhmath/OMXyhex.fd
+ (/usr/local/texlive/2023/texmf-dist/tex/latex/yhmath/OMXyhex.fd
 File: OMXyhex.fd 
 File: OMXyhex.fd 2013/07/03 v1.1 YH's humble contribution to TeX maths (NP)
 )
@@ -1329,12 +1319,7 @@ File: setup/img/kth-footer.png Graphic file (type bmp)
 ])
 \openout2 = `sections/0-pre-content.aux'.
 
- (./sections/0-pre-content.tex
-Underfull \hbox (badness 10000) in paragraph at lines 3--4
-
- []
-
-[2
+ (./sections/0-pre-content.tex [2
 
 
 
@@ -1360,61 +1345,20 @@ Chapter 1.
 
 
 
-] [2] [3] [4]
-Underfull \hbox (badness 1259) in paragraph at lines 106--107
-[]\TU/lmr/m/n/12 Perfect distinguishability implies statistical indistinguishability as 0 is negligible.
- []
-
-[5]
+] [2] [3] [4] [5]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [6] [7] (./figures/decryption-homomorphism.tex) [8] [9]
 Underfull \vbox (badness 1033) has occurred while \output is active []
 
- [10]
-Underfull \hbox (badness 2126) in paragraph at lines 258--259
-[][]\TU/lmr/bx/n/12 Definition 21 \TU/lmr/m/n/12 (Indistinguishability of encryptions)\TU/lmr/bx/n/12 . []\TU/lmr/m/n/12 An encryption scheme has
- []
-
-[11]
+ [10] [11]
 Underfull \vbox (badness 1418) has occurred while \output is active []
 
- [12] [13]
-Underfull \hbox (badness 1102) in paragraph at lines 351--352
-\TU/lmr/m/n/12 Since HE schemes are designed with the constraint of supporting homomorphic
- []
-
-
-Underfull \hbox (badness 2368) in paragraph at lines 353--354
-[]\TU/lmr/m/n/12 Let $\OT1/cmr/m/n/12 ([])$ \TU/lmr/m/n/12 be a homomorphic encryption scheme and
- []
-
-
-Underfull \vbox (badness 2134) has occurred while \output is active []
-
- [14] [15]
-Underfull \hbox (badness 1087) in paragraph at lines 419--420
-\TU/lmr/m/n/12 bootstrapping round $\OML/cmm/m/it/12 i$\TU/lmr/m/n/12 , where $\OML/cmm/m/it/12 i \OT1/cmr/m/n/12 = 0$ \TU/lmr/m/n/12 represents the first round, let $\OML/cmm/m/it/12 m[] []
- []
-
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [16]) [17]
-Underfull \hbox (badness 6188) in paragraph at lines 31--31
-\TU/lmr/m/n/12 Fully Homomorphic Encryption Without Bootstrapping”. In: \TU/lmr/m/it/12 ACM
- []
-
-[18
+ [12] [13] [14] [15] [16]) [17] [18
 
 
 
-]
-Underfull \hbox (badness 3078) in paragraph at lines 31--31
-\TU/lmr/m/it/12 of Cryptography\TU/lmr/m/n/12 . Ed. by Yehuda Lindell. Information Security and
- []
-
-[19]
+] [19]
 \openout2 = `sections/appendices.aux'.
 
  (./sections/appendices.tex (./main.toc)

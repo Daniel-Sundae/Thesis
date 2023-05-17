@@ -345,10 +345,10 @@ Noise is introduced in the ciphertexts when performing homomorphic operations. T
 \subsection*{Evaluated ciphertexts vs fresh ciphertexts}
 Recall that in Definition \ref{def:HE-scheme}, the decryption of an evaluated ciphertext is only required to be correct if the ciphertext is a fresh ciphertext. \mbnote{Explain Why we care}. The question is then if it is possible to pass evaluated ciphertext to the Eval algorithm instead of fresh ones.
 
-A scheme is said to be $i$-hop if the Eval algorithm can be called on its own output up to $i$ times. A scheme is said to be single-hop if it is $1$-hop and multi-hop if it is $i$-hop for all $i$. 
+A HE scheme is said to be $i$-hop if the Eval algorithm can be called on its own output up to $i$ times. A HE scheme that satisfies the definition is $0$-hop, also called \textit{single-hop}, and multi-hop if it is $i$-hop for all $i$. 
 
 \subsection*{Key-Switching}
-Since HE schemes are designed with the constraint of supporting homomorphic operations, they are often inefficient. Therefore, it would be desirable to use a more efficient non-homomorphic scheme to encrypt the large messages, but still retaining the homomorphic property. Key-switching is a technique that allows for homomorphic computation on ciphertexts encrypted under a non-homomorphic scheme. The idea is to encrypt the much shorter secret key under the HE scheme and hard-wire the ciphertexts into the function of interest.
+Since HE schemes are designed with the constraint of supporting homomorphic operations, they are often inefficient. Therefore, it would be desirable to use a more efficient non-homomorphic scheme to encrypt the large messages, but still retaining the homomorphic property. Key-switching is a technique that allows for homomorphic computation on ciphertexts encrypted under a non-homomorphic scheme. In particular, it allows for transforming a ciphertext under a non-HE scheme to a corresponding ciphertext under a HE scheme. The idea is to encrypt the much shorter secret key under the HE scheme and hard-wire the ciphertexts into the function of interest.
 
 Let $(\text{H.KeyGen, H.Enc, H.Dec, Eval})$ be a homomorphic encryption scheme and $(\text{KeyGen, Enc, Dec})$ be a non-homomorphic encryption scheme. Let $(hpk,hsk) \leftarrow \operatorname{H.KeyGen}(\lambda)$ and $(pk,sk) \leftarrow \operatorname{KeyGen}(\lambda)$. Consider computable function $C$, the vector of ciphertexts $c \leftarrow \operatorname{Enc}(pk,m)$ and an encrypted secret key $sk' \leftarrow \operatorname{H.Enc}(hpk,sk)$. Define $\hat{C}_c(\cdot) \stackrel{\mathrm{def}}{=} C(\operatorname{Dec}(\cdot, c))$. We can then compute $C(m)$ homomorphically by decrypting $\operatorname{Eval}(hpk,\hat{C}_c, sk')$. Indeed, this is a correct encryption of $C(m)$ since
 \begin{equation*}
@@ -357,8 +357,11 @@ Let $(\text{H.KeyGen, H.Enc, H.Dec, Eval})$ be a homomorphic encryption scheme a
     \end{aligned}
 \end{equation*}
 
-The assumption here is that the HE scheme can evaluate $\hat{C}_c$. $\hat{C}_c$ is a family of circuits where each one contains the decryption circuit on a ciphertext $c$. For small decryption circuits we can use key-switching and bootstrapping.
+The underlying assumption is that the HE scheme can evaluate $\hat{C}_c$. We have shown that it is possible to use a non-homomorphic encryption scheme to encrypt the message and still perform homomorphic computation on it. Key-switching transforms a ciphertext encrypted under a non-HE scheme to an evaluated ciphertext encrypted under a HE scheme.
 
+Key-switching is a useful optimization technique for increasing the efficiency of the system. Unfortunately however, it does not allow for further computation on the evaluated ciphertext, which means that the function $C$ is constrained such that $\hat{C}_c$ is in the set of permissible circuits. To see why further computation is impossible, denote the evaluated ciphertext $c_c \stackrel{\mathrm{def}}{=} \operatorname{Eval}(hpk,\hat{C}_c, sk')$ and consider computable function $f$ and let $\hat{f}_{c_c}(\cdot) = f(\operatorname{Dec}(\cdot,c_c))$. Then, $\operatorname{Dec}(hsk,\operatorname{Eval}(hpk,\hat{f}_{c_c}, sk')) = f(\operatorname{Dec}(sk, c_c))$. However, since $c_c$ is encrypted under the HE scheme, the non-homomorphic decryption algorithm applied to $c_c$ does not make sense. 
+
+To further compute on the evaluated ciphertext, the decryption algorithm and the secret key must originate from the HE scheme. We therefore only consider the HE scheme. The downside is that encryption and homomorphic decryption is made using the HE scheme's algorithms instead of the faster non-HE schemes, but the upside is that we can perform further computation on the evaluated ciphertext. Let $(\text{KeyGen, Enc, Dec, Eval})$ be a HE scheme, $(pk, sk) \leftarrow \operatorname{KeyGen}(\lambda)$ and $sk' \leftarrow \operatorname{Enc}(pk, sk)$. Since the secret key is encrypted using its corresponding public key, circular security is assumed. Let $\hat{C}_c$ be defined as before. Again, $c_c \stackrel{\mathrm{def}}{=} \operatorname{Eval}(pk,\hat{C}_c, sk')$ is a valid evaluated ciphertext of $C(m)$. The main difference is that we can embed $c_c$ into another function $C_1$ to further compute homomorphically on $c$. 
 % \mbnote{
 % IDEA FOR OUTLINE:
 
@@ -367,6 +370,8 @@ The assumption here is that the HE scheme can evaluate $\hat{C}_c$. $\hat{C}_c$ 
 % - Introduce single hop/multihop. Idea: If we have a fresh ciphertext c and a permissable function f, server can evaluate f,c. For multihop (i-hop), the ciphertext does not need to be fresh. Server can evaluate on eval-ciphertext up to i times.
 
 % - Introduce key switching (possible if single hop). Idea: We want to evaluate (f, c). However, if circuit f_c is permissable, we insead evaluate $(f_c, c')$ where c' is encryption of NH secret key under H public key. This is faster since the long message does not need to be encrypted with the slow H scheme, but we do it on the short NH private key.
+
+% - Introduce refreshing ciphertexts. Idea: We want to evaluate 
 
 % - Introduce bootstrapping. Idea: Assume only single hop scheme. Then, when we always send the same ciphertext, an H encryption of secret key, the server returns an eval ciphertexxt that is low noise. We embedd the ciphertext into the function and since the scheme is bootstrappable, the circuit is permissible and we can repeat the process. Essentially, the computation on the ciphertext is embedded in the circuit and upon decryption, one layer get decrypted at a time (show with induction).
 % }
