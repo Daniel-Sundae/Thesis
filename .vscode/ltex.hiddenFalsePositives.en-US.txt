@@ -1,0 +1,1 @@
+{"rule":"HE_VERB_AGR","sentence":"^\\QHowever, since \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q is encrypted under the HE scheme, the non-homomorphic decryption algorithm applied to \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q does not make sense and decryption fails.\\E$"}

@@ -68,43 +68,34 @@ A circuit family $\{C_n\}_{n \in \mathbb{N}}$ is uniform if there exists a polyn
 A uniform circuit family is polynomial size. The converse is not necessarily true. A family that is not uniform is said to be a non-uniform circuit family. Note that Turing machines are at least as strong as uniform circuit families. More formally, if a uniform circuit family decides $\mathscr{L}$ then there exists a polynomial-time Turing machine that decides $\mathscr{L}$.\footnote{The converse is also true, meaning deterministic polynomial-time Turing machines are exactly as powerful as uniform circuit families. See \cite[pp. 111]{Arora} for details} Simply construct the polynomial-time Turing machine that given any input $x \in \mathscr{L}$, first generates a description of $C_{|x|}$ and then simulates $C_{|x|}(x)$. In other words, the non-uniform circuit families are stronger than the polynomial-time Turing machines.
 
 \section{Probability Theory}
-
 \begin{definition}[Probability ensemble]
     Let $I$ be a countable index set. A \textit{probability ensemble} indexed by $I$ (or just ensemble) is a sequence of random variables $(X_i)_{i \in I}$.
 \end{definition}
-
 In this paper we will exclusively use $\mathbb{N}$ as the index set.
 For example, the encryption function is a random variable (PPT algorithm), meaning that a single message $m$ corresponds to many valid ciphertexts. By varying the security parameter of the scheme we construct the ensemble $\{Enc(pk,m)\}_{pk \in \mathbb{N}}$
-
 \begin{definition}[Statistical distance of ensembles]
     Let $S_n$ be finite set for all $n \in \mathbb{N}$ and let $X = (X_n \colon \Omega_n \to S_n)_{n \in \mathbb{N}}$, $Y = (Y_n \colon \Omega_n \to S_n)_{n \in \mathbb{N}}$ be two ensembles. The \textit{statistical distance} is defined as
     \begin{equation*}
         \Delta_{X,Y}(n) \stackrel{\mathrm{def}}{=} \frac{1}{2} \sum_{\alpha \in S_n} |\operatorname{Pr}[X_n = \alpha] - \operatorname{Pr}[Y_n = \alpha]|.
     \end{equation*}
 \end{definition}
-
 \begin{definition}[Negligible function]
     Let $f \colon \mathbb{N} \to [0,1]$. $f$ is negligible if for all positive polynomials $p(\cdot)$, there exists an $N$ such that for all $n>N$, $f(n) < \frac{1}{p(n)}$. We say $f = \operatorname{negl}(n)$.
 \end{definition}
-
 \begin{definition}[Perfectly indistinguishable]
     Two ensembles $X$ and $Y$ are \textit{perfectly indistinguishable} if $\Delta_{X,Y}(n) = 0$ for all $n$.
 \end{definition}
 \begin{definition}[Statistically indistinguishable]
     Two ensembles $X$ and $Y$ are \textit{statistically indistinguishable} if $\Delta_{X,Y}(n) = \operatorname{negl}(n)$.
 \end{definition}
-
  A desirable property of encryption schemes is to make it unfeasible for adversaries to distinguish encryptions. For two random variables $X$ and $Y$, we want every adversary $C$ to not be able to distinguish samples from $X$ and $Y$. More precisely, an adversary tasked with identifying whether given samples are from $X$ ($C$ outputs 0) or from $Y$ ($C$ outputs 1) should have roughly the same probability of success irrespective of which random variable the samples are generated from. The formal definition is as follows:
- 
 \begin{definition}[Computationally indistinguishable \cite{Gol01}]
     Two ensembles $X$ and $Y$ are computationally indistinguishable if, for every polynomial-size circuit family $C = \{C_n\}_{n \in \mathbb{N}}$, $$\operatorname{Adv}_{X,Y}(n) \stackrel{\mathrm{def}}{=} |\operatorname{Pr}[C(X_n) = 1] - \operatorname{Pr}[C(Y_n) = 1]| = \operatorname{negl}(n).$$
     The randomness is taken over the outcomes of the random variables $X_n$ and $Y_n$.
 \end{definition}
-
 $C(X_n), C(Y_n)$ means that the adversary has access to random oracle returning a sample from $X_n$ and $Y_n$ respectively. The point is that, for every adversary $C$ guessing the samples are from one of the random variables (1 in this case represents from $Y_n$), the probability of being correct is, up to negligible error, equal to the probability of being incorrect. For example, an adversary always guessing 1 has 100\% probability of being incorrect when given samples from $X_n$ and 100\% probability of being correct when given samples from $Y_n$. The intuition is that the advantage in distinguishing the random variables in the ensembles goes to zero fast (faster than the inverse of all polynomials).
 
 Perfect distinguishability implies statistical indistinguishability as 0 is negligible. Statistical indistinguishability implies computational indistinguishability. To see why, assume $\Delta_{X,Y}(n) = \operatorname{negl}(n)$ and consider any circuit family $C$. Since $X_n$ and $Y_n$ are defined on the same sample space we have
-
 \begin{equation*}
 \begin{aligned}
     \operatorname{Adv}_{X,Y}(n) &= |\operatorname{Pr}(X_n) = 1] - \operatorname{Pr}[C(Y_n) = 1]|\\
@@ -132,7 +123,6 @@ We say that $\chi$ is the distribution or\textit{law} of $X$, denoted $\mathcal{
 \begin{remark}
      Two different random variables can have the same distribution and \mbnote{one random variable can have two different distributions}. See \cite{cont-finance} for a formal and excellent discussion.
 \end{remark}
-
 A distribution measure for a random variable is a probability measure on the sample space $(S,\mathcal{S})$, as opposed to on the outcome space $(\Omega, \mathcal{F})$. For a given probability space, any random variable $X$ defined on it has a distribution associated with it. We write $x \leftarrow X$ or $x \leftarrow \chi$ for sampling the outcome $x$ from $X$ assuming $\chi$ is its distribution. When $X$ is a space we mean that $x$ is uniformly sampled from $X$.
 
 \begin{definition}[Statistical distance of distributions]
@@ -148,7 +138,6 @@ A distribution measure for a random variable is a probability measure on the sam
 \end{remark}
 
 \mbnote{Add a part about discrete gaussian distribution}
-
 
 \section{Cryptographic primitives}
 
@@ -198,7 +187,6 @@ In a homomorphic encryption scheme that supports one addition and multiplication
     & = \operatorname{Dec}_{sk}(c_1) \times \operatorname{Dec}_{sk}(c_2)
 \end{aligned}
 \end{equation*}
-
 The main idea behind a homomorphic encryption scheme is to give a server encrypted data so that it can compute on that data and return the answer in encrypted form. However, the definition provided allows for trivial homomorphic encryption schemes where the server does nothing. More specifically, consider any set of circuits $\mathcal{C}$ and let $\operatorname{Eval}(pk, C,\left\langle c_1, \dots ,c_t \right\rangle) = (C, \left\langle c_1, \dots, c_t \right \rangle)$. Eval takes a description of a circuit and a tuple of ciphertexts, one for each input wire of the circuit, and simply outputs the description of the circuit together with the given tuple. Clearly, Eval runs in polynomial time. Consider a decryption algorithm that, if given an input of this form, first decrypts the $t$ ciphertexts and then computes $m_f$ using $C$. To ensure that the server actually processes the given inputs we introduce compactness.
 
 \begin{definition}[Compactness]
@@ -309,11 +297,9 @@ Consider the space of $n \times m$ matrices $\mathbb{Z}_q^{n \times m}$ with uni
 \begin{remark}
     There are many $\operatorname{LWE}$ distributions, each characterised by the the parameters $n, m, q, s, \chi$.
 \end{remark}
-
 In words, first fix a secret $s$ with entries in $\mathbb{Z}_q$ at random. Then sample a $n \times m$ matrix $\textbf{A}$ with entries in $\mathbb{Z}_q$ at random and $e$ consisting of $m$ independent errors from the discrete distribution $\chi$. Calculate $s^T\textbf{A}+e^T$ and output the pair $(\textbf{A},s^T\textbf{A}+e^T)$. The $\operatorname{LWE}$ distribution specifies the probability of sampling each pair.
 
 Note that the $\operatorname{LWE}$ distribution is not the same as the product measure in the probability space $A_{s,\chi}$ is defined on.
-
 \begin{definition}[search-$\operatorname{LWE}$ problem]
     Let $s \leftarrow \mathbb{Z}_q^n$ be random.
     Let $(\textbf{A}, b) \leftarrow \operatorname{LWE}_{s, n, q, \chi, m}$. The (average-case) search-$\operatorname{LWE}$ problem is to construct a PPT algorithm $A$ such that
@@ -323,7 +309,6 @@ Note that the $\operatorname{LWE}$ distribution is not the same as the product m
         \end{aligned}
     \end{equation}
 \end{definition}
-
 \begin{definition}[decision-$\operatorname{LWE}$ problem]
     Let $s \leftarrow \mathbb{Z}_q^n$ be random.
     Let $\mathcal{U}_n$ be the uniform distribution on $\mathbb{Z}_q^{n \times m} \times \mathbb{Z}_q^m$. The (average-case) decision-$\operatorname{LWE}$ problem is to distinguish $\mathcal{U}_n$ and $\operatorname{LWE}_{s, n, q, \chi, m}$ with non negligible advantage w.r.t $n$
@@ -332,7 +317,6 @@ Note that the $\operatorname{LWE}$ distribution is not the same as the product m
 \begin{remark}
     Since the requirement is that $s$ is randomly chosen instead of arbitrarily chosen, the problem refers to average-case hardness as opposed to worst-case hardness. This is actually equivalent, meaning if average keys are easy to guess, then all keys are easy to guess. See \cite{Reg10} for proof.
 \end{remark}
-
 The LWE search and decision problem are equivalent when $q$ is prime and $q(n) = \operatorname{poly}(n)$.
 
 \section{The four generations of HE}
@@ -340,7 +324,7 @@ The LWE search and decision problem are equivalent when $q$ is prime and $q(n) =
 
 \section{Noise management}
 
-Noise is introduced in the ciphertexts when performing homomorphic operations. The noise grows with each operation and eventually the ciphertext becomes unusable. Noise management is the process of keeping the noise small enough to be able to perform a sufficient number of operations.
+The main problem with homomorphic encryption schemes is the noise. Noise is introduced in the ciphertexts during the encryption process and when the ciphertexts undergo homomorphic operations, the noise grows. After sufficiently many operations, the noise grows to the point where the decryption of the evaluated ciphertext fails. In order to reach FHE, it is necessary to control the noise to allow for sufficient number of operations. Noise management is the process of controlling the noise in the ciphertexts during homomorphic evaluation. In his 2009 seminal PHD thesis \cite{Gentry-Thesis}, Craig Gentry showed that FHE was possible by using a noise management technique called Bootstrapping. Bootstrapping is an algorithm that transforms a possibly noisy ciphertext into a correct evaluated ciphertext with little noise by running using an encryption of the secret key to decrypt the noisy ciphertext homomorphically.
 
 \subsection*{Evaluated ciphertexts vs fresh ciphertexts}
 Recall that in Definition \ref{def:HE-scheme}, the decryption of an evaluated ciphertext is only required to be correct if the ciphertext is a fresh ciphertext. \mbnote{Explain Why we care}. The question is then if it is possible to pass evaluated ciphertext to the Eval algorithm instead of fresh ones.
@@ -348,7 +332,9 @@ Recall that in Definition \ref{def:HE-scheme}, the decryption of an evaluated ci
 A HE scheme is said to be $i$-hop if the Eval algorithm can be called on its own output up to $i$ times. A HE scheme that satisfies the definition is $0$-hop, also called \textit{single-hop}, and multi-hop if it is $i$-hop for all $i$. 
 
 \subsection*{Key-Switching}
-Since HE schemes are designed with the constraint of supporting homomorphic operations, they are often inefficient. Therefore, it would be desirable to use a more efficient non-homomorphic scheme to encrypt the large messages, but still retaining the homomorphic property. Key-switching is a technique that allows for homomorphic computation on ciphertexts encrypted under a non-homomorphic scheme. In particular, it allows for transforming a ciphertext under a non-HE scheme to a corresponding ciphertext under a HE scheme. The idea is to encrypt the much shorter secret key under the HE scheme and hard-wire the ciphertexts into the function of interest.
+This section is based on \cite{Bra18-survey}.
+
+As a natural segway into bootstrapping, we first introduce a related but different concept called key-switching. Since HE schemes are designed with the constraint of supporting homomorphic operations, they are often inefficient. Therefore, it would be desirable to use a more efficient non-homomorphic scheme to encrypt the large messages, but still retaining the homomorphic property. Key-switching is a technique that allows for homomorphic computation on ciphertexts encrypted under a non-homomorphic scheme. In particular, it allows for transforming a ciphertext under a non-HE scheme to a corresponding ciphertext under a HE scheme. The idea is to encrypt the much shorter secret key of the non-HE scheme under the public key of the HE scheme and hard-wire the ciphertexts into the function of interest.
 
 Let $(\text{H.KeyGen, H.Enc, H.Dec, Eval})$ be a homomorphic encryption scheme and $(\text{KeyGen, Enc, Dec})$ be a non-homomorphic encryption scheme. Let $(hpk,hsk) \leftarrow \operatorname{H.KeyGen}(\lambda)$ and $(pk,sk) \leftarrow \operatorname{KeyGen}(\lambda)$. Consider computable function $C$, the vector of ciphertexts $c \leftarrow \operatorname{Enc}(pk,m)$ and an encrypted secret key $sk' \leftarrow \operatorname{H.Enc}(hpk,sk)$. Define $\hat{C}_c(\cdot) \stackrel{\mathrm{def}}{=} C(\operatorname{Dec}(\cdot, c))$. We can then compute $C(m)$ homomorphically by decrypting $\operatorname{Eval}(hpk,\hat{C}_c, sk')$. Indeed, this is a correct encryption of $C(m)$ since
 \begin{equation*}
@@ -356,12 +342,22 @@ Let $(\text{H.KeyGen, H.Enc, H.Dec, Eval})$ be a homomorphic encryption scheme a
         \operatorname{Dec}(hsk,\operatorname{Eval}(hpk,\hat{C}_c, sk')) = \hat{C}_c(sk) = C(\operatorname{Dec}(sk, c)) = C(m)
     \end{aligned}
 \end{equation*}
+We have shown that it is possible to use a non-homomorphic encryption scheme to encrypt the message and still perform homomorphic computation on it. Key-switching transforms a ciphertext encrypted under a non-HE scheme to an evaluated ciphertext encrypted under a HE scheme.
 
-The underlying assumption is that the HE scheme can evaluate $\hat{C}_c$. We have shown that it is possible to use a non-homomorphic encryption scheme to encrypt the message and still perform homomorphic computation on it. Key-switching transforms a ciphertext encrypted under a non-HE scheme to an evaluated ciphertext encrypted under a HE scheme.
+The underlying assumption is that the HE scheme can evaluate $\hat{C}_c$, meaning it can first run the decryption algorithm and then compute the desired function $C$ to generate a valid evaluated ciphertext. Even if we assume that the decryption algorithm is simple enough to be evaluated by the scheme, a general $C$ consists of several multiplication and addition gates, meaning it is unlikely that the scheme can evaluate $\hat{C}_c$. If we could break $C$ up into smaller parts, $C = C^m \circ \dots \circ C^1$, and evaluate each part separately, $c_i = \operatorname{Eval}(hpk,\hat{C}^i_{c_{i-1}}, sk')$, where $c_0 \leftarrow Enc(pk,m)$, then we could evaluate $C$ homomorphically assuming $\hat{C}^i_{c_{i-1}}$ is permissible for all $i$. However, as the construction currently stands, further computation on the ciphertext is not possible. To see why, consider $c_1 = \operatorname{Eval}(hpk,\hat{C}^1_{c_0}, sk')$ and let $c_2 = \operatorname{Eval}(hpk,\hat{C}^2_{c_1}, sk')$. We hope decrypting $c_2$ yields $(C^2 \circ C^1)(m)$, but $\operatorname{Dec}(hsk,c_2) = \operatorname{Dec}(hsk,\operatorname{Eval}(hpk,\hat{C}^2_{c_1}, sk')) = C^2(\operatorname{Dec}(sk, c_1))$. However, since $c_1$ is encrypted under the HE scheme, the non-homomorphic decryption algorithm applied to $c_1$ does not make sense and decryption fails.
 
-Key-switching is a useful optimization technique for increasing the efficiency of the system. Unfortunately however, it does not allow for further computation on the evaluated ciphertext, which means that the function $C$ is constrained such that $\hat{C}_c$ is in the set of permissible circuits. To see why further computation is impossible, denote the evaluated ciphertext $c_c \stackrel{\mathrm{def}}{=} \operatorname{Eval}(hpk,\hat{C}_c, sk')$ and consider computable function $f$ and let $\hat{f}_{c_c}(\cdot) = f(\operatorname{Dec}(\cdot,c_c))$. Then, $\operatorname{Dec}(hsk,\operatorname{Eval}(hpk,\hat{f}_{c_c}, sk')) = f(\operatorname{Dec}(sk, c_c))$. However, since $c_c$ is encrypted under the HE scheme, the non-homomorphic decryption algorithm applied to $c_c$ does not make sense. 
+\subsection*{Bootstrapping}
+Key-switching is a nice optimization technique for encrypting messages faster, but it does not allow for further computation on the ciphertext. The requirement is that the decryption algorithm and the secret key originate from the HE scheme. We therefore only consider the HE scheme. Let $(\text{KeyGen, Enc, Dec, Eval})$ be a HE scheme, $(pk, sk) \leftarrow \operatorname{KeyGen}(\lambda)$ and $sk' \leftarrow \operatorname{Enc}(pk, sk)$. Since the secret key is encrypted using its corresponding public key, circular security is assumed. Under this construction, decryption of $c_1$ is still correct as $\operatorname{Dec}(sk, c_1) = C^1_{c_0}(sk) = C^1(\operatorname{Dec}(sk,c_1)) = C^1(m)$, but the difference is that decryption of $c_i$ also works since, by induction,
+\begin{equation*}
+    \begin{aligned}
+        \operatorname{Dec}(hsk,\operatorname{Eval}(hpk,\hat{C}^i_{c_{i-1}}, sk')) = \hat{C}^i_{c_{i-1}}(sk) = C^i(\operatorname{Dec}(sk, c_{i-1})) = C^i \circ C^{i-1} \dots C^1(m)
+    \end{aligned}
+\end{equation*}
+In essence, we have constructed a method to evaluate $C$ as follows: The first step is to evaluate a part of $C$ on the encryption of the secret key to obtain an evaluated ciphertext. The second step is to generate a circuit which is the composition of the decryption circuit for the previous evaluated ciphertext and the consecutive part of $C$. The third step is to evaluate the generated circuit on the same  and then repeating the process until the final ciphertext contains the entire computation of $C$
 
-To further compute on the evaluated ciphertext, the decryption algorithm and the secret key must originate from the HE scheme. We therefore only consider the HE scheme. The downside is that encryption and homomorphic decryption is made using the HE scheme's algorithms instead of the faster non-HE schemes, but the upside is that we can perform further computation on the evaluated ciphertext. Let $(\text{KeyGen, Enc, Dec, Eval})$ be a HE scheme, $(pk, sk) \leftarrow \operatorname{KeyGen}(\lambda)$ and $sk' \leftarrow \operatorname{Enc}(pk, sk)$. Since the secret key is encrypted using its corresponding public key, circular security is assumed. Let $\hat{C}_c$ be defined as before. Again, $c_c \stackrel{\mathrm{def}}{=} \operatorname{Eval}(pk,\hat{C}_c, sk')$ is a valid evaluated ciphertext of $C(m)$. The main difference is that we can embed $c_c$ into another function $C_1$ to further compute homomorphically on $c$. 
+\mbnote{In practice, we don't use augmented decryption circuits but instead we just refresh the ciphertext. In this case, we only need the dec func to be permitted.}
+
+
 % \mbnote{
 % IDEA FOR OUTLINE:
 
@@ -377,9 +373,6 @@ To further compute on the evaluated ciphertext, the decryption algorithm and the
 % }
 
 
-\subsection*{Bootstrapping}
-In his 2009 seminal PHD thesis \cite{Gentry-Thesis}, Craig Gentry showed that FHE was possible by using a noise management technique called Bootstrapping. Bootstrapping is an algorithm that produces a new valid ciphertext with less noise by encrypting the secret key and decrypting the ciphertext homomorphically. In short, the client gives the server an encryption of the secret key and the server runs the decryption algorithm on the messages using the encrypted secret key.
-
 
 \begin{definition}[Bootstrappable encryption scheme]
     Let $\mathcal{E}$ be a $\mathcal{C}$-homomorphic encryption scheme with decryption function Dec. Consider the following \textit{augmented decryption circuits} for $\mathcal{E}$:
@@ -394,7 +387,6 @@ In his 2009 seminal PHD thesis \cite{Gentry-Thesis}, Craig Gentry showed that FH
     \{B_{c_1,c_2}^{(m)}(\cdot), B_{c_1,c_2}^{(a)}(\cdot) \; \mid \; c_1, c_2 \in \mathcal{Y}\} \subset \mathcal{C}
     \end{equation*}
 \end{definition}
-
 \mrnote{Why do we hardcode the ciphetexts? To gain efficiency?}
 The augmented decryption circuits have the ciphertexts hard-coded into its description and takes as input an element representing either the secret key or an encryption of a secret key. A bootstrappable scheme correctly evaluates the set of all augmented decryption circuits. In particular, it correctly evaluates its own decryption circuit by letting $c_2$ be an encryption of the multiplicative or additive identity respectively.
 
@@ -420,7 +412,6 @@ Indeed, $m_{1,2}'$ is a valid ciphertext of $m_1 \times m_2$ since
         &= m_1 \times m_2
     \end{aligned}
 \end{equation*}
-
 If circular security is not assumed, the process becomes more complicated. For bootstrapping round $i$, where $i = 0$ represents the first round, let $m_{1,2}^{(i+1)} \stackrel{\mathrm{def}}{=} B_{m_1^{(i)},m_2^{(i)}}^{(mult)}(sk_i^{(i+1)})$. Correctness follows from
 \begin{equation*}
     \begin{aligned}
@@ -430,5 +421,4 @@ If circular security is not assumed, the process becomes more complicated. For b
         &= m_1 \times m_2
     \end{aligned}
 \end{equation*}
-
 Note that both $m_{1,2}'$ and $m_1' \times m_2'$ decrypts to $m_1 \times m_2$. The idea behind bootstrapping is that $m_{1,2}'$ has less noise.

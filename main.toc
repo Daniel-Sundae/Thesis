@@ -7,7 +7,7 @@
 \contentsline {section}{\numberline {1.4}Lattices}{12}{section.1.4}%
 \contentsline {section}{\numberline {1.5}The four generations of HE}{14}{section.1.5}%
 \contentsline {section}{\numberline {1.6}Noise management}{14}{section.1.6}%
-\contentsline {chapter}{References}{18}{theorem.2}%
+\contentsline {chapter}{References}{19}{theorem.2}%
 \etoc@depthtag {mtappendix}
-\contentsline {chapter}{\numberline {A}First Appendix}{21}{appendix.A}%
-\contentsline {chapter}{\numberline {B}Second Appendix}{22}{appendix.B}%
+\contentsline {chapter}{\numberline {A}First Appendix}{22}{appendix.A}%
+\contentsline {chapter}{\numberline {B}Second Appendix}{23}{appendix.B}%

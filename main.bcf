@@ -2381,9 +2381,10 @@
     <bcf:citekey order="17" intorder="1">Applebaum</bcf:citekey>
     <bcf:citekey order="18" intorder="1">Reg10</bcf:citekey>
     <bcf:citekey order="19" intorder="1">Gentry-Thesis</bcf:citekey>
-    <bcf:citekey order="20" intorder="1">Gentry-Thesis</bcf:citekey>
-    <bcf:citekey order="20" intorder="2">Vai-survey</bcf:citekey>
-    <bcf:citekey order="21" intorder="1">BGV12-no-bootstrap</bcf:citekey>
+    <bcf:citekey order="20" intorder="1">Bra18-survey</bcf:citekey>
+    <bcf:citekey order="21" intorder="1">Gentry-Thesis</bcf:citekey>
+    <bcf:citekey order="21" intorder="2">Vai-survey</bcf:citekey>
+    <bcf:citekey order="22" intorder="1">BGV12-no-bootstrap</bcf:citekey>
   </bcf:section>
   <!-- SORTING TEMPLATES -->
   <bcf:sortingtemplate name="nty">
