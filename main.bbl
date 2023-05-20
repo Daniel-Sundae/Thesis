@@ -214,6 +214,7 @@
       \strng{authorbibnamehash}{bd007b2a3d698c39bd758b253f7c2ebf}
       \strng{authornamehash}{bd007b2a3d698c39bd758b253f7c2ebf}
       \strng{authorfullhash}{bd007b2a3d698c39bd758b253f7c2ebf}
+      \field{extraname}{1}
       \field{labelalpha}{Gen09}
       \field{sortinit}{G}
       \field{sortinithash}{32d67eca0634bf53703493fb1090a2e8}
@@ -223,6 +224,37 @@
       \field{title}{A Fully Homomorphic Encryption Scheme}
       \field{type}{phdthesis}
       \field{year}{2009}
+    \endentry
+    \entry{Gen14-edge}{misc}{}
+      \name{author}{1}{}{%
+        {{hash=bd007b2a3d698c39bd758b253f7c2ebf}{%
+           family={Gentry},
+           familyi={G\bibinitperiod},
+           given={Craig},
+           giveni={C\bibinitperiod}}}%
+      }
+      \strng{namehash}{bd007b2a3d698c39bd758b253f7c2ebf}
+      \strng{fullhash}{bd007b2a3d698c39bd758b253f7c2ebf}
+      \strng{bibnamehash}{bd007b2a3d698c39bd758b253f7c2ebf}
+      \strng{authorbibnamehash}{bd007b2a3d698c39bd758b253f7c2ebf}
+      \strng{authornamehash}{bd007b2a3d698c39bd758b253f7c2ebf}
+      \strng{authorfullhash}{bd007b2a3d698c39bd758b253f7c2ebf}
+      \field{extraname}{2}
+      \field{labelalpha}{Gen14}
+      \field{sortinit}{G}
+      \field{sortinithash}{32d67eca0634bf53703493fb1090a2e8}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{howpublished}{Cryptology ePrint Archive, Paper 2014/610}
+      \field{note}{\url{https://eprint.iacr.org/2014/610}}
+      \field{title}{Computing on the Edge of Chaos: Structure and Randomness in Encrypted Computation}
+      \field{year}{2014}
+      \verb{urlraw}
+      \verb https://eprint.iacr.org/2014/610
+      \endverb
+      \verb{url}
+      \verb https://eprint.iacr.org/2014/610
+      \endverb
     \endentry
     \entry{goldreich_2008}{book}{}
       \name{author}{1}{}{%

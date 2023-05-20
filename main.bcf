@@ -2373,18 +2373,20 @@
     <bcf:citekey order="9" intorder="1">Gol01</bcf:citekey>
     <bcf:citekey order="10" intorder="1">kallenberg-probability</bcf:citekey>
     <bcf:citekey order="11" intorder="1">cont-finance</bcf:citekey>
-    <bcf:citekey order="12" intorder="1">Gol04</bcf:citekey>
-    <bcf:citekey order="13" intorder="1">Bra18-survey</bcf:citekey>
-    <bcf:citekey order="14" intorder="1">Hal18</bcf:citekey>
-    <bcf:citekey order="15" intorder="1">LNP22</bcf:citekey>
-    <bcf:citekey order="16" intorder="1">Pei16-decade</bcf:citekey>
-    <bcf:citekey order="17" intorder="1">Applebaum</bcf:citekey>
-    <bcf:citekey order="18" intorder="1">Reg10</bcf:citekey>
-    <bcf:citekey order="19" intorder="1">Gentry-Thesis</bcf:citekey>
-    <bcf:citekey order="20" intorder="1">Bra18-survey</bcf:citekey>
+    <bcf:citekey order="12" intorder="1">Gen14-edge</bcf:citekey>
+    <bcf:citekey order="13" intorder="1">Gen14-edge</bcf:citekey>
+    <bcf:citekey order="14" intorder="1">Gol04</bcf:citekey>
+    <bcf:citekey order="15" intorder="1">Bra18-survey</bcf:citekey>
+    <bcf:citekey order="16" intorder="1">Hal18</bcf:citekey>
+    <bcf:citekey order="17" intorder="1">LNP22</bcf:citekey>
+    <bcf:citekey order="18" intorder="1">Pei16-decade</bcf:citekey>
+    <bcf:citekey order="19" intorder="1">Applebaum</bcf:citekey>
+    <bcf:citekey order="20" intorder="1">Reg10</bcf:citekey>
     <bcf:citekey order="21" intorder="1">Gentry-Thesis</bcf:citekey>
-    <bcf:citekey order="21" intorder="2">Vai-survey</bcf:citekey>
-    <bcf:citekey order="22" intorder="1">BGV12-no-bootstrap</bcf:citekey>
+    <bcf:citekey order="22" intorder="1">Bra18-survey</bcf:citekey>
+    <bcf:citekey order="23" intorder="1">Gentry-Thesis</bcf:citekey>
+    <bcf:citekey order="23" intorder="2">Vai-survey</bcf:citekey>
+    <bcf:citekey order="24" intorder="1">BGV12-no-bootstrap</bcf:citekey>
   </bcf:section>
   <!-- SORTING TEMPLATES -->
   <bcf:sortingtemplate name="nty">

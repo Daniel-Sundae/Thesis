@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999995 (TeX Live 2023) (preloaded format=xelatex 2023.5.8)  20 MAY 2023 14:31
+This is XeTeX, Version 3.141592653-2.6-0.999995 (TeX Live 2023) (preloaded format=xelatex 2023.5.8)  20 MAY 2023 18:18
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1133,8 +1133,7 @@ Package: relsize 2013/03/29 ver 4.1
 \@quotelevel=\count501
 \@quotereset=\count502
 Package translations Info: No language package found. I am going to use `english' as default language. on input line 13.
-
-No file main.aux.
+ (./main.aux (./setup/title-page.aux) (./sections/0-pre-content.aux) (./sections/1-theory.aux) (./sections/appendices.aux) (./back-cover.aux))
 \openout1 = `main.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 13.
@@ -1147,7 +1146,7 @@ LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 13.
 LaTeX Font Info:    ... okay on input line 13.
 LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 13.
 LaTeX Font Info:    Trying to load font information for TS1+cmr on input line 13.
-(/usr/local/texlive/2023/texmf-dist/tex/latex/base/ts1cmr.fd
+ (/usr/local/texlive/2023/texmf-dist/tex/latex/base/ts1cmr.fd
 File: ts1cmr.fd 2022/07/10 v2.5l Standard LaTeX font definitions
 )
 LaTeX Font Info:    ... okay on input line 13.
@@ -1269,9 +1268,6 @@ Package biblatex Info: Reference segment=0 on input line 13.
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
 Package hyperref Info: Link coloring OFF on input line 13.
-
-Package hyperref Warning: Rerun to get /PageLabels entry.
-
 (/usr/local/texlive/2023/texmf-dist/tex/latex/translations/translations-basic-dictionary-english.trsl
 File: translations-basic-dictionary-english.trsl (english translation file `translations-basic-dictionary')
 )
@@ -1289,11 +1285,10 @@ LaTeX Info: Redefining \micro on input line 13.
 Package gensymb Info: Using \textmu for \micro on input line 13.
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: End \AtBeginDocument code.
-
-No file main.toc.
+\Etoc@tf=\read5
 \openout2 = `setup/title-page.aux'.
 
-(./setup/title-page.tex
+ (./setup/title-page.tex
 File: setup/img/kth-logo.jpg Graphic file (type bmp)
 <setup/img/kth-logo.jpg>
 LaTeX Font Info:    Font shape `TU/lmss/m/it' in size <12> not available
@@ -1336,12 +1331,11 @@ File: setup/img/kth-footer.png Graphic file (type bmp)
 
 ] (./sections/0.1-acronyms.tex) [6
 
-]
-No file main.toc.
+] (./main.toc)
 \tf@toc=\write5
 \openout5 = `main.toc'.
 
-[7])
+ [7])
 \openout2 = `sections/1-theory.aux'.
 
  (./sections/1-theory.tex
@@ -1351,52 +1345,27 @@ Chapter 1.
 
 
 
-]
+] [2] [3] [4] [5] [6] (./figures/decryption-homomorphism.tex) [7]
+Underfull \vbox (badness 4060) has occurred while \output is active []
 
-LaTeX Warning: Reference `thm:compl-class' on page 2 undefined on input line 19.
-
-[2] [3] [4]
-
-LaTeX Warning: Reference `subsec:LWE' on page 5 undefined on input line 102.
-
-[5] [6] (./figures/decryption-homomorphism.tex) [7] [8] [9] [10]
-Underfull \vbox (badness 10000) has occurred while \output is active []
+ [8] [9] [10]
+Underfull \vbox (badness 8132) has occurred while \output is active []
 
  [11] [12] [13]
-Runaway argument?
-{
-./sections/1-theory.tex:332: Paragraph ended before \@sect was complete.
-<to be read again> 
-                   \par 
-l.332 
-      
-I suspect you've forgotten a `}', causing me to apply this
-control sequence to too much text. How can we recover?
-My plan is to forget the whole thing and hope for the best.
-
-./sections/1-theory.tex:332: Too many }'s.
-\@xdblarg #1#2->#1[{#2}
-                       ]{#2}
-l.332 
-      
-You've closed more groups than you opened.
-Such booboos are generally harmless, so keep going.
-
-
-LaTeX Warning: Reference `def:HE-scheme' on page 14 undefined on input line 338.
-
-
-Underfull \vbox (badness 1558) has occurred while \output is active []
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [14] [15]
-Overfull \hbox (1.59447pt too wide) detected at line 367
+Overfull \hbox (1.59447pt too wide) detected at line 385
 [][]
  []
 
 
-Underfull \vbox (badness 1454) has occurred while \output is active []
+Underfull \vbox (badness 3417) has occurred while \output is active []
 
- [16] [17]) [18] [19] [20
+ [16]
+Underfull \vbox (badness 7362) has occurred while \output is active []
+
+ [17] [18]) [19] [20
 
 
 
@@ -1423,28 +1392,17 @@ Appendix B.
 
 No file back-cover.tex.
 (./main.aux (./setup/title-page.aux) (./sections/0-pre-content.aux) (./sections/1-theory.aux) (./sections/appendices.aux) (./back-cover.aux))
-
-LaTeX Warning: There were undefined references.
-
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
-
-
-Package biblatex Warning: Please (re)run Biber on the file:
-(biblatex)                main
-(biblatex)                and rerun LaTeX afterwards.
-
 Package logreq Info: Writing requests to 'main.run.xml'.
 \openout1 = `main.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 43065 strings out of 476683
- 933806 string characters out of 5804048
+ 43085 strings out of 476683
+ 934435 string characters out of 5804048
  1863018 words of memory out of 5000000
- 62612 multiletter control sequences out of 15000+600000
- 524875 words of font info for 114 fonts, out of 8000000 for 9000
+ 62613 multiletter control sequences out of 15000+600000
+ 524915 words of font info for 119 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
- 99i,18n,95p,1482b,5357s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 99i,18n,95p,1482b,5340s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
 Output written on main.pdf (31 pages).

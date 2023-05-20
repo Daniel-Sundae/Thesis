@@ -166,7 +166,7 @@ We say $\mathcal{E}$ can evaluate all circuits in $\mathcal{C}$ and is $\mathcal
 The evaluation algorithm runs the ciphertexts through the permissible circuit while also satisfying the requirement that decrypting the resulting ciphertext yields the same result as the plaintexts running through the circuit. To its disposal, the evaluation algorithm is given the public key. The ciphertexts returned by the Eval algorithm are called \textit{evaluated ciphertexts} (suggesting the circuit has evaluated the ciphertexts) and those returned by the encryption algorithm are called \textit{fresh ciphertexts}. Remark that correctness is only guaranteed if the Eval algorithm is given fresh ciphertexts. If the circuit corresponds to the computable function $f$ acting on a vector $c$ of ciphertexts, we denote the evaluated ciphertexts $c_f$ (i.e., $c_f \stackrel{\mathrm{def}}{=} \operatorname{Eval}(pk, f, c)$). Similarly, for the vector $m$ of plaintexts, we denote the evaluated plaintexts $m_f$ (i.e., $m_f \stackrel{\mathrm{def}}{=} f(m)$). Thus, the condition for the Eval algorithm can be written $(pk,sk) \leftarrow \operatorname{KeyGen}(1^{\lambda}) \implies \operatorname{Dec}(sk, c_f) = m_f$.
 \begin{figure}
     \input{figures/decryption-homomorphism}
-    \caption{The decryption homomorphism. The path through $\mathcal{Y}$ represents computing before decrypting. The path through $\mathcal{X}^t$ represents decrypting before computing.}
+    \caption{The decryption homomorphism. The path through $\mathcal{Y}$ represents computing before decrypting. The path through $\mathcal{X}^t$ represents decrypting before computing. Credit: \cite{Gen14-edge}.}
     \label{fig:homomorphism}
 \end{figure}
 In a homomorphic encryption scheme that supports one addition and multiplication of fresh ciphertexts, the decryption function is a ring homomorphism. Consider a valid key pair $(sk,pk)$ which are, for notational simplicity, hard-wired into the decryption and evaluate functions respectively, plaintext ciphertext pairs $(m_1,c_1 = \operatorname{Enc}_{pk}(m_1))$, $(m_2, c_2 = \operatorname{Enc}_{pk}(m_2))$ and circuits $C_+(m_1,m_2) \stackrel{\mathrm{def}}{=} m_1 + m_2$ and $C_{\times}(m_1,m_2) \stackrel{\mathrm{def}}{=} m_1 \times m_2$ that can be evaluated by the scheme. 
@@ -317,18 +317,36 @@ RSA supports multitplication,
 
 Paillier supports addition.
 
-Gentry first with scheme that supports both. He launched first generation.
+% Source fo below: Gentry rundown https://www.youtube.com/watch?v=487AjvFW1lk&t=2s 
+First generation:
+Started with Gentry's thesis. The first generation includes:
+1. Gentrys scheme based on ideal lattices.
+2. Simplification to integers
+3. First implementation by gentry and halevi.
+4. Uses mod-p number and arithmetic circuits.
 
-Second generation
+Second generation:
+Started with BV11 paper. The second generation includes:
+1. Basing hardness on LWE instead of ideal lattice problems (BV11)
+2. Modulus switching for noise management (BV11)
+3. SIMD operation
+4. Uses mod-p number and arithmetic circuits.
 
-Third generation
+Third generation:
+Started with GSW13 paper. The third generation includes:
+1. Improvements. Some parameter choices made noise growth slow.
+2. Tweak of GSW allowed for efficient bootstrapping technique, by BV. More bootstrapping optimizations introduced and now it's 0.1 seconds.
+3. Third generation does not allow for SIMD operations (ciphertext packing).
+4. Uses bits and boolean circuits.
 
+Fourth generation:
+Started with CKKS16 paper. The fourth generation includes:
+1. Used on floating point numbers (real and complex). Useful for ML, NN.
 Fourth generation is based on CKKS scheme. This scheme allows for computation on real and complex numbers. This is useful for machine learning applications.
 
 Write about Regev and GSW. See gentry 14 survey.
 
-\subsection
-% Gentry did good rundown. See https://www.youtube.com/watch?v=487AjvFW1lk&t=2s 
+
 
 \section{Noise management}
 
