@@ -1,5 +1,0 @@
-bootstrappable
-encryptions
-homomorphically
-Vercauteren
-Halevi
