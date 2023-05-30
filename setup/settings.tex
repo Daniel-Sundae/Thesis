@@ -23,7 +23,6 @@
 \usepackage{tikz}
 \usetikzlibrary{fadings}
 \usepackage{setspace}
-\usepackage[hidelinks]{hyperref}		% Clickable links
 % \tocloftpagestyle{plain}  
 %\usepackage{chngcntr}					% Count figures within chapters
 \usepackage{booktabs}					% Table formatting
@@ -55,7 +54,11 @@
 \usepackage{subcaption}
 \usepackage{sectsty}
 \usepackage{tocloft}
-\usepackage{etoc} 						% Separate tocs for appendix and the rest  
+\usepackage{etoc} 						% Separate tocs for appendix and the rest 
+%\usepackage[hidelinks]{hyperref}		% Clickable links. Specifically behind tocloft.
+\usepackage{hyperref}
+\hypersetup{hidelinks}
+
 % GPT4 suggested packages
 \makeatletter
 \newcount\Etoc@savedtocdepth
@@ -74,8 +77,8 @@
 %\newfontfamily\footerfont{Georgia}
 
 \chapterfont{\sffamily\fontsize{17}{17}}
-\sectionfont{\sffamily\fontsize{14}{15}}
-\subsectionfont{\sffamily\fontsize{13}{15}}
+\chapterfont{\sffamily\fontsize{14}{15}}
+\sectionfont{\sffamily\fontsize{13}{15}}
 \subsubsectionfont{\sffamily\fontsize{12}{15}}
 
 % Remove the title and make sure that the text is adjusted
@@ -144,3 +147,12 @@
 \renewcommand{\thefigure}{\arabic{figure}}
 \usepackage{relsize} % For big \sigma
 \hbadness=10000
+
+%q: Explain below code
+%a:
+\usepackage{titlesec}
+\titleformat{\chapter}[display]
+  {\bfseries}{}{0pt}{\Huge}
+\titleformat{\section}[display]
+{\bfseries}{}{0pt}{\Large}
+
