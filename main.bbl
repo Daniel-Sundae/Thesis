@@ -301,6 +301,53 @@
       \field{pages}{13}
       \range{pages}{1}
     \endentry
+    \entry{LWE-hardness}{misc}{}
+      \name{author}{5}{}{%
+        {{hash=9a0f2b40e3163796c628306096e94fd6}{%
+           family={Brakerski},
+           familyi={B\bibinitperiod},
+           given={Zvika},
+           giveni={Z\bibinitperiod}}}%
+        {{hash=33997d2235d412072c8409189c68b4cd}{%
+           family={Langlois},
+           familyi={L\bibinitperiod},
+           given={Adeline},
+           giveni={A\bibinitperiod}}}%
+        {{hash=910b4f34f67502ebf51d7391c9ce096b}{%
+           family={Peikert},
+           familyi={P\bibinitperiod},
+           given={Chris},
+           giveni={C\bibinitperiod}}}%
+        {{hash=f945cb644f60f5c1d47ef6bce1233586}{%
+           family={Regev},
+           familyi={R\bibinitperiod},
+           given={Oded},
+           giveni={O\bibinitperiod}}}%
+        {{hash=a62525428858d55df35a4c76348af2b9}{%
+           family={Stehlé},
+           familyi={S\bibinitperiod},
+           given={Damien},
+           giveni={D\bibinitperiod}}}%
+      }
+      \strng{namehash}{430397a8312454e634d4585a9adab3c1}
+      \strng{fullhash}{d57c5ee508700f638b37df24f2a6a196}
+      \strng{bibnamehash}{d57c5ee508700f638b37df24f2a6a196}
+      \strng{authorbibnamehash}{d57c5ee508700f638b37df24f2a6a196}
+      \strng{authornamehash}{430397a8312454e634d4585a9adab3c1}
+      \strng{authorfullhash}{d57c5ee508700f638b37df24f2a6a196}
+      \field{labelalpha}{Bra+13}
+      \field{sortinit}{B}
+      \field{sortinithash}{d7095fff47cda75ca2589920aae98399}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{eprintclass}{cs.CC}
+      \field{eprinttype}{arXiv}
+      \field{title}{Classical Hardness of Learning with Errors}
+      \field{year}{2013}
+      \verb{eprint}
+      \verb 1306.0281
+      \endverb
+    \endentry
     \entry{BV11}{misc}{}
       \name{author}{2}{}{%
         {{hash=9a0f2b40e3163796c628306096e94fd6}{%
@@ -945,59 +992,6 @@
       \field{volume}{II}
       \field{year}{2004}
     \endentry
-    \entry{Hal18}{incollection}{}
-      \name{author}{1}{}{%
-        {{hash=7c86404bf6ef06056efb632aff16d2c0}{%
-           family={Halevi},
-           familyi={H\bibinitperiod},
-           given={Shai},
-           giveni={S\bibinitperiod}}}%
-      }
-      \name{editor}{1}{}{%
-        {{hash=e20af851262c583d34b7a667a7039cb4}{%
-           family={Lindell},
-           familyi={L\bibinitperiod},
-           given={Yehuda},
-           giveni={Y\bibinitperiod}}}%
-      }
-      \list{location}{1}{%
-        {Cham}%
-      }
-      \list{publisher}{1}{%
-        {Springer International Publishing}%
-      }
-      \strng{namehash}{7c86404bf6ef06056efb632aff16d2c0}
-      \strng{fullhash}{7c86404bf6ef06056efb632aff16d2c0}
-      \strng{bibnamehash}{7c86404bf6ef06056efb632aff16d2c0}
-      \strng{authorbibnamehash}{7c86404bf6ef06056efb632aff16d2c0}
-      \strng{authornamehash}{7c86404bf6ef06056efb632aff16d2c0}
-      \strng{authorfullhash}{7c86404bf6ef06056efb632aff16d2c0}
-      \strng{editorbibnamehash}{e20af851262c583d34b7a667a7039cb4}
-      \strng{editornamehash}{e20af851262c583d34b7a667a7039cb4}
-      \strng{editorfullhash}{e20af851262c583d34b7a667a7039cb4}
-      \field{labelalpha}{Hal17}
-      \field{sortinit}{H}
-      \field{sortinithash}{23a3aa7c24e56cfa16945d55545109b5}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{booktitle}{Tutorials on the Foundations of Cryptography}
-      \field{chapter}{5}
-      \field{isbn}{978-3-319-57047-1}
-      \field{series}{Information Security and Cryptography}
-      \field{title}{Homomorphic Encryption}
-      \field{year}{2017}
-      \field{pages}{219\bibrangedash 268}
-      \range{pages}{50}
-      \verb{doi}
-      \verb 10.1007/978-3-319-57048-8
-      \endverb
-      \verb{urlraw}
-      \verb https://doi.org/10.1007/978-3-319-57048-8
-      \endverb
-      \verb{url}
-      \verb https://doi.org/10.1007/978-3-319-57048-8
-      \endverb
-    \endentry
     \entry{NTRU}{inproceedings}{}
       \name{author}{3}{}{%
         {{hash=c4c174b1abf76a48a5a282277d8a6831}{%
@@ -1165,43 +1159,6 @@
       \verb https://eprint.iacr.org/2020/1533
       \endverb
     \endentry
-    \entry{LNP22}{misc}{}
-      \name{author}{3}{}{%
-        {{hash=2af761d9bef859ea29248418adce0dd7}{%
-           family={Li},
-           familyi={L\bibinitperiod},
-           given={Yang},
-           giveni={Y\bibinitperiod}}}%
-        {{hash=ff27d0cc9f7053afef895d642086053a}{%
-           family={Ng},
-           familyi={N\bibinitperiod},
-           given={Kee\bibnamedelima Siong},
-           giveni={K\bibinitperiod\bibinitdelim S\bibinitperiod}}}%
-        {{hash=fd3294325dfbf721235b0b3885e641f1}{%
-           family={Purcell},
-           familyi={P\bibinitperiod},
-           given={Michael},
-           giveni={M\bibinitperiod}}}%
-      }
-      \strng{namehash}{f260cd55214e28571bda8b26ded082e4}
-      \strng{fullhash}{f260cd55214e28571bda8b26ded082e4}
-      \strng{bibnamehash}{f260cd55214e28571bda8b26ded082e4}
-      \strng{authorbibnamehash}{f260cd55214e28571bda8b26ded082e4}
-      \strng{authornamehash}{f260cd55214e28571bda8b26ded082e4}
-      \strng{authorfullhash}{f260cd55214e28571bda8b26ded082e4}
-      \field{labelalpha}{LNP22}
-      \field{sortinit}{L}
-      \field{sortinithash}{7c47d417cecb1f4bd38d1825c427a61a}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{eprintclass}{cs.CR}
-      \field{eprinttype}{arXiv}
-      \field{title}{A Tutorial Introduction to Lattice-based Cryptography and Homomorphic Encryption}
-      \field{year}{2022}
-      \verb{eprint}
-      \verb 2208.08125
-      \endverb
-    \endentry
     \entry{RLWE}{misc}{}
       \name{author}{3}{}{%
         {{hash=928bcadb00050adca6148fe4cbefc5d7}{%
@@ -1366,6 +1323,7 @@
       \strng{authorbibnamehash}{910b4f34f67502ebf51d7391c9ce096b}
       \strng{authornamehash}{910b4f34f67502ebf51d7391c9ce096b}
       \strng{authorfullhash}{910b4f34f67502ebf51d7391c9ce096b}
+      \field{extraname}{1}
       \field{labelalpha}{Pei15}
       \field{sortinit}{P}
       \field{sortinithash}{ff3bcf24f47321b42cb156c2cc8a8422}
@@ -1380,6 +1338,37 @@
       \endverb
       \verb{url}
       \verb https://eprint.iacr.org/2015/939
+      \endverb
+    \endentry
+    \entry{LWE-classical-reduction}{misc}{}
+      \name{author}{1}{}{%
+        {{hash=910b4f34f67502ebf51d7391c9ce096b}{%
+           family={Peikert},
+           familyi={P\bibinitperiod},
+           given={Chris},
+           giveni={C\bibinitperiod}}}%
+      }
+      \strng{namehash}{910b4f34f67502ebf51d7391c9ce096b}
+      \strng{fullhash}{910b4f34f67502ebf51d7391c9ce096b}
+      \strng{bibnamehash}{910b4f34f67502ebf51d7391c9ce096b}
+      \strng{authorbibnamehash}{910b4f34f67502ebf51d7391c9ce096b}
+      \strng{authornamehash}{910b4f34f67502ebf51d7391c9ce096b}
+      \strng{authorfullhash}{910b4f34f67502ebf51d7391c9ce096b}
+      \field{extraname}{2}
+      \field{labelalpha}{Pei08}
+      \field{sortinit}{P}
+      \field{sortinithash}{ff3bcf24f47321b42cb156c2cc8a8422}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{howpublished}{Cryptology ePrint Archive, Paper 2008/481}
+      \field{note}{\url{https://eprint.iacr.org/2008/481}}
+      \field{title}{Public-Key Cryptosystems from the Worst-Case Shortest Vector Problem}
+      \field{year}{2008}
+      \verb{urlraw}
+      \verb https://eprint.iacr.org/2008/481
+      \endverb
+      \verb{url}
+      \verb https://eprint.iacr.org/2008/481
       \endverb
     \endentry
     \entry{Reg05-LWE}{inproceedings}{}

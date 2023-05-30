@@ -126,20 +126,19 @@ where the first inequality is due to the triangle inequality and the second is d
 
 \subsection*{Distributions for noise in HE}
 To add discrete noise to ciphertexts, it is typical to use the discretized Gaussian distribution introduced by Micciancio and Regev \cite{disc-gauss}. Since this distribution is used so frequently, we give a brief presentation of it here. A continous Gaussian distribution in $\mathbb{R}^n$ centered at $\vec{c}$ where each coordinate is independently sampled from $\mathcal{N}(0, \sigma^2)$, then the multivariate Gaussian distribution is simplified to $\rho_{\vec{c}}(\vec{x})=\frac{1}{\left(2 \pi \sigma^2\right)^{n / 2}} \exp \left(-\frac{1}{2 \sigma^2} \| \vec{x}-\vec{c} \| ^2\right)$. By introducing the scale factor $s \stackrel{\mathrm{def}}{=} \sqrt{2\pi}\sigma$ we get $\rho_{s, \vec{c}}(\vec{x})=\frac{1}{s^n} \exp \left(-\frac{\pi}{s^2} \| \vec{x}-\vec{c} \| ^2\right)$.
-The goal is to discretize the gaussian over lattices, see Section \ref{sec:lattices}, by restricting the points to lattice points. For a given lattice $\Lambda \subset \mathbb{R}^n$ we define the normalization constant $\rho_{s, \vec{c}}(\Lambda) \stackrel{\mathrm{def}}{=} \sum_{\vec{x} \in \Lambda} \rho_{s, \vec{c}}(\vec{x})$. Then the discretized Gaussian distribution is defined as
-\begin{equation*}
-\forall \vec{x} \in \Lambda \colon \quad \textrm{D}_{\Lambda, s, \vec{c}}(\vec{x}) \stackrel{\mathrm{def}}{=} \frac{\rho_{s, \vec{c}}(\vec{x})}{\rho_{s, \vec{c}}(\Lambda)}.
-\end{equation*}
-
+The goal is to discretize the gaussian over lattices, see Section \ref{sec:lattices}, by restricting the points to lattice points. For a given lattice $\Lambda \subset \mathbb{R}^n$ we define the normalization constant $\rho_{s, \vec{c}}(\Lambda) \stackrel{\mathrm{def}}{=} \sum_{\vec{x} \in \Lambda} \rho_{s, \vec{c}}(\vec{x})$.
+\begin{definition}[Discrete Gaussian distribution]\label{Disc-Gauss}
+    Let $\Lambda \subset \mathbb{R}^n$ be a lattice. Then the discrete gaussian distribution is defined as
+    \begin{equation*}
+        \forall \vec{x} \in \Lambda \colon \quad \textrm{D}_{\Lambda, s, \vec{c}}(\vec{x}) \stackrel{\mathrm{def}}{=} \frac{\rho_{s, \vec{c}}(\vec{x})}{\rho_{s, \vec{c}}(\Lambda)}.
+    \end{equation*}            
+\end{definition}
 \begin{definition}[$\beta$-bounded distribution]
-    Let $\{\chi_n\}_{n\in \mathbb{N}}$ be a distribution over the integers. Write this...
+    Let $\chi = \{\chi_n\}_{n\in \mathbb{N}}$ be a distribution ensemble over the integers. $\chi$ is $\beta$-bounded if $x \leftarrow \chi_n \implies \operatorname{Pr}[|x|>\beta] = \operatorname{negl}(n)$
 \end{definition}
 
-
 \section{Cryptographic primitives}
-
 In the following definitions we let the message space be denoted $\mathcal{X}$, the ciphertext space be denoted $\mathcal{Y}$, and the key space be denoted $\mathcal{K} = \mathcal{K}_{pk} \times \mathcal{K}_{sk}$.
-
 \begin{definition}[Encryption scheme]
 A correct asymmetric encryption scheme $\mathcal{E} = (\text{KeyGen, Enc, Dec})$ is a triple of algorithms satisfying the following:
 \begin{enumerate}[label={$\bullet$}]
@@ -240,11 +239,7 @@ Usually, encryption schemes are required to be secure against a stronger type of
 
 As a consequence of its design, homomorphic encryption schemes cannot be CC2 secure. The reason is that the player can run the evaluate algorithm on the challenge ciphertext with any circuit of choice and then decrypt the evaluated ciphertext. More formally, consider any challenge ciphertext $\operatorname{Enc}(pk,m_b)$ and the identity circuit $C$. \mbnote{Is the identity circuit always in C?}. Player runs $\operatorname{Eval}(pk,C,\operatorname{Enc}(pk,m_b))$, generating a valid evaluated ciphertext of $C(m_b)$. Player then queries decryption and yields $C(m_b) = m_b$. Homomorphic encryption schemes allow the attacker to transform the ciphertext of a message $m$ to a ciphertext to a message related to $m$ by a known function. This property is called \emph{malleability}.
 
-% Relevant when talking about multihop. If fresh and evaluated ensembles are comp ind then obv multihop
-\begin{definition}[Circuit privacy]
-    test
-\end{definition}
-
+% Circuit privacy here maybe?
 
 One last security definition that will be relevant later is circular security
 \begin{definition}[Circular security]
@@ -259,9 +254,7 @@ One last security definition that will be relevant later is circular security
 In this section, we assume every vector is a column vector and we denote a matrix $\textbf{A}$ with boldface. By $\textbf{A} \in \mathbb{F}^{n \times m}$ we mean $\textbf{A}$ is a $n \times m$ matrix with entries in $\mathbb{F}$. Consider a basis $\textbf{B} = \{b_1, \dots, b_k\}$. A lattice with basis $\textbf{B}$ is defined $L(\textbf{B}) \stackrel{\mathrm{def}}{=} \{ \sum_{i=1}^k a_i b_i \; \mid a_i \in \mathbb{Z}\}$. For any integer $q \geq 2$, we define $\mathbb{Z}_q \stackrel{\mathrm{def}}{=} (-\frac{q}{2}, \frac{q}{2}] \cap \mathbb{Z}$. For any tuple of integers $x$ (e.g., integer or matrix), we define $[x]_q$ as the tuple of integers over $\mathbb{Z}_q$ such that each element is congruent mod $q$ to the corresponding element in $x$. For example, $q = 3, x = (5,1,-2,6), [x]_q = (-1,1,1,0)$.
 
 \subsection*{LWE and RLWE}\label{subsec:LWE}
-This section is based on \cite{Hal18}, \cite{LNP22} and \cite{Pei16-decade}.
-
-In 2005, Oded Regev introduced \cite{Reg05-LWE} a natural problem; solve a system of modular noisy linear equations. The problem is called learning with errors (LWE) and in 2013, a ring based version called ring-LWE (RLWE) was introduced \cite{RLWE}. Despite being easy to state, the LWE problem turns out to be hard even on average instances and essentially all homomorphic encryption schemes today are based on learning with errors (LWE) and its ring variant (RLWE).
+In 2005, Oded Regev introduced \cite{Reg05-LWE} a natural problem; solve a system of modular noisy linear equations. The problem is called learning with errors (LWE) and in 2012, a ring based version called ring-LWE (RLWE) was introduced \cite{RLWE}. Despite being easy to state, the LWE problem turns out to be hard even on average instances. For certain parameter choices, the LWE problem is reducible to extensively studied hard lattice based problems (e.g., GapSVP, SIVP) whereas RLWE is reducible to hard problems on ideal lattices (e.g., ideal-SVP, NTRU). Hardness of these problems are outside the scope of this thesis; we refer the reader to \cite{Reg05-LWE, LWE-classical-reduction, LWE-hardness, RLWE} for more details on hardness results and \cite{Pei16-decade} for a good rundown on hard lattice based problems. Today, essentially all homomorphic encryption schemes are based on LWE and RLWE.
 
 The parameters for $\operatorname{LWE}$ are the integers $n = n(\lambda)$ for the dimension, $q = q(n)$ for the global modulus, $m$ for number of samples and a discrete error distribution measure $\chi = \chi(\lambda)$ over $\mathbb{Z}$.
 
@@ -269,7 +262,7 @@ Consider the space of $n \times m$ matrices $\mathbb{Z}_q^{n \times m}$ with uni
 \begin{equation*}
 \begin{aligned}
     A_{n, q, \chi, m} \colon \mathbb{Z}_q^{n \times m} \times \mathbb{Z}_q^n \times \mathbb{Z}^m &\to \mathbb{Z}_q^{n \times m} \times \mathbb{Z}_q^m \cong \mathbb{Z}_q^{(n+1) \times m}\\
-    (\textbf{A},s,e) &\mapsto (\textbf{A}, s^T\textbf{A}+e^T) = \left[\begin{array}{c} \textbf{A} \\ s^T\textbf{A}+e^T \end{array}\right]
+    (\textbf{A},s,e) &\mapsto (\textbf{A}, b^T \stackrel{\mathrm{def}}{=} [s^T\textbf{A}+e^T]_q) = \left[\begin{array}{c} \textbf{A} \\ b^T \end{array}\right]
 \end{aligned}
 \end{equation*}
 \begin{definition}[LWE distribution]
@@ -281,7 +274,7 @@ Consider the space of $n \times m$ matrices $\mathbb{Z}_q^{n \times m}$ with uni
     \end{equation*}
 \end{definition}
 
-In words, sample a $n \times m$ matrix $\textbf{A}$ with entries in $\mathbb{Z}_q$ at random, choose a uniformly random secret $s \leftarrow \mathbb{Z}_q^n$ and let $e$ consist of $m$ independent errors from the discrete distribution $\chi$. Calculate $s^T\textbf{A}+e^T$ and output the pair $(\textbf{A},s^T\textbf{A}+e^T)$. The $\operatorname{LWE}$ distribution specifies the probability of sampling each pair.
+In words, sample a $n \times m$ matrix $\textbf{A}$ with entries in $\mathbb{Z}_q$ at random, choose a uniformly random secret $s \leftarrow \mathbb{Z}_q^n$ and let $e$ consist of $m$ independent errors from the discrete distribution $\chi$. Calculate $b^T$ (i.e, $[s^T\textbf{A}+e^T]_q$) and output the pair $(\textbf{A},b^T)$. The $\operatorname{LWE}$ distribution specifies the probability of sampling each pair.
 
 There are two versions of the $\operatorname{LWE}$ problem; search-$\operatorname{LWE}$ and decision-$\operatorname{LWE}$.
 Informally, take a sample $x \leftarrow \operatorname{LWE}_{n, q, \chi, m}$ and consider the last row. The decision version is to decide whether the last row is a linear combination of the previous $n$ rows or if it is uniformly random and the search version is to find the explicit linear combination assuming it exists.
@@ -294,9 +287,9 @@ Informally, take a sample $x \leftarrow \operatorname{LWE}_{n, q, \chi, m}$ and 
         \end{aligned}
     \end{equation*}
 \end{definition}
-The decision-LWE hardness assumption is that $\mathcal{U}_n$ and $\operatorname{LWE}_{n,q,\chi,m}$ are computationally indistinguishable.
+The decision-LWE hardness assumption is that $\mathcal{U}_n$ and $\operatorname{LWE}_{n,q,\chi,m}$ are computationally indistinguishable (i.e., $\operatorname{LWE}_{n,q,\chi,m}$ is pseudorandom).
 \begin{definition}[search-$\operatorname{LWE}$ problem]
-    Let $x = (\textbf{A}, s^T\textbf{A}+e^T) \leftarrow \operatorname{LWE}_{n,q,\chi,m}$. Construct a PPT algorithm $A$ such that 
+    Let $x = (\textbf{A}, b^T) \leftarrow \operatorname{LWE}_{n,q,\chi,m}$. Construct a PPT algorithm $A$ such that 
     \begin{equation*}
         \begin{aligned}
             \operatorname{Pr}[A(x) = s] > \operatorname{negl}(n)
@@ -304,8 +297,72 @@ The decision-LWE hardness assumption is that $\mathcal{U}_n$ and $\operatorname{
     \end{equation*}
 \end{definition}
 The search-LWE hardness assumption is that $\operatorname{Pr}[A(x) = s] = \operatorname{negl}(n)$.
+There exists a reduction from search-$\operatorname{LWE}$ to decision-$\operatorname{LWE}$ for $q = \operatorname{poly}(n)$, meaning they are equivalently hard \cite{LWE-hardness}.
 
-Regev showed that LWE search and decision problems are equivalent when $n, q = \operatorname{poly}(\lambda)$.
+\subsubsection*{Regev's LWE based cryptosystem}
+In the same paper that the $\operatorname{LWE}$ problem was introduced, Regev also described how to construct a simple cryptosystem based on the $\operatorname{LWE}$-assumption. In Regev's cryptosystem, each message is a bit. Given the security parameter $\lambda$, specify the parameters $n(\lambda), q(\lambda), \chi(\lambda), m(\lambda)$ for the system.
+\begin{enumerate}
+    \item \textbf{Key generation}: Generate a uniformly random $\operatorname{LWE}$ secret $s' = (s_1, \dots, s_n) \leftarrow \mathbb{Z}_q^n$ and let $s = (s_1, \dots, s_n, -1) \in \mathbb{Z}_q^{n+1}$. Using $s'$, generate the $(n+1) \times m$ matrix $\textbf{A}' \stackrel{\mathrm{def}}{=} (\textbf{A}, b^T) \leftarrow \operatorname{LWE}_{n,q,\chi,m}$. Let $\text{KeyGen}(\lambda)$ return $\textbf{A}' \in \mathbb{Z}_q^{(n+1)\times m}$ as the public key and $s \in \mathbb{Z}_q^{n+1}$ as the secret key.
+    \item \textbf{Encryption}: Generate a random 'subset' vector $r \leftarrow \{0,1\}^m$. To encrypt a bit $m$, compute $c = \text{Enc}(\textbf{A'},m) \stackrel{\mathrm{def}}{=} [b \cdot \lfloor q/2 \rfloor \cdot (0, \dots, 0, -1) + \textbf{A}'r]_q \in \mathbb{Z}_q^{n+1}$.
+    \item \textbf{Decryption}: To decrypt, compute $z \stackrel{\mathrm{def}}{=} [\left \langle s, c \right \rangle]_q$ and let $\text{Dec}(s,c)$ be $0$ if $|z| < q/4$ and $1$ otherwise.
+\end{enumerate}
+
+Correctness:
+
+Security:
+
+Homomorphic properties:
+
+Not bootstrappable:
+
+\subsection*{RLWE}
+The LWE problem is conceptually easy to understand but suffers from expensive overhead. Each element in $b$ is a perturbed linear combination of the secret $s$ and the corresponsing column in $\textbf{A}$, resulting in $O(n)$ operations. To get $m = n$ samples, the total number of operations is $O(n^2)$. In 2012, a more compact ring based learning with errors problem ($\operatorname{RLWE}$) was introduced by Lyubashevsky, Peikert and Regev in \cite{RLWE}.
+
+The parameters for $\operatorname{RLWE}$ are the integers $n = n(\lambda)$ for the dimension, $q = q(n)$ for the global modulus and a discrete error distribution measure $\chi = \chi(\lambda)$ over $\mathbb{Z}$.
+
+Let the dimension $n = 2^k$ for some natural number $k$ and consider the irreducible polynomial $f(x) = x^n + 1$. Define the polynomial ring $R_q \stackrel{\mathrm{def}}{=} \mathbb{Z}_q[x] /\langle f(x)\rangle$. The ring $R_q$ is viewed as the ring of polynomials with coefficients in $\mathbb{Z}_q$, having degree less than $n$. There is a natural correspondence between elements of $R_q$ and $\mathbb{Z}_q^n$ where each coefficient corresponds to an element in the vector. Let the error space $R_q'$ be $R_q$ endowed with error distribution $\chi^n$ over the integer coefficients and consider the random variable $A'_{n, q, \chi}$ defined as follows
+\begin{equation*}
+\begin{aligned}
+    A'_{n, q, \chi} \colon R_q \times R_q' \times \mathbb{Z}^n &\to R_q^2\\
+    (a,s,e) &\mapsto (a, b \stackrel{\mathrm{def}}{=} [a \cdot s + e]_q)
+\end{aligned}
+\end{equation*}
+\begin{definition}[RLWE distribution]
+    The learning with errors distribution is defined as the distribution of $A'_{n, q, \chi}$
+    \begin{equation*}
+    \begin{aligned}
+        \operatorname{RLWE}_{n, q, \chi} \stackrel{\mathrm{def}}{=} \mathcal{L}(A'_{n, q, \chi})
+    \end{aligned}
+    \end{equation*}
+\end{definition}
+In words, sample a uniformly random polynomial $a \in R_q$, a uniformly random secret $s \in R_q$ and a random error $e \in R_q$ from the discrete distribution $\chi^n$. Calculate $b$ (i.e, $[a \cdot s + e]_q$) and output the pair $(a,b)$. The $\operatorname{RLWE}$ distribution specifies the probability of sampling each pair.
+
+The decision-$\operatorname{RLWE}$ problem is to distinguish between the $\operatorname{RLWE}$ distribution and the uniform distribution on $R_q^2$ and the search problem is to find the secret $s$ given a sample $(a,b) \leftarrow \operatorname{RLWE}_{n,q,\chi}$.
+\begin{definition}[decision-$\operatorname{RLWE}$ problem]
+    Let $\mathcal{U}_n$ be the uniform distribution on $R_q^2$. Construct a PPT algorithm $A$ such that 
+    \begin{equation*}
+        \begin{aligned}
+        |\operatorname{Pr}[A(\mathcal{U}_n) = 1] - \operatorname{Pr}[A(\operatorname{RLWE_{n,q,\chi}}) = 1]| > \operatorname{negl}(n)
+        \end{aligned}
+    \end{equation*}
+\end{definition}
+The decision-$\operatorname{RLWE}$ hardness assumption is that $\mathcal{U}_n$ and $\operatorname{RLWE}_{n,q,\chi}$ are computationally indistinguishable (i.e., $\operatorname{RLWE}_{n,q,\chi}$ is pseudorandom).
+\begin{definition}[search-$\operatorname{RLWE}$ problem]
+    Let $x = (a, b) \leftarrow \operatorname{RLWE}_{n,q,\chi}$. Construct a PPT algorithm $A$ such that 
+    \begin{equation*}
+        \begin{aligned}
+            \operatorname{Pr}[A(x) = s] > \operatorname{negl}(n)
+        \end{aligned}
+    \end{equation*}
+\end{definition}
+The search-$\operatorname{RLWE}$ hardness assumption is that $\operatorname{Pr}[A(x) = s] = \operatorname{negl}(n)$.
+
+Note that in $\operatorname{LWE}$, the sample size $m$ is embedded as a parameter while in $\operatorname{RLWE}$, adversary generates $m = \operatorname{poly}(\lambda)$ samples from the $\operatorname{RLWE}_{n,q,\chi}$ themselves.
+
+
+
+The main issue with basing schemes of the LWE problem is the inneficient key sizes. The key size is at least quadratic(why?) in the dimension $n$ and hence the security parameter $\lambda$. The ring learning with errors problem (RLWE) was introduced by Lyubashevsky, Peikert and Regev in \cite{RLWE} to address this issue. The RLWE problem is defined over a polynomial ring $\mathbb{Z}_q[x]/(x^n+1)$ and the secret is a polynomial $s \in \mathbb{Z}_q[x]/(x^n+1)$ with coefficients from $\mathbb{Z}_q$. The error is a polynomial $e \in \mathbb{Z}_q[x]/(x^n+1)$ with coefficients from a discrete distribution $\chi$. The RLWE distribution is defined as the distribution of the pair $(a, as+e)$ where $a$ is a uniformly random polynomial in $\mathbb{Z}_q[x]/(x^n+1)$.
+- LWE is inneficient. 
 
 \section{History of fully homomorphic encryption}
 Began with rivest, adleman and Dertouzos in 1978 and the paper about Data Banks. 
