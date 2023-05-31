@@ -1,0 +1,29 @@
+\begin{tikzpicture}
+    % Draw the box
+    \node[draw, minimum width=2cm, minimum height=1.5cm] (box1) at (0,0) {$\text{Dec}(\cdot,c_{i-1})$};
+
+    % Draw the wire going into the box with label
+    \node[inner sep=0pt] (invis_l) at (-2,0) {};
+    \draw (invis_l) node[left] {$sk'$} -- (box1.west);
+
+    % Draw the wire coming out of the box
+    \node[inner sep=0pt] (node2) at (2,0) {};
+
+    % Draw the second box
+    \node[draw, minimum width=2cm, minimum height=1.5cm] (box2) at (4,0) {$C^i$};
+
+    % Draw the wire going into the second box
+    \draw (box1.east) -- (box2.west);
+
+    % Draw the wire coming out of the second box with label
+    \node[inner sep=0pt] (invis_r) at (8,0) {};
+    \node[inner sep=0pt] (invis_very_r) at (10,0) {};
+    \draw (box2.east) -- node[midway, above] {$\hat{C}^i_{c_{i-1}}(sk')$}  (invis_r.east);
+    \draw (invis_r.east) -- (invis_very_r.west) node[right]{$c_i$};
+
+    % Encapsulating box
+    \node[draw, dashed, fit= (box1) (box2) (invis_r), inner sep=14pt] (evalbox) {};
+    \node[above] at (evalbox.north) {$\text{Eval}(hpk,\hat{C}^i_{c_{i-1}}, \cdot)$};
+\end{tikzpicture}
+
+

@@ -21,6 +21,7 @@
 \usepackage{eso-pic}					% Packages for layout and graphics 
 \usepackage{graphicx}
 \usepackage{tikz}
+\usetikzlibrary{fit}
 \usetikzlibrary{fadings}
 \usepackage{setspace}
 % \tocloftpagestyle{plain}  
@@ -136,6 +137,7 @@
 \newtheorem{definition}{Definition} 
 \theoremstyle{remark}
 \newtheorem*{remark}{Remark}
+\newtheorem{claim}{Claim}
 
 \usepackage{tikz-cd} % For diagram 
 \usepackage{enumitem} % For bullet enumeration
@@ -148,11 +150,35 @@
 \usepackage{relsize} % For big \sigma
 \hbadness=10000
 
-%q: Explain below code
-%a:
+% For title formatting
 \usepackage{titlesec}
 \titleformat{\chapter}[display]
   {\bfseries}{}{0pt}{\Huge}
 \titleformat{\section}[display]
 {\bfseries}{}{0pt}{\Large}
+
+% For python code insertion
+\usepackage{listings}
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\lstdefinestyle{mystyle}{
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{magenta},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\ttfamily\footnotesize,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,                 
+    numbers=left,                    
+    numbersep=5pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=2
+}
+\lstset{style=mystyle}
+
 

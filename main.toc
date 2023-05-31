@@ -9,18 +9,15 @@
 \contentsline {section}{\numberline {4.1}Security definitions}{12}{section.4.1}%
 \contentsline {chapter}{\numberline {5}Lattices}{15}{chapter.5}%
 \contentsline {section}{\numberline {5.1}LWE and RLWE}{15}{section.5.1}%
-\contentsline {section}{\numberline {5.2}RLWE}{18}{section.5.2}%
-\contentsline {chapter}{\numberline {6}History of fully homomorphic encryption}{20}{chapter.6}%
-\contentsline {section}{\numberline {6.1}First generation}{20}{section.6.1}%
-\contentsline {section}{\numberline {6.2}Second generation}{21}{section.6.2}%
-\contentsline {section}{\numberline {6.3}Third generation}{22}{section.6.3}%
-\contentsline {section}{\numberline {6.4}Fourth generation}{23}{section.6.4}%
-\contentsline {chapter}{\numberline {7}Noise management}{24}{chapter.7}%
-\contentsline {section}{\numberline {7.1}Evaluated ciphertexts vs fresh ciphertexts}{24}{section.7.1}%
-\contentsline {section}{\numberline {7.2}Note on hard-wiring ciphertexts in circuits}{25}{section.7.2}%
-\contentsline {section}{\numberline {7.3}Key-Switching}{25}{section.7.3}%
-\contentsline {section}{\numberline {7.4}Bootstrapping}{26}{section.7.4}%
+\contentsline {section}{\numberline {5.2}RLWE}{19}{section.5.2}%
+\contentsline {chapter}{\numberline {6}History of fully homomorphic encryption}{21}{chapter.6}%
+\contentsline {section}{\numberline {6.1}First generation}{21}{section.6.1}%
+\contentsline {section}{\numberline {6.2}Second generation}{22}{section.6.2}%
+\contentsline {section}{\numberline {6.3}Third generation}{23}{section.6.3}%
+\contentsline {section}{\numberline {6.4}Fourth generation}{24}{section.6.4}%
+\contentsline {chapter}{\numberline {7}Noise management}{25}{chapter.7}%
+\contentsline {section}{\numberline {7.1}Key-Switching}{25}{section.7.1}%
+\contentsline {section}{\numberline {7.2}Bootstrapping}{27}{section.7.2}%
 \contentsline {chapter}{References}{30}{theorem.2}%
 \etoc@depthtag {mtappendix}
-\contentsline {chapter}{\numberline {A}First Appendix}{37}{appendix.A}%
-\contentsline {chapter}{\numberline {B}Second Appendix}{38}{appendix.B}%
+\contentsline {chapter}{\numberline {A}Appendix}{38}{appendix.A}%
