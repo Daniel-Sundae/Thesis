@@ -56,21 +56,17 @@
 \usepackage{sectsty}
 \usepackage{tocloft}
 \usepackage{etoc} 						% Separate tocs for appendix and the rest 
-%\usepackage[hidelinks]{hyperref}		% Clickable links. Specifically behind tocloft.
-\usepackage{hyperref}
-\hypersetup{hidelinks}
+
 
 % GPT4 suggested packages
 \makeatletter
 \newcount\Etoc@savedtocdepth
 \makeatother
 
-
 \usepackage[printonlyused]{acronym}
 
-
-%\counterwithin{figure}{section} 
-%\counterwithin{table}{section}
+% \counterwithin{figure}{section} 
+% \counterwithin{table}{section}
 
 % Specifying fonts
 %\setmainfont{Georgia} 
@@ -152,10 +148,12 @@
 
 % For title formatting
 \usepackage{titlesec}
-\titleformat{\chapter}[display]
-  {\bfseries}{}{0pt}{\Huge}
-\titleformat{\section}[display]
-{\bfseries}{}{0pt}{\Large}
+\titleformat{\chapter}[block]  % change "display" to "block"
+  {\normalfont\huge\bfseries}{\thechapter.}{1em}{\Huge}
+  \titlespacing*{\chapter}{0pt}{*4}{*2.5}
+\titleformat{\section}[block]  % change "display" to "block"
+  {\normalfont\Large\bfseries}{\thesection}{1em}{}
+\titlespacing*{\section}{0pt}{*2}{*1}
 
 % For python code insertion
 \usepackage{listings}
@@ -182,3 +180,6 @@
 \lstset{style=mystyle}
 
 
+%\usepackage[hidelinks]{hyperref}		% Clickable links. Specifically behind tocloft.
+\usepackage{hyperref}
+\hypersetup{hidelinks}
