@@ -19,31 +19,6 @@
 
 \refsection{0}
   \datalist[entry]{nty/global//global/global}
-    \entry{Adleman1978TwoTO}{article}{}
-      \name{author}{1}{}{%
-        {{hash=d8aa55dee22e6ca3bca2ccb6a2a6e056}{%
-           family={Adleman},
-           familyi={A\bibinitperiod},
-           given={Leonard\bibnamedelima M.},
-           giveni={L\bibinitperiod\bibinitdelim M\bibinitperiod}}}%
-      }
-      \strng{namehash}{d8aa55dee22e6ca3bca2ccb6a2a6e056}
-      \strng{fullhash}{d8aa55dee22e6ca3bca2ccb6a2a6e056}
-      \strng{bibnamehash}{d8aa55dee22e6ca3bca2ccb6a2a6e056}
-      \strng{authorbibnamehash}{d8aa55dee22e6ca3bca2ccb6a2a6e056}
-      \strng{authornamehash}{d8aa55dee22e6ca3bca2ccb6a2a6e056}
-      \strng{authorfullhash}{d8aa55dee22e6ca3bca2ccb6a2a6e056}
-      \field{labelalpha}{Adl78}
-      \field{sortinit}{A}
-      \field{sortinithash}{2f401846e2029bad6b3ecc16d50031e2}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{journaltitle}{19th Annual Symposium on Foundations of Computer Science (sfcs 1978)}
-      \field{title}{Two theorems on random polynomial time}
-      \field{year}{1978}
-      \field{pages}{75\bibrangedash 83}
-      \range{pages}{9}
-    \endentry
     \entry{NTRU-attack}{misc}{}
       \name{author}{3}{}{%
         {{hash=bfa5b978405182b4406fd6a5d0e4b281}{%
@@ -1412,6 +1387,41 @@
       \verb https://doi.org/10.1145/1060590.1060603
       \endverb
       \keyw{quantum computing,cryptography,statistical queries,public key encryption,lattices,computational learning theory}
+    \endentry
+    \entry{rivest1978}{inproceedings}{}
+      \name{author}{3}{}{%
+        {{hash=ae9bb9068d2f4201ffa698486b30ec3d}{%
+           family={Rivest},
+           familyi={R\bibinitperiod},
+           given={Ron},
+           giveni={R\bibinitperiod}}}%
+        {{hash=e447382dbbbea2f29b7878ddd0e7318c}{%
+           family={Adleman},
+           familyi={A\bibinitperiod},
+           given={Leonard},
+           giveni={L\bibinitperiod}}}%
+        {{hash=8cb53339edc277cf75917c34ff292647}{%
+           family={Dertouzos},
+           familyi={D\bibinitperiod},
+           given={Michael},
+           giveni={M\bibinitperiod}}}%
+      }
+      \strng{namehash}{e848427238ca25e4fab57ebfa8762509}
+      \strng{fullhash}{e848427238ca25e4fab57ebfa8762509}
+      \strng{bibnamehash}{e848427238ca25e4fab57ebfa8762509}
+      \strng{authorbibnamehash}{e848427238ca25e4fab57ebfa8762509}
+      \strng{authornamehash}{e848427238ca25e4fab57ebfa8762509}
+      \strng{authorfullhash}{e848427238ca25e4fab57ebfa8762509}
+      \field{labelalpha}{RAD78}
+      \field{sortinit}{R}
+      \field{sortinithash}{5e1c39a9d46ffb6bebd8f801023a9486}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{Found. of Sec. Comp.}
+      \field{title}{On data banks and privacy homomorphisms}
+      \field{year}{1978}
+      \field{pages}{169\bibrangedash 180}
+      \range{pages}{12}
     \endentry
     \entry{SS11-keygen}{misc}{}
       \name{author}{2}{}{%

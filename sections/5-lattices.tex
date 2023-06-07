@@ -1,0 +1,124 @@
+\chapter{Lattices}\label{sec:lattices}
+
+In this section, we assume every vector is a column vector and we denote a matrix $\textbf{A}$ with boldface. By $\textbf{A} \in \mathbb{F}^{n \times m}$ we mean $\textbf{A}$ is a $n \times m$ matrix with entries in $\mathbb{F}$. Consider a basis $\textbf{B} = \{b_1, \dots, b_k\}$. A lattice with basis $\textbf{B}$ is defined $L(\textbf{B}) \stackrel{\mathrm{def}}{=} \{ \sum_{i=1}^k a_i b_i \; \mid a_i \in \mathbb{Z}\}$. For any integer $q \geq 2$, we define $\mathbb{Z}_q \stackrel{\mathrm{def}}{=} (-\frac{q}{2}, \frac{q}{2}] \cap \mathbb{Z}$. For any tuple of integers $x$ (e.g., integer or matrix), we define $[x]_q$ as the tuple of integers over $\mathbb{Z}_q$ such that each element is congruent mod $q$ to the corresponding element in $x$. For example, $q = 3, x = (5,1,-2,6), [x]_q = (-1,1,1,0)$.
+
+\section{LWE and RLWE}\label{subsec:LWE}
+In 2005, Oded Regev introduced \cite{Reg05-LWE} a natural problem; solve a system of modular noisy linear equations. The problem is called learning with errors (LWE) and in 2012, a ring based version called ring-LWE (RLWE) was introduced \cite{RLWE}. Despite being easy to state, the LWE problem turns out to be hard even on average instances. For certain parameter choices, the LWE problem is reducible to extensively studied hard lattice based problems (e.g., GapSVP, SIVP) whereas RLWE is reducible to hard problems on ideal lattices (e.g., ideal-SVP, NTRU). Hardness of these problems are outside the scope of this thesis; we refer the reader to \cite{Reg05-LWE, LWE-classical-reduction, LWE-hardness, RLWE} for more details on hardness results and \cite{Pei16-decade} for a good rundown on hard lattice based problems. Today, essentially all homomorphic encryption schemes are based on LWE and RLWE.
+
+The parameters for $\operatorname{LWE}$ are the integers $n = n(\lambda)$ for the dimension, $q = q(n)$ for the global modulus, $m$ for number of samples and a discrete error distribution measure $\chi = \chi(\lambda)$ over $\mathbb{Z}$.
+
+Consider the space of $n \times m$ matrices $\mathbb{Z}_q^{n \times m}$ with uniform distribution, space of secrets $\mathbb{Z}_q^{n}$ with uniform distribution\footnote{The space of secrets can have distribution $\chi^n$ without loss of hardness. See \cite{Applebaum}.}, space of errors $\mathbb{Z}^{m}$ with discrete distribution $\chi^m$ and the random variable $A_{n, q, \chi, m}$ defined on the direct product as follows
+\begin{equation*}
+\begin{aligned}
+    A_{n, q, \chi, m} \colon \mathbb{Z}_q^{n \times m} \times \mathbb{Z}_q^n \times \mathbb{Z}^m &\to \mathbb{Z}_q^{n \times m} \times \mathbb{Z}_q^m \cong \mathbb{Z}_q^{(n+1) \times m}\\
+    (\textbf{A},s,e) &\mapsto (\textbf{A}, b^T \stackrel{\mathrm{def}}{=} [s^T\textbf{A}+e^T]_q) = \left[\begin{array}{c} \textbf{A} \\ b^T \end{array}\right]
+\end{aligned}
+\end{equation*}
+\begin{definition}[LWE distribution]
+    The learning with errors distribution is defined as the distribution of $A_{n, q, \chi, m}$
+    \begin{equation*}
+    \begin{aligned}
+        \operatorname{LWE}_{n, q, \chi, m} \stackrel{\mathrm{def}}{=} \mathcal{L}(A_{n, q, \chi, m})
+    \end{aligned}
+    \end{equation*}
+\end{definition}
+
+In words, sample a $n \times m$ matrix $\textbf{A}$ with entries in $\mathbb{Z}_q$ at random, choose a uniformly random secret $s \leftarrow \mathbb{Z}_q^n$ and let $e$ consist of $m$ independent errors from the discrete distribution $\chi$. Calculate $b^T$ (i.e, $[s^T\textbf{A}+e^T]_q$) and output the pair $(\textbf{A},b^T)$. The $\operatorname{LWE}$ distribution specifies the probability of sampling each pair.
+
+There are two versions of the $\operatorname{LWE}$ problem; search-$\operatorname{LWE}$ and decision-$\operatorname{LWE}$.
+Informally, take a sample $x \leftarrow \operatorname{LWE}_{n, q, \chi, m}$ and consider the last row. The decision version is to decide whether the last row is a linear combination of the previous $n$ rows or if it is uniformly random and the search version is to find the explicit linear combination assuming it exists.
+
+\begin{definition}[decision-$\operatorname{LWE}$ problem]
+    Let $\mathcal{U}_n$ be the uniform distribution on $\mathbb{Z}_q^{(n+1) \times m}$. Construct a PPT algorithm $A$ such that 
+    \begin{equation*}
+        \begin{aligned}
+        |\operatorname{Pr}[A(\mathcal{U}_n) = 1] - \operatorname{Pr}[A(\operatorname{LWE_{n,q,\chi,m}}) = 1]| > \operatorname{negl}(n)
+        \end{aligned}
+    \end{equation*}
+\end{definition}
+The decision-LWE hardness assumption is that $\mathcal{U}_n$ and $\operatorname{LWE}_{n,q,\chi,m}$ are computationally indistinguishable (i.e., $\operatorname{LWE}_{n,q,\chi,m}$ is pseudorandom).
+\begin{definition}[search-$\operatorname{LWE}$ problem]
+    Let $x = (\textbf{A}, b^T) \leftarrow \operatorname{LWE}_{n,q,\chi,m}$. Construct a PPT algorithm $A$ such that 
+    \begin{equation*}
+        \begin{aligned}
+            \operatorname{Pr}[A(x) = s] > \operatorname{negl}(n)
+        \end{aligned}
+    \end{equation*}
+\end{definition}
+The search-LWE hardness assumption is that $\operatorname{Pr}[A(x) = s] = \operatorname{negl}(n)$.
+There exists a reduction from search-$\operatorname{LWE}$ to decision-$\operatorname{LWE}$ for $q = \operatorname{poly}(n)$, meaning they are equivalently hard \cite{LWE-hardness}. We write $\operatorname{LWE}$ assumption to refer to hardness of both the search and decision versions.
+
+For the sake of concreteness (and security for the upcoming scheme), the $\operatorname{LWE}$ parameters in this paper are set to $q = n^2$, $\chi = \textrm{D}_{\mathbb{Z}, \sqrt{n}, \vec{0}}(\vec{x})$ is a discrete $\beta$-bounded Gaussian distribution and $m = 2n \log q$. The $\operatorname{LWE}$ problem can be thought of as the matrix $\textbf{A}$ acting on the secret $s$ as a linear transformation, generating the vector $s\textbf{A}$ in the rowspace of $A$ as the 'true' solution. The problem is then to find $sA$ given a $b$ in the $m$ dimensional ball with radius specified by error bound, centered at $sA$.\footnote{The knowledgable reader may see the resemblence to the bounded-distance decoding (BDD) problem} For the below scheme, let $\beta = (\frac{q}{4} - 1)m^{-1}$
+
+\subsubsection*{Regev's LWE based cryptosystem}
+In the same paper that the $\operatorname{LWE}$ problem was introduced, Regev also described how to construct a simple cryptosystem based on the $\operatorname{LWE}$-assumption. In Regev's cryptosystem, the message is encrypted bit by bit and each bit encrypts to a ciphertext vector in $\mathbb{Z}_q^n$
+\begin{enumerate}
+    \item \textbf{Key generation}: Generate a uniformly random $\operatorname{LWE}$ secret $s' = (s_1, \dots, s_n) \leftarrow \mathbb{Z}_q^n$ and let $s = (s_1, \dots, s_n, -1) \in \mathbb{Z}_q^{n+1}$. Using $s'$, generate the $(n+1) \times m$ matrix $\textbf{A}' \stackrel{\mathrm{def}}{=} (\textbf{A}, b^T) \leftarrow \operatorname{LWE}_{n,q,\chi,m}$. Let $\text{KeyGen}(\lambda)$ return $\textbf{A}' \in \mathbb{Z}_q^{(n+1)\times m}$ as the public key and $s \in \mathbb{Z}_q^{n+1}$ as the secret key.
+    \item \textbf{Encryption}: Generate a random 'subset' vector $r \leftarrow \{0,1\}^m$. To encrypt a bit $m$, compute $c = \text{Enc}(\textbf{A}',m) \stackrel{\mathrm{def}}{=} [b \cdot \lfloor q/2 \rfloor \cdot (0, \dots, 0, -1)^T + \textbf{A}'r]_q \in \mathbb{Z}_q^{n+1}$.
+    \item \textbf{Decryption}: To decrypt, compute $z \stackrel{\mathrm{def}}{=} [\left \langle s, c \right \rangle]_q$ and let $\text{Dec}(s,c)$ be $0$ if $|z| < q/4$ and $1$ otherwise.
+\end{enumerate}
+
+The idea behind the scheme is to embed an encryption of a bit $m$ in the last coordinate of the ciphertext $c$. To encrypt the bit, first consider a random subset of the $m$ samples and then calculate their sum. Second, if and only if the bit is 1, add $\lfloor q/2 \rfloor$ to the last coordinate (i.e., last row). To see why decryption works, consider an encryption of $0$. Then, $\text{Dec}(s,\text{Enc}(\textbf{A}',0))= [\left \langle s, \textbf{A}'r \right \rangle]_q = [\left \langle s \textbf{A}', r \right \rangle]_q = [\left \langle e, r \right \rangle]_q$. If the bit is 1, then $\text{Dec}(s,\text{Enc}(\textbf{A}',1)) = [\left \langle s, (0, \dots, 0, -\lfloor q/2 \rfloor)^T \right \rangle + \left \langle s, \textbf{A}'r \right \rangle ]_q = [\lfloor q/2 \rfloor + \left \langle e, r \right \rangle]_q$.
+To show correctness, we need to show that $|[\left \langle e, r \right \rangle]_q| < q/4$ and $|[\lfloor q/2 \rfloor + \left \langle e, r \right \rangle]_q| \geq q/4$. The first inequality holds because $| \left \langle e, r \right \rangle | < \beta m = \frac{q}{4} - 1 < \frac{q}{4}$ and the second inequality holds because $\lfloor q/2 \rfloor + \left \langle e, r \right \rangle \in (\lfloor q/2 \rfloor - \frac{q}{4} + 1, \lfloor q/2 \rfloor + \frac{q}{4} - 1) \subset (\frac{q}{4},\frac{3q}{4}) \stackrel{[\cdot]_q}{\mapsto} ([\frac{q}{4},\frac{q}{2}] \cup (-\frac{q}{2} , -\frac{q}{4})) \cap \mathbb{Z}$, all of which are greater than or equal to $q/4$.
+
+The security of the scheme is based on the hardness of two problems; subset-sum and $\operatorname{LWE}$. An adversary that obtains $r$ can easily decrypt a ciphertext; simply compute $\textbf{A}'r$ and compare its last element with the last element of the ciphertext. If they are equal, the bit is 0 and if they are not, the bit is 1. Computing $r$ based on $\textbf{A}'r$ is essentially the NP-hard problem called the subset-sum problem.
+\begin{claim}
+    Regev's scheme is semantically secure under the $\operatorname{LWE}$ assumption.
+\end{claim}
+\begin{proof}
+    Assume towards contradiction that the scheme is not semantically secure. Then there exists an algorithm $C$ that can distinguish the ensembles $E_0 = \{\text{Enc}(\textbf{A}',0)\}_{\lambda \in \mathbb{N}}$ and $E_1 = \{\text{Enc}(\textbf{A}',1)\}_{\lambda \in \mathbb{N}}$ with non-negligible advantage $\epsilon$. In other words, $ \operatorname{negl}(\lambda) < \epsilon(\lambda) = |\operatorname{Pr}[C(E_0) = 1] - \operatorname{Pr}[C(E_1) = 1]|$. Let $\mathcal{U} = \{\mathcal{U}_n\}_{n(\lambda) \in \mathbb{N}}$ be the uniform distribution ensemble on the corresponding ciphertext space. By triangle inequality, $\epsilon < x + y$ where $x \stackrel{\mathrm{def}}{=} |\operatorname{Pr}[C(E_0) = 1] - \operatorname{Pr}[C(\mathcal{U}) = 1]|$ and $y \stackrel{\mathrm{def}}{=} |\operatorname{Pr}[C(\mathcal{U}) = 1] - \operatorname{Pr}[C(E_1) = 1]|$.
+    \begin{description}
+        \item[Case 1:] $x \geq \epsilon / 2$. Consider adversary $C'$ that queries and mimics $C$; $C'(X) = 0$ if $C(X) = 0$ and $C'(X) = 1$ if $C(X) = 1$. Since an $\operatorname{LWE}$ sample contains $m$ encryption of $0$ under $r$ containing exactly one $1$, $\operatorname{Pr}[C'(LWE_{n,q,\chi,m}) = 1] = \operatorname{Pr}[C(E_0) = 1]$ and thus $|\operatorname{Pr}[C'(LWE_{n,q,\chi,m}) = 1] - \operatorname{Pr}[C'(\mathcal{U}) = 1]| = x \geq \epsilon / 2 > \operatorname{negl}(\lambda)$
+        \item[Case 2:] $y \geq \epsilon / 2$. Consider adversary $C''$ that translates the input distribution by adding $\lfloor q/2 \rfloor \cdot (0, \dots, 0, -1)^T$ to the last row of each sample and then queries and mimics $C$ like above. For the $\operatorname{LWE}_{n,q,\chi,m}$ distribution, this translation transforms the $m$ encryptions of $0$ to encryptions of $1$. For the uniform distribution, translation does nothing. Therefore, $\operatorname{Pr}[C''(LWE_{n,q,\chi,m}) = 1] = \operatorname{Pr}[C(E_1) = 1]$ and thus $|\operatorname{Pr}[C''(LWE_{n,q,\chi,m}) = 1] - \operatorname{Pr}[C''(\mathcal{U}) = 1]| = y \geq \epsilon / 2 > \operatorname{negl}(\lambda)$
+    \end{description}
+    In either case, we have shown there exists an adversary that can distinguish $\operatorname{LWE}$ samples from uniform with non-negligible advantage, contradicting the hardness of the $\operatorname{LWE}$ assumption.
+\end{proof}
+In words, if the scheme is not semantically secure then there exists an algorithm $C$ that is either good at distinguishing encryptions of $0$ from uniform or encryptions of $1$ from uniform. In the first case, the algorithm that mimics $C$ is good at distinguishing $\operatorname{LWE}$ samples from uniform. In the second case, the algorithm that translates samples before querying $C$ is good at distinguishing $\operatorname{LWE}$ samples from uniform. This contradicts the hardness of the $\operatorname{LWE}$ assumption.
+
+Although Regev's scheme has nice natural homomorphic addition by component wise vector addition of ciphertexts, see \cite[pp. 36]{Pei16-decade} for details, it is too inefficient for practical purposes. The public key consists of a matrix over $Z_q$, yielding $O(nm \log q) = O(n^2 \log^2 q) = \tilde{O}(n^2)$ bits and the secret key is $O(n \log q) = \tilde{O}(n)$ bits. The encryption of a message bit is $O(n \log q) = \tilde{O}(n)$ bits, meaning encryption expands bitstrings by a factor of $\tilde{O}(n)$. $\operatorname{RLWE}$ address these issues.
+
+\section{RLWE}
+The LWE problem is conceptually easy to understand but suffers from expensive overhead. Each element in $b$ is a perturbed linear combination of the secret $s$ and the corresponding column in $\textbf{A}$, resulting in $O(n)$ operations. To get $m = n$ samples, the total number of operations is $O(n^2)$. In 2012, a more compact ring based learning with errors problem ($\operatorname{RLWE}$) was introduced by Lyubashevsky, Peikert and Regev in \cite{RLWE}.
+
+The parameters for $\operatorname{RLWE}$ are the integers $n = n(\lambda)$ for the dimension, $q = q(n)$ for the global modulus and a discrete error distribution measure $\chi = \chi(\lambda)$ over $\mathbb{Z}$.
+
+Let the dimension $n = 2^k$ for some natural number $k$ and consider the irreducible polynomial $f(x) = x^n + 1$. Define the polynomial ring $R_q \stackrel{\mathrm{def}}{=} \mathbb{Z}_q[x] /\langle f(x)\rangle$. The ring $R_q$ is viewed as the ring of polynomials with coefficients in $\mathbb{Z}_q$, having degree less than $n$. There is a natural correspondence between elements of $R_q$ and $\mathbb{Z}_q^n$ where each polynomial coefficient corresponds to an element in the vector. Let the error space $R_q'$ be $R_q$ endowed with error distribution $\chi^n$ over the integer coefficients and consider the random variable $A'_{n, q, \chi}$ defined as follows
+\begin{equation*}
+\begin{aligned}
+    A'_{n, q, \chi} \colon R_q \times R_q \times R_q' &\to R_q^2\\
+    (a,s,e) &\mapsto (a, b \stackrel{\mathrm{def}}{=} [a \cdot s + e]_q)
+\end{aligned}
+\end{equation*}
+\begin{definition}[RLWE distribution]
+    The learning with errors distribution is defined as the distribution of $A'_{n, q, \chi}$
+    \begin{equation*}
+    \begin{aligned}
+        \operatorname{RLWE}_{n, q, \chi} \stackrel{\mathrm{def}}{=} \mathcal{L}(A'_{n, q, \chi})
+    \end{aligned}
+    \end{equation*}
+\end{definition}
+In words, sample a uniformly random polynomial $a \in R_q$, a uniformly random secret $s \in R_q$ and a random error $e \in R_q$ from the discrete distribution $\chi^n$. Calculate $b$ (i.e, $[a \cdot s + e]_q$) and output the pair $(a,b)$. The $\operatorname{RLWE}$ distribution specifies the probability of sampling each pair.
+
+The decision-$\operatorname{RLWE}$ problem is to distinguish between the $\operatorname{RLWE}$ distribution and the uniform distribution on $R_q^2$ and the search problem is to find the secret $s$ given a sample $(a,b) \leftarrow \operatorname{RLWE}_{n,q,\chi}$.
+\begin{definition}[decision-$\operatorname{RLWE}$ problem]
+    Let $\mathcal{U}_n$ be the uniform distribution on $R_q^2$. Construct a PPT algorithm $A$ such that 
+    \begin{equation*}
+        \begin{aligned}
+        |\operatorname{Pr}[A(\mathcal{U}_n) = 1] - \operatorname{Pr}[A(\operatorname{RLWE_{n,q,\chi}}) = 1]| > \operatorname{negl}(n)
+        \end{aligned}
+    \end{equation*}
+\end{definition}
+The decision-$\operatorname{RLWE}$ hardness assumption is that $\mathcal{U}_n$ and $\operatorname{RLWE}_{n,q,\chi}$ are computationally indistinguishable (i.e., $\operatorname{RLWE}_{n,q,\chi}$ is pseudorandom).
+\begin{definition}[search-$\operatorname{RLWE}$ problem]
+    Let $x = (a, b) \leftarrow \operatorname{RLWE}_{n,q,\chi}$. Construct a PPT algorithm $A$ such that 
+    \begin{equation*}
+        \begin{aligned}
+            \operatorname{Pr}[A(x) = s] > \operatorname{negl}(n)
+        \end{aligned}
+    \end{equation*}
+\end{definition}
+The search-$\operatorname{RLWE}$ hardness assumption is that $\operatorname{Pr}[A(x) = s] = \operatorname{negl}(n)$.
+
+Note that in $\operatorname{LWE}$, the sample size $m$ is embedded as a parameter while in $\operatorname{RLWE}$, adversary generates $m = \operatorname{poly}(\lambda)$ samples from the $\operatorname{RLWE}_{n,q,\chi}$ themselves.
+
+In $\operatorname{LWE}$, the $b$ vector is of size $m$. Each element is calculated by an inner product of the secret $s$ and the corresponding column in $\textbf{A}$, resulting in $O(n)$ operations. To get $m = n$ samples, the total number of operations is $O(n^2)$. For $\operatorname{RLWE}$, the b vector is a polynomial with $n$ coefficients. By using the fast fourier transform (FFT) algorithm, polynomial multiplication can be calculated in $O(n \log n)$ operations. To get $n$ samples, only one polynomial multiplication is needed, resulting in $O(n \log n)$ operations. As a consequence, the cost of generating public keys is reduced from $O(n^2)$ to $O(n \log n)$ by exploiting the structure of the ring.

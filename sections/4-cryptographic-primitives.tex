@@ -1,0 +1,99 @@
+\chapter{Cryptographic primitives}
+In the following definitions we let the message space be denoted $\mathcal{X}$, the ciphertext space be denoted $\mathcal{Y}$, and the key space be denoted $\mathcal{K} = \mathcal{K}_{pk} \times \mathcal{K}_{sk}$.
+\begin{definition}[Encryption scheme]
+A correct asymmetric \emph{encryption scheme} $\mathcal{E} = (\text{KeyGen, Enc, Dec})$ is a triple of algorithms satisfying the following:
+\begin{enumerate}[label={$\bullet$}]
+    \item KeyGen $\colon \{1\}^* \to \mathcal{K}$ is PPT given by $1^{\lambda} \mapsto (pk,sk)$.
+    \item Enc $\colon \mathcal{K}_{pk} \times \mathcal{X} \to \mathcal{Y}$ is PPT given by $(pk,m) \mapsto c$.
+    \item Dec $\colon \mathcal{K}_{sk} \times \mathcal{Y} \to \mathcal{X}$ is deterministic and satisfies $(pk, sk) \leftarrow \operatorname{KeyGen}(1^{\lambda}) \implies \operatorname{Dec}(sk, \operatorname{Enc}(pk,m)) = m$.
+\end{enumerate}
+\end{definition}
+\begin{remark}
+This paper is only concerned with encryption schemes where decryption always works (correct) and where more than one key is used (asymmetric). Thus, every encryption scheme is assumed to be a correct asymmetric encryption scheme. Furthermore, the decryption algorithm can be considered a PPT algorithm that with probability 1 outputs the correct message for the correct secret key. In other words, the algorithm ignores the input coin toss sequence.
+\end{remark}
+In this paper, we consider homomorphic encryption (HE) schemes. These schemes include a fourth algorithm, Eval, called the evaluation algorithm which is used by the server calculating on encrypted data.
+\begin{definition}[$\mathcal{C}$-homomorphic encryption scheme]
+    \label{def:HE-scheme}
+An encryption scheme $\mathcal{E}$ is a \emph{$\mathcal{C}$-homomorphic encryption scheme} for the set of circuits $\mathcal{C}$ if there exists an extra algorithm Eval such that for any $C \in \mathcal{C}$ taking $t$ inputs the following condition holds:
+\begin{enumerate}[label={$\bullet$}]
+    \item  Eval$ \colon  \mathcal{K}_{pk} \times \mathcal{C} \times \mathcal{Y}^* \to \mathcal{Y}$ is PPT and satisfies $(pk,sk) \leftarrow \operatorname{KeyGen}(1^{\lambda}) \implies \operatorname{Dec}(sk, \operatorname{Eval}(pk, C, \left\langle \operatorname{Enc}(pk, m_1), \dots , \operatorname{Enc}(pk, m_t) \right\rangle)) = C(m_1, \ldots, m_t)$
+\end{enumerate}
+We say $\mathcal{E}$ can evaluate all circuits in $\mathcal{C}$ and is $\mathcal{C}$-homomorphic.
+\end{definition}
+The evaluation algorithm runs the ciphertexts through the permissible circuit while also satisfying the requirement that decrypting the resulting ciphertext yields the same result as the plaintexts running through the circuit. To its disposal, the evaluation algorithm is given the public key. The ciphertexts returned by the Eval algorithm are called \emph{evaluated ciphertexts} (suggesting the circuit has evaluated the ciphertexts) and those returned by the encryption algorithm are called \emph{fresh ciphertexts}. Remark that correctness is only guaranteed if the Eval algorithm is given fresh ciphertexts. If the circuit corresponds to the computable function $f$ acting on a vector $c$ of ciphertexts, we denote the evaluated ciphertexts $c_f$ (i.e., $c_f \stackrel{\mathrm{def}}{=} \operatorname{Eval}(pk, f, c)$). Similarly, for the vector $m$ of plaintexts, we denote the evaluated plaintexts $m_f$ (i.e., $m_f \stackrel{\mathrm{def}}{=} f(m)$). Thus, the condition for the Eval algorithm can be written $(pk,sk) \leftarrow \operatorname{KeyGen}(1^{\lambda}) \implies \operatorname{Dec}(sk, c_f) = m_f$.
+\begin{figure}
+    \input{figures/decryption-homomorphism}
+    \caption*{\textbf{Figure 2}: The decryption homomorphism. The path through $\mathcal{Y}$ represents computing before decrypting. The path through $\mathcal{X}^t$ represents decrypting before computing.\label{fig:homomorphism}}
+\end{figure}
+In a homomorphic encryption scheme that supports one addition and multiplication of fresh ciphertexts, the decryption function is a ring homomorphism. Consider a valid key pair $(sk,pk)$ which are, for notational simplicity, hard-wired into the decryption and evaluate functions respectively, plaintext ciphertext pairs $(m_1,c_1 = \operatorname{Enc}_{pk}(m_1))$, $(m_2, c_2 = \operatorname{Enc}_{pk}(m_2))$ and circuits $C_+(m_1,m_2) \stackrel{\mathrm{def}}{=} m_1 + m_2$ and $C_{\times}(m_1,m_2) \stackrel{\mathrm{def}}{=} m_1 \times m_2$ that can be evaluated by the scheme. 
+\begin{equation*}
+\begin{aligned}
+\operatorname{Dec}_{sk}(c_1 + c_2) &= \operatorname{Dec}_{sk}(\operatorname{Eval}_{pk}(C_+,\left\langle c_1,c_2 \right \rangle) = C_+(m_1,m_2) = m_1 + m_2 \\
+    & = \operatorname{Dec}_{sk}(c_1) + \operatorname{Dec}_{sk}(c_2)\\
+\operatorname{Dec}_{sk}(c_1 \times c_2) &= \operatorname{Dec}_{sk}(\operatorname{Eval}_{pk}(C_{\times},\left\langle c_1,c_2 \right \rangle) = C_{\times}(m_1,m_2) = m_1 \times m_2 \\
+    & = \operatorname{Dec}_{sk}(c_1) \times \operatorname{Dec}_{sk}(c_2)
+\end{aligned}
+\end{equation*}
+The main idea behind a homomorphic encryption scheme is to give a server encrypted data so that it can compute on that data and return the answer in encrypted form. However, the definition provided allows for trivial homomorphic encryption schemes where the server does nothing. More specifically, consider any set of circuits $\mathcal{C}$ and let $\operatorname{Eval}(pk, C,\left\langle c_1, \dots ,c_t \right\rangle) = (C, \left\langle c_1, \dots, c_t \right \rangle)$. Eval takes a description of a circuit and a tuple of ciphertexts, one for each input wire of the circuit, and simply outputs the description of the circuit together with the given tuple. Clearly, Eval runs in polynomial time. Consider a decryption algorithm that, if given an input of this form, first decrypts the $t$ ciphertexts and then computes $m_f$ using $C$. To ensure that the server actually processes the given inputs we introduce compactness.
+
+\begin{definition}[Compactness]
+A $\mathcal{C}$-homomorphic encryption scheme is compact if there exists a polynomial $p(\lambda)$ such that for all $(pk,sk) \leftarrow \operatorname{KeyGen}(1^{\lambda})$, for every $C \in \mathcal{C}$ taking any number $t$ inputs and any $c \in \mathcal{Y}^t$, the size of the output $\operatorname{Eval}(pk, C, \left\langle c_1, \dots, c_t \right\rangle)$ is less than $p(\lambda)$. We say that the scheme compactly evaluates $\mathcal{C}$.
+\end{definition}
+
+For a compact $\mathcal{C}$-homomorphic encryption scheme, the size of the output is independent of the circuit function used. In particular, the previous, trivial homomorphic encryption scheme where $\operatorname{Eval}(pk, C,\left\langle c_1, \dots ,c_t \right\rangle) = (C, \left\langle c_1, \dots, c_t \right \rangle)$ is not compact for any set of circuits with unbounded circuit size, which includes circuit families with circuits that do not ignore all except for constantly many inputs, meaning essentially every application of a HE scheme.
+
+\begin{definition}[Fully Homomorphic Encryption (pure FHE)]
+Let $\mathcal{C}$ be the class of all circuits. An encryption scheme $\mathcal{E}$ is a fully homomorphic encryption (pure FHE) scheme if it is $\mathcal{C}$-homomorphic and compactly evaluates $\mathcal{C}$.
+\end{definition}
+
+For a scheme to be fully homomorphic it is required that it can evaluate circuits of arbitrary size. Many times it suffices to consider only circuits of a beforehand specified depth, $L$, as any deeper circuits are irrelevant to the application. The following definition capture schemes that can evaluate any set of circuits with depths bounded by the client.   
+
+\begin{definition}[Leveled fully homomorphic encryption (leveled FHE)]
+An encryption scheme $\mathcal{E}$ with the KeyGen algorithm modified is a leveled fully homomorphic encryption scheme if it satisfies the following:
+\begin{enumerate}[label={$\bullet$}]
+    \item KeyGen $\colon \{1\}^* \times \{1\}^* \to \mathcal{K}$ is PPT given by $(1^{\lambda},1^L) \mapsto (pk,sk)$.
+    \item Let $\mathcal{C}_L$ be the set of circuits with depth less than or equal to $L$. Then $\mathcal{E}$ is $\mathcal{C}_L$-homomorphic.
+    \item $\mathcal{E}$ compactly evaluates the set of all circuits. 
+\end{enumerate}
+\end{definition}
+\begin{remark}
+    Notice that the length of the evaluated ciphertexts in a leveled FHE scheme is independent of the depth.
+\end{remark}
+For any specified circuit $C$, a leveled FHE scheme can evaluate it by choosing sufficiently large depth parameter, $L$. For a pure FHE scheme, the circuit does not need to be specified. A pure FHE scheme can dynamically compute any circuit whereas the leveled FHE scheme requires the circuit chosen a priori.
+
+\section{Security definitions}
+
+In this paper, semantic security refers to security against chosen-plaintext attack (CPA). The definition relates to the following game where the challenger possess the secret key and the player is the adversary trying to break the scheme. Consider encryption scheme $(\text{KeyGen, Enc, Dec, Eval})$ and polynomial-size Boolean circuit family $C = \{C_n\}_{n\in \mathbb{N}}$. The CPA game is defined with the Boolean function $\operatorname{CPA}_{C}(\lambda)$ as follows:
+\begin{enumerate}
+  \item \textbf{Setup}: Challenger samples $pk \leftarrow \operatorname{KeyGen}$ and sends it to player.
+  \item \textbf{Choose}: Player $C$ selects two distinct plaintext messages $(m_0, m_1) \leftarrow C(pk)$ of the same length, and sends them to the challenger.
+  \item \textbf{Encrypt}: The challenger randomly picks a bit $b \in \{0, 1\}$ and encrypts the message $m_b$. The encrypted message $c \stackrel{\mathrm{def}}{=} \operatorname{Enc}(pk, m_b)$, called challenge ciphertext, is sent to the player.
+  \item \textbf{Guess}: Player $C$ output guess $b' \in \{0,1\}$.
+  \item \textbf{Win}: $\operatorname{CPA}_{C}(\lambda) = 
+  \begin{cases}
+  1 & \text{if } b = b'\\
+  0 & \text{if } b \neq b'.
+  \end{cases}$
+\end{enumerate}
+
+If $\operatorname{CPA}_{C}(\lambda) = 1$ then the adversary $C$ guessed correctly which of their two chosen messages was encrypted, based only on observing the ciphertext. Notice that the game requires the player to choose messages of equal length in the 'choose' phase since the ciphertext length always leaks information about the length of the message, namely an upper bound on the message length.
+\begin{definition}[Semantic security (CPA)]
+    An encryption scheme is semantically secure if, for all polynomial-size Boolean circuit families $C$, $$| \operatorname{Pr}[\operatorname{CPA}_{C}(\lambda)] - \frac{1}{2} | = \operatorname{negl}(\lambda).$$
+\end{definition}
+Semantic security means that there exists no algorithm in $\operatorname{P/poly}$ that can do more than negligibly better than guessing randomly in determining the message. Semantic security is equivalent to indistinguishability of encryptions (see \cite{Gol04} for proof).
+\begin{definition}[Indistinguishability of encryptions]
+    An encryption scheme has indistinguishable encryptions if for any key $(pk,sk) \leftarrow \operatorname{KeyGen}(1^{\lambda})$ and any two distinct messages $m_1, m_2$ of equal length, the ensembles $\{\operatorname{Enc}(pk,m_1)\}_{\lambda \in \mathbb{N}}$ and $\{\operatorname{Enc}(pk,m_2)\}_{\lambda \in \mathbb{N}}$ are computationally indistinguishable.
+\end{definition}
+Usually, encryption schemes are required to be secure against a stronger type of attack, called chosen-ciphertext attack (CCA). There are two types of CCA attacks; adaptive (called CCA2) and non-adaptive (called CCA1). The CCA1 game is defined exactly like the CPA game but where the player also has oracle access to the decryption algorithm in the choose phase. In other words, the player can decrypt any ciphertexts of their choice before submitting the two messages $m_0$ and $m_1$ to the challenger. The CCA2 game is the same as CCA1 except that the player also has oracle access to the decryption algorithm in the guess phase for every ciphertext except the challenge ciphertext. Security against CCA1 and CCA2 attacks are defined analogously to semantic security. Clearly, CCA2 security implies CCA1 security and CCA1 security implies semantic security.
+
+As a consequence of its design, homomorphic encryption schemes cannot be CCA2 secure. The reason is that the player can run the evaluate algorithm on the challenge ciphertext with any circuit of choice and then decrypt the evaluated ciphertext. More formally, consider any challenge ciphertext $\operatorname{Enc}(pk,m_b)$ and the permissable circuit $C$. Player runs $\operatorname{Eval}(pk,C,\operatorname{Enc}(pk,m_b))$, generating a valid evaluated ciphertext of $C(m_b)$. Player then queries decryption and yields $C(m_b)$. Since $C$ is known to the attacker, information about $m_b$ is leaked. Homomorphic encryption schemes allow the attacker to transform the ciphertext of a message $m$ to a ciphertext of a message related to $m$ by a known function. This property is called \emph{malleability}.
+
+% Circuit privacy here maybe?
+
+One last security definition that will be relevant later is circular security
+\begin{definition}[Circular security]
+    A semantically secure homomorphic encryption scheme is circular secure if it is semantically secure even when the adversary is given encryptions of the secret key.
+\end{definition}
+\begin{remark}
+    Circular security is not implied by semantic security because an adversary with a random access oracle cannot efficiently query encryptions of the secret key \cite{Bra18-survey}.
+\end{remark}

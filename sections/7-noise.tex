@@ -1,0 +1,96 @@
+\chapter{Noise management}
+\label{chp:noise}
+
+The main problem with homomorphic encryption schemes is the noise. Noise is introduced in the ciphertexts during the encryption process and when the ciphertexts undergo homomorphic operations, the noise grows. After sufficiently many operations, the noise grows to the point where the decryption of the evaluated ciphertext fails. In order to reach FHE, it is necessary to control the noise to allow for sufficient number of operations. Noise management is the process of controlling the noise during homomorphic evaluation. In his 2009 seminal PHD thesis \cite{Gentry-Thesis}, Craig Gentry showed that FHE was possible by using a noise management technique called Bootstrapping. Bootstrapping is an algorithm that transforms a possibly noisy ciphertext into a correct evaluated ciphertext with little noise by using an encryption of the secret key to decrypt the noisy ciphertext homomorphically.
+
+Throughout this chapter, ciphertext are hard-wired into decryption algorithms, meaning that each decryption algorithm is nessesarily correct for only one specified ciphertext. This is to simplifying notation only. It is equivalent to require only one decryption algorithm, passing any ciphertext as input. The difference is that the message need to be encrypted twice (possibly under different keys) in the latter case, since the final decryption removes one layer of encryption on both arguments resulting in a once encreypted message and pure secret key as required. Some authors, including Gentry in his original paper, specify bootstrapping in this way. 
+
+\section{Key-Switching}
+This section is based on \cite{Bra18-survey}.
+
+As a natural segway into bootstrapping, we first introduce a related but different concept called key-switching. Since HE schemes are designed with the constraint of supporting homomorphic operations, they are often inefficient. Therefore, it would be desirable to use a more efficient non-homomorphic scheme to encrypt the large messages, but still retaining the homomorphic property. Key-switching is a technique that allows for homomorphic computation on ciphertexts encrypted under a non-homomorphic scheme. In particular, it allows for transforming a ciphertext under a non-HE scheme to a corresponding ciphertext under a HE scheme. The idea is to encrypt the much shorter secret key of the non-HE scheme under the public key of the HE scheme and hard-wire the ciphertexts into the function of interest. 
+Let $(\text{H.KeyGen, H.Enc, H.Dec, Eval})$ be a homomorphic encryption scheme and $(\text{KeyGen, Enc, Dec})$ be a non-homomorphic encryption scheme. Let $(hpk,hsk) \leftarrow \operatorname{H.KeyGen}(\lambda)$ and $(pk,sk) \leftarrow \operatorname{KeyGen}(\lambda)$. Consider computable function $C$, the vector of ciphertexts $c \leftarrow \operatorname{Enc}(pk,m)$ and an encrypted secret key $sk' \leftarrow \operatorname{H.Enc}(hpk,sk)$. Define $\hat{C}_c(\cdot) \stackrel{\mathrm{def}}{=} C(\operatorname{Dec}(\cdot, c))$. $C(m)$ can be computed homomorphically by decrypting $\operatorname{Eval}(hpk,\hat{C}_c, sk')$. Indeed, this is a correct encryption of $C(m)$ since
+\begin{equation*}
+    \begin{aligned}
+        \operatorname{Dec}(hsk,\operatorname{Eval}(hpk,\hat{C}_c, sk')) = \hat{C}_c(sk) = C(\operatorname{Dec}(sk, c)) = C(m)
+    \end{aligned}
+\end{equation*}
+We have shown that it is possible to use a non-homomorphic encryption scheme to encrypt the message and still perform homomorphic computation on it. Key-switching transforms a ciphertext encrypted under a non-HE scheme to an evaluated ciphertext encrypted under a HE scheme. The underlying assumption is that the HE scheme can evaluate $\hat{C}_c$, meaning it can first run the decryption algorithm and then compute the desired function $C$ to generate a valid evaluated ciphertext. Even under the assumption that the decryption algorithm is simple enough to be evaluated by the scheme, a general $C$ consists of several multiplication and addition gates, meaning it is unlikely that the scheme can evaluate $\hat{C}_c$. However, if it is possible to split $C$ into smaller components, $C = C^m \circ \dots \circ C^1$, and evaluate each component separately, $c_{(i)} = \operatorname{Eval}(hpk,\hat{C}^i_{c_{(i-1)}}, sk')$, where $c_{(0)} \leftarrow Enc(pk,m)$, computing $C$ homomorphically is achievable assuming $\hat{C}^i_{c_{(i-1)}}$ is permissible for all $i$. As the construction currently stands, further computation on the ciphertext is not possible. To see why, consider $c_1 = \operatorname{Eval}(hpk,\hat{C}^1_{c_{(0)}}, sk')$ and let $c_2 = \operatorname{Eval}(hpk,\hat{C}^2_{c_1}, sk')$. We hope decrypting $c_2$ yields $(C^2 \circ C^1)(m)$, but $\operatorname{Dec}(hsk,c_2) = \operatorname{Dec}(hsk,\operatorname{Eval}(hpk,\hat{C}^2_{c_1}, sk')) = C^2(\operatorname{Dec}(sk, c_1))$. However, since $c_1$ is encrypted under the HE scheme, the non-homomorphic decryption algorithm applied to $c_1$ does not make sense and decryption fails.
+
+\section{Bootstrapping}
+Key-switching is a nice optimization technique for encrypting messages faster, but it does not allow for further computation on the ciphertext. The requirement is that the decryption algorithm and the secret key originate from the HE scheme. We therefore only consider the HE scheme. Let $(\text{KeyGen, Enc, Dec, Eval})$ be a HE scheme, $(pk, sk) \leftarrow \operatorname{KeyGen}(\lambda)$ and $sk' \leftarrow \operatorname{Enc}(pk, sk)$. Since this construction encrypts the secret key using its own public key, circular security is assumed (for now). Under this construction, decryption of $c_1$ is still correct as $\operatorname{Dec}(sk, c_1) = C^1_{c_{(0)}}(sk) = C^1(\operatorname{Dec}(sk,c_{(0)})) = C^1(m)$, but the difference is that decryption of $c_{(i)}$ also works since, by induction,
+\begin{equation*}
+    \begin{aligned}
+        \operatorname{Dec}(hsk,\operatorname{Eval}(hpk,\hat{C}^i_{c_{(i-1)}}, sk')) = \hat{C}^i_{c_{(i-1)}}(sk) = C^i(\operatorname{Dec}(sk, c_{(i-1)})) = C^i \circ C^{i-1} \circ  \dots \circ C^1(m)
+    \end{aligned}
+\end{equation*}
+
+\begin{figure}
+    \centering
+    \hypertarget{fig:Bootstrapping}{}
+    \input{figures/Bootstrapping.tex}
+    \caption*{\textbf{Figure 3}: Partial homomorphic computation of $C = C^m \circ \dots \circ C^i \circ \dots \circ C^1$ using bootstrapping. For $i = m$ the output decrypts to $C(m)$.}
+\end{figure}
+
+In essence, we have constructed an algorithm to evaluate $C$ on a ciphertext $c$ as follows: The first step is to split $C$ into $m$ smaller components, $C = C^m \circ \dots \circ C^1$. The second step is to run the encrypted secret key through the decryption circuit for the ciphertext. The third step is to evaluate the first component on the ciphertext output of the previous step and let this be the ciphertext. The fourth step is to repeat the second and third step for a total of $m$ times, incrementing the component each time. The final ciphertext decrypts to $C(m)$. One iteration of step 2 and 3 is illustrated in \hyperlink{fig:Bootstrapping}{Figure 3}.
+
+Splitting the desired function $C$ into multiple components $C^1, \dots, C^m$ is the key insight into constructing FHE. Consider the simplest case; each component function is either a multiplication gate or an addition gate. In other words, for a vector of ciphertexts $c = \left\langle c_1, c_2 \right\rangle$, define a multiplicative component circuit of $C$ as $C^i(c) = c_1 \times c_2$, $\hat{C}^i_c(\cdot) = C^i(\operatorname{Dec}(\cdot, c)) = C^i(\left\langle \operatorname{Dec}(\cdot, c_1), \operatorname{Dec}(\cdot, c_2) \right\rangle) = \operatorname{Dec}(\cdot, c_1) \times \operatorname{Dec}(\cdot, c_2)$ and where the addition case is analogous. Note that $\hat{C}^i_c(sk) = m_1 \times m_2$. It turns out that if the scheme can evaluate just these two types of circuits, then it can evaluate every circuit. This is the idea behind bootstrapping.
+\begin{definition}[Bootstrappable encryption scheme]
+    \label{def:bootstrappable}
+    Let $\mathcal{E}$ be a $\mathcal{C}$-homomorphic encryption scheme. Consider the following \emph{augmented decryption circuits} for $\mathcal{E}$:
+    \begin{equation*}
+    \begin{aligned}        
+        B_{c_1,c_2}^{(m)}(\cdot) \stackrel{\mathrm{def}}{=} \operatorname{Dec}(\cdot, c_1) \times \operatorname{Dec}(\cdot, c_2)\\
+        B_{c_1,c_2}^{(a)}(\cdot) \stackrel{\mathrm{def}}{=} \operatorname{Dec}(\cdot, c_1) + \operatorname{Dec}(\cdot, c_2)
+    \end{aligned}
+    \end{equation*}
+    $\mathcal{E}$ is \emph{bootstrappable} if
+    \begin{equation*}
+    \{B_{c_1,c_2}^{(m)}(\cdot), B_{c_1,c_2}^{(a)}(\cdot) \; \mid \; c_1, c_2 \in \mathcal{Y}\} \subset \mathcal{C}
+    \end{equation*}
+\end{definition}
+The augmented decryption circuits have the ciphertexts hard-wired into its description and takes as input an encryption of the secret key. A bootstrappable scheme correctly evaluates the set of all augmented decryption circuits. In particular, it correctly evaluates its own decryption circuit by letting $c_2$ be an encryption of the multiplicative or additive identity respectively.
+\begin{theorem}[Gentrys bootstrapping theorem, simplified by Vaikuntanathan \cite{Gentry-Thesis, Vai-survey}]
+Any bootstrappable scheme can be transformed into a leveled FHE. Furthermore, if circular security holds, it can be transformed into a pure FHE scheme.
+\end{theorem}
+\begin{remark}
+    Bootstrapping is sufficient for leveled FHE, but not necessary. See \cite{BGV12-no-bootstrap} for a leveled FHE scheme that does not require bootstrapping.
+\end{remark}
+\begin{proof}
+Let $(\text{KeyGen, Enc, Dec, Eval})$ be a bootstrappable scheme. Assume first that circular security holds. We construct a pure FHE scheme $(\text{KeyGen', Enc', Dec', Eval'})$ as follows:
+    \begin{enumerate}
+        \item \textbf{Key generation}: Generate a key pair $(\hat{pk},sk)$ using $\text{KeyGen}(1^{\lambda})$. Let $sk' \leftarrow \text{Enc}(\hat{pk},sk)$. Define $pk = (\hat{pk}, sk')$ and let $\text{KeyGen'}(1^{\lambda})$ return $(pk,sk)$.
+        \item \textbf{Encryption}: Let $\text{Enc'}$ be the same as $\text{Enc}$.
+        \item \textbf{Decryption}: Let $\text{Dec'}$ be the same as $\text{Dec}$.
+        \item \textbf{Evaluation}: Let $\text{Eval'}(pk, C, c)$ transform input circuit $C$ as follows: For each layer of the circuit, consider the gate taking ciphertexts $c_i, c_j$. If it is a multiplication gate, swap it with $B_{c_i,c_j}^{(m)}(\cdot)$ and if it is an addition gate, swap it with $B_{c_i,c_j}^{(a)}(\cdot)$. Run the encrypted secret key\footnote{The encrypted secret key can be seen as an advice wire over the circuit, assessible at any layer} through the augmented decryption circuit and let the outputs act as ciphertext inputs to the next layer. Repeat for all layers of $C$ and denote the transformed circuit $C'$. Let $\text{Eval'}(pk, C, c)$ be the vector of ciphertexts at the output wires of $C'$.
+    \end{enumerate}
+To see why decryption is correct, remark that the scheme can evaluate each augmented decryption circuit. Therefore, the output ciphertexts decrypts to the gate applied to the decryption of the input ciphertexts. By induction, the input ciphertexts in turn also decrypts correctly since the input layer to the circuit is fresh ciphertexts. More formally, consider circuit output $k$, denoted $C(m)_k$, undergoing a (say multiplication) operation in the last layer. Then, $C(m)_k = C_1(m) \times C_2(m)$ for some subcircuits $C_1, C_2$ of $C$. Let ciphertext $c$ be input to the transformed circuit $C'$ and assume that, by induction, input ciphertexts for last layer $z_1, z_2$ satisfies $\text{Dec}(sk,z_1) = C_1(m)$ and $\text{Dec}(sk,z_2) = C_2(m)$. Then, decryption of $C'(c)_k$ yields
+\begin{equation*}
+    \begin{aligned}
+    \text{Dec}(sk, \text{Eval'}(pk, C, c)_k) &= \text{Dec}(sk, B_{z_1,z_2}^{(m)}(sk')) = B_{z_1,z_2}^{(m)}(sk) \\
+    &= \operatorname{Dec}(sk, z_1) \times \operatorname{Dec}(sk, z_2) = C_1(m) \times C_2(m) = C(m)_k
+    \end{aligned}
+\end{equation*}
+Security of the scheme holds by the fact that the original scheme is secure and circular security hold, meaning the encrypted secret key under its own public key does not compromise the security. In other words, the evaluate algorithm is only using public information to evaluate the circuit. Since the circuit was arbitrary, the scheme is a pure FHE scheme.
+Assume now that circular security does not hold. We construct a leveled FHE scheme $(\text{KeyGen', Enc', Dec', Eval'})$ as follows:
+    \begin{enumerate}
+        \item \textbf{Key generation}: Given input parameters $(1^{\lambda}, 1^L)$, generate $L+1$ key pairs $(\hat{pk}_i,sk_i)_{i = 0, \dots, L}$ using $\text{KeyGen}$. Let $sk_i' \leftarrow \text{Enc}(\hat{pk}_{i+1},sk_i)$ for all $i = 0, \dots, L-1$. Define $sk = (sk_0, \dots, sk_L)$ and define $pk = (pk_0, sk_0', pk_1, sk_1', \dots, sk_{L-1}', pk_L)$ and let $\text{KeyGen'}$ return $(pk,sk)$.
+        \item \textbf{Encryption}: Let $\text{Enc'}$ be the same as $\text{Enc}$.
+        \item \textbf{Decryption}: Let $\text{Dec'}$ be the same as $\text{Dec}$.
+        \item \textbf{Evaluation}: Let $\text{Eval'}$ take input circuit of depth at most $L$ and 'pad' it so that it has depth exactly $L$. Transform the circuit as follows: For layer $i = 1, \dots, L$ of the circuit, consider the gate taking ciphertexts $c_i, c_j$. If it is a multiplication gate, swap it with $B_{c_i,c_j}^{(m)}(\cdot)$ and if it is an addition gate, swap it with $B_{c_i,c_j}^{(a)}(\cdot)$. Run the encrypted secret key $sk_{i-1}'$ through the augmented decryption circuits and let the outputs act as ciphertext inputs to the next layer. Let $\text{Eval'}(pk, C, c)$ be the vector of ciphertexts at the output wires of $C'$.
+    \end{enumerate}
+In the transformed circuit $C'$, the input ciphertexts to layer $i$ is encrypted under public key $i-1$. In other words, to decrypt the ciphertexts resulting from layer $i$, we use private key $sk_i$. Since the circuit has exactly $L$ layers, the last layer is decrypted using $sk_L$. Using the same notation as before, the correctness of the decryption algorithm follows by same argument:
+\begin{equation*}
+    \begin{aligned}
+    \text{Dec}(sk_L, \text{Eval'}(pk, C, c)_k) &= \text{Dec}(sk_L, B_{z_1,z_2}^{(m)}(sk_{L-1}')) = B_{z_1,z_2}^{(m)}(sk{L-1}) \\
+    &= \operatorname{Dec}(sk{L-1}, z_1) \times \operatorname{Dec}(sk{L-1}, z_2) \\
+    &= C_1(m) \times C_2(m) = C(m)_k
+    \end{aligned}
+\end{equation*}
+The security of the scheme follows by the fact the each encrypted secret key is encrypted under the public key of the next layer, meaning that it is computationally indistinguishable from a random ciphertext. In other words, the secret keys are not encrypted under their own public keys, avoiding circular security assumption. Since the circuit was arbitrary, the scheme is a leveled FHE scheme.
+\end{proof}
+
+The difference between the pure FHE scheme and the leveled FHE scheme is that in the former, there is only need for one key pair $(pk,sk)$, where the encrypted secret key can be made public (by circular security assumption) and used to bootstrap in every layer. This implies the transformed circuit can have arbitrary depth since each layer outputs a valid evaluated ciphertext. In the latter, circular security does not hold and the encrypted secret key cannot be reused. Therefore, every layer needs a new encrypted secret key. In general, any scheme generating a fixed amount of valid keys pairs can only bootstrap finitely many times. Since ciphertext noise grows for each operation, the depth of the circuit has to be bounded. In particular, for a set of circuits with depth at most $L$, $L+1$ valid keypairs is sufficient.
+
+\subsubsection*{Noise management in practice}
+As of today, pure FHE requires circular security. Circular security assumption improves the efficiency of the scheme since the key generation algorithm is run only once. However, the construction is still extremely inefficient. Bootstrapping is an expensive operation as it involves constructing and evaluating a decryption circuit. In practice, bootstrapping is only done when necessary, meaning when the noise is about to cause decryption to fail. When this is about to happen, the ciphertext $c \leftarrow \text{Enc}(pk, m)$ is "refreshed" by replacing it with the less noisy $\text{Dec}(sk',c)$. Note that this is essentially an augmented decryption circuit where the other ciphertext is an encryption of the multiplicative (or additive) identity. Indeed, $\text{Dec}(sk,\text{Dec}(\cdot,c), sk') = \text{Dec}(sk,c) = m$.

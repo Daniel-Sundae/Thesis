@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999995 (TeX Live 2023) (preloaded format=xelatex 2023.5.8)  31 MAY 2023 21:02
+This is XeTeX, Version 3.141592653-2.6-0.999995 (TeX Live 2023) (preloaded format=xelatex 2023.5.8)  7 JUN 2023 14:32
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1169,7 +1169,7 @@ Package: listings 2023/02/27 1.9 (Carsten Heinz)
 \@quotelevel=\count510
 \@quotereset=\count511
 Package translations Info: No language package found. I am going to use `english' as default language. on input line 13.
- (./main.aux (./setup/title-page.aux) (./sections/0-pre-content.aux) (./sections/1-theory.aux) (./sections/appendices.aux) (./setup/back-cover.aux))
+ (./main.aux (./setup/title-page.aux) (./sections/0-pre-content.aux) (./sections/1-introduction.aux) (./sections/2-computation-theory.aux) (./sections/3-prob-theory.aux) (./sections/4-cryptographic-primitives.aux) (./sections/5-lattices.aux) (./sections/6-history.aux) (./sections/7-noise.aux) (./sections/appendices.aux) (./setup/back-cover.aux))
 \openout1 = `main.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 13.
@@ -1374,55 +1374,106 @@ File: setup/img/kth-footer.png Graphic file (type bmp)
 \openout5 = `main.toc'.
 
  [7])
-\openout2 = `sections/1-theory.aux'.
+\openout2 = `sections/1-introduction.aux'.
 
- (./sections/1-theory.tex
+ (./sections/1-introduction.tex
 Chapter 1.
-[1
+) [1
 
 
 
 
 ]
+\openout2 = `sections/2-computation-theory.aux'.
+
+ (./sections/2-computation-theory.tex
 Chapter 2.
 [2
 
-] [3] [4]
+
+
+
+] [3]) [4]
+\openout2 = `sections/3-prob-theory.aux'.
+
+ (./sections/3-prob-theory.tex
 Chapter 3.
 [5
 
-] [6] [7]
-File: figures/D-G-2d-a_is_50.pdf Graphic file (type pdf)
-<use figures/D-G-2d-a_is_50.pdf>
- [8]
+
+
+
+]
+Underfull \vbox (badness 2035) has occurred while \output is active []
+
+ [6] [7]
+File: figures/D-G-2d-a_is_100-n_1000000.pdf Graphic file (type pdf)
+<use figures/D-G-2d-a_is_100-n_1000000.pdf>
+) [8]
+\openout2 = `sections/4-cryptographic-primitives.aux'.
+
+ (./sections/4-cryptographic-primitives.tex
 Chapter 4.
-[9
+(./figures/decryption-homomorphism.tex) [9
 
-] (./figures/decryption-homomorphism.tex) [10] [11] [12] [13] [14]
-Chapter 5.
-[15
 
-] [16] [17] [18] [19] [20]
-Chapter 6.
-[21
 
-] [22] [23] [24]
-Chapter 7.
-[25
 
 ]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [26]
-Overfull \hbox (1.59447pt too wide) detected at line 449
+ [10] [11] [12]) [13]
+\openout2 = `sections/5-lattices.aux'.
+
+ (./sections/5-lattices.tex
+Chapter 5.
+
+Underfull \vbox (badness 2142) has occurred while \output is active []
+
+ [14
+
+
+
+
+] [15] [16] [17] [18]) [19]
+\openout2 = `sections/6-history.aux'.
+
+ (./sections/6-history.tex
+Chapter 6.
+[20
+
+
+
+
+] [21]
+Underfull \vbox (badness 1189) has occurred while \output is active []
+
+ [22]) [23]
+\openout2 = `sections/7-noise.aux'.
+
+ (./sections/7-noise.tex
+Chapter 7.
+[24
+
+
+
+
+]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [25]
+Overfull \hbox (19.7611pt too wide) detected at line 26
 [][]
  []
 
-(./figures/Bootstrapping.tex) [27] [28]) [29] [30
+(./figures/Bootstrapping.tex)
+Underfull \vbox (badness 4765) has occurred while \output is active []
+
+ [26] [27] [28]) [29] [30] [31
 
 
 
-] [31] [32] [33] [34] [35]
+] [32] [33] [34] [35]
 \openout2 = `sections/appendices.aux'.
 
  (./sections/appendices.tex [36
@@ -1449,18 +1500,18 @@ File: setup/img/kth-footer.png Graphic file (type bmp)
 
 
 
-] (./main.aux (./setup/title-page.aux) (./sections/0-pre-content.aux) (./sections/1-theory.aux) (./sections/appendices.aux) (./setup/back-cover.aux))
+] (./main.aux (./setup/title-page.aux) (./sections/0-pre-content.aux) (./sections/1-introduction.aux) (./sections/2-computation-theory.aux) (./sections/3-prob-theory.aux) (./sections/4-cryptographic-primitives.aux) (./sections/5-lattices.aux) (./sections/6-history.aux) (./sections/7-noise.aux) (./sections/appendices.aux) (./setup/back-cover.aux))
 Package logreq Info: Writing requests to 'main.run.xml'.
 \openout1 = `main.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 44986 strings out of 476683
- 964258 string characters out of 5804048
- 1981018 words of memory out of 5000000
- 64486 multiletter control sequences out of 15000+600000
- 524867 words of font info for 113 fonts, out of 8000000 for 9000
+ 45174 strings out of 476683
+ 971703 string characters out of 5804048
+ 2010018 words of memory out of 5000000
+ 64626 multiletter control sequences out of 15000+600000
+ 524899 words of font info for 117 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
- 99i,18n,95p,1473b,5359s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 99i,18n,95p,1769b,5357s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
 Output written on main.pdf (47 pages).
