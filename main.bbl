@@ -742,6 +742,33 @@
       \verb https://eprint.iacr.org/2014/283
       \endverb
     \endentry
+    \entry{Gartner2023}{misc}{}
+      \name{author}{1}{}{%
+        {{hash=18bfab6309a4addeb7e1dae07d2a4b89}{%
+           family={Gartner},
+           familyi={G\bibinitperiod}}}%
+      }
+      \strng{namehash}{18bfab6309a4addeb7e1dae07d2a4b89}
+      \strng{fullhash}{18bfab6309a4addeb7e1dae07d2a4b89}
+      \strng{bibnamehash}{18bfab6309a4addeb7e1dae07d2a4b89}
+      \strng{authorbibnamehash}{18bfab6309a4addeb7e1dae07d2a4b89}
+      \strng{authornamehash}{18bfab6309a4addeb7e1dae07d2a4b89}
+      \strng{authorfullhash}{18bfab6309a4addeb7e1dae07d2a4b89}
+      \field{labelalpha}{Gar23}
+      \field{sortinit}{G}
+      \field{sortinithash}{32d67eca0634bf53703493fb1090a2e8}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{note}{Accessed: 2023-06-07}
+      \field{title}{Gartner Forecasts Worldwide Public Cloud End-User Spending to Reach Nearly {\$}600 Billion in 2023}
+      \field{year}{2023}
+      \verb{urlraw}
+      \verb https://www.gartner.com/en/newsroom/press-releases/2023-04-19-gartner-forecasts-worldwide-public-cloud-end-user-spending-to-reach-nearly-600-billion-in-2023
+      \endverb
+      \verb{url}
+      \verb https://www.gartner.com/en/newsroom/press-releases/2023-04-19-gartner-forecasts-worldwide-public-cloud-end-user-spending-to-reach-nearly-600-billion-in-2023
+      \endverb
+    \endentry
     \entry{Gentry-Thesis}{thesis}{}
       \name{author}{1}{}{%
         {{hash=bd007b2a3d698c39bd758b253f7c2ebf}{%

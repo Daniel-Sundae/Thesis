@@ -26,53 +26,25 @@
 \chapter*{Abstract}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\vspace{2cm}
-Write an abstract. Introduce the subject area for the project and describe the problems that are solved and described in the thesis. Present how the problems have been solved, methods used and present results for the project. Use probably one sentence for each chapter in the final report.
+The problem of constructing a secure encryption scheme that allows for computation on encrypted data was an open problem for more than 30 years. In 2009, Craig Gentry solved the problem, constructing the first fully homomorphic encryption (FHE) scheme. The challenge of constructing a homomorphic encryption scheme can be divided into three main components: 1) Constructing a decryption algorithm that is a ring homomorphism. 2) Proving CPA security. 3) Managing noise growth of evaluated ciphertexts. This thesis presents a formal mathematical background to FHE and discusses these three components. To compute on ciphertexts, the decryption algorithm needs to be homomorpic with respect to multiplication and addition operation. This means, theoretically, computing and then decrypting is equivalent to decrypting and then computing. Security is proved by reductions and hardness assumptions. The standard hardness assumptions used today is the $\operatorname{LWE}$ and $\operatorname{RLWE}$ assumptions. All existing encryption schemes are based on introducing noise when encrypting. This noise grows with each ciphertext operation and without controlling noise, decryption fails given sufficiently many operations. Gentry showed that a scheme that can evaluate its own decryption circuit can be used to reduce the noise and bootstrapped into a fully homomorphic encryption scheme. 
 
-The presentation of the results should be the main part of the abstract. Use about ½ A4-page.
-English abstract
-
-
-
-
-\section*{Keywords}
-Template, Thesis, Keywords ...
-
-
-
-
-
-\newpage
 \thispagestyle{plain}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%	 The Swedish abstract         %%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\chapter*{Abstract}
+\chapter*{Abstrakt}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-Svenskt abstract
-\begin{comment}
-Svensk version av abstract – samma titel på svenska som på engelska.
+Problemet med att konstruera ett säkert krypteringssystem som tillåter beräkning på krypterad data var ett öppet problem i över 30 år. År 2009 löste Craig Gentry problemet genom att konstruera det första fullt homomorfa krypteringssystemet (FHE). Utmaningen med att konstruera ett homomorft krypteringssystem kan delas upp i tre huvudsakliga komponenter: 1) Konstruktion av en dekrypteringsalgoritm som är en ringhomomorfism. 2) Bevisning av CPA-säkerhet. 3) Hantering av brusökning i utvärderade chiffertexter. Denna uppsats presenterar en formell matematisk bakgrund till FHE och diskuterar dessa tre komponenter. För att göra beräkningar på chiffertexter måste dekrypteringsalgoritmen vara homomorf med avseende på multiplikation och addition. Detta betyder att det, teoretiskt sett, är ekvivalent att beräkna och sedan dekryptera som med att dekryptera och sedan beräkna. Säkerheten bevisas genom reduktioner och svårhetsantaganden. De standardmässiga svårhetsantaganden som används idag är LWE och RLWE-antagandena. Alla befintliga krypteringssystem är baserade på att införa brus vid kryptering. Detta brus ökar vid varje chiffertext operation och i avsaknad av kontroll över bruset kommer dekryptering misslyckas efter tillräckligt många operationer. Gentry visade att ett krypteringssystem som kan utvärdera sin egen dekrypteringskrets kan användas för att minska bruset och omvandlas till ett fullt homomorft krypteringssystem.
 
-Skriv samma abstract på svenska. Introducera ämnet för projektet och beskriv problemen som löses i materialet. Presentera 
-\end{comment}
-\section*{Nyckelord}
-Mall, Examensarbete, Nyckelord ...
-
-
-\newpage
 \thispagestyle{plain}
 \chapter*{Acknowledgements}
-Write a short acknowledgements. Don't forget to give some credit to the examiner and supervisor.
-
-\newpage
-
-\input{sections/0.1-acronyms}
-
-\newpage
+I want to thank my supervisor Johan Håstad for his guidance and support throughout this project. I also want to thank my family and friends for their support and encouragement.
 
 % \etocdepthtag.toc{mtchapter}
 % \etocsettagdepth{mtchapter}{subsection}
 % \etocsettagdepth{mtappendix}{none}
+
+\newpage
 
 \thispagestyle{plain}
 \tableofcontents

@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999995 (TeX Live 2023) (preloaded format=xelatex 2023.5.8)  7 JUN 2023 14:32
+This is XeTeX, Version 3.141592653-2.6-0.999995 (TeX Live 2023) (preloaded format=xelatex 2023.5.8)  7 JUN 2023 21:15
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1367,13 +1367,11 @@ File: setup/img/kth-footer.png Graphic file (type bmp)
 
 ] [5
 
-] (./sections/0.1-acronyms.tex) [6
-
 ] (./main.toc)
 \tf@toc=\write5
 \openout5 = `main.toc'.
 
- [7])
+ [6])
 \openout2 = `sections/1-introduction.aux'.
 
  (./sections/1-introduction.tex
@@ -1383,22 +1381,22 @@ Chapter 1.
 
 
 
-]
+] [2]
 \openout2 = `sections/2-computation-theory.aux'.
 
  (./sections/2-computation-theory.tex
 Chapter 2.
-[2
+[3
 
 
 
 
-] [3]) [4]
+] [4]) [5]
 \openout2 = `sections/3-prob-theory.aux'.
 
  (./sections/3-prob-theory.tex
 Chapter 3.
-[5
+[6
 
 
 
@@ -1406,15 +1404,15 @@ Chapter 3.
 ]
 Underfull \vbox (badness 2035) has occurred while \output is active []
 
- [6] [7]
+ [7] [8]
 File: figures/D-G-2d-a_is_100-n_1000000.pdf Graphic file (type pdf)
 <use figures/D-G-2d-a_is_100-n_1000000.pdf>
-) [8]
+) [9]
 \openout2 = `sections/4-cryptographic-primitives.aux'.
 
  (./sections/4-cryptographic-primitives.tex
 Chapter 4.
-(./figures/decryption-homomorphism.tex) [9
+(./figures/decryption-homomorphism.tex) [10
 
 
 
@@ -1422,7 +1420,7 @@ Chapter 4.
 ]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [10] [11] [12]) [13]
+ [11] [12] [13]) [14]
 \openout2 = `sections/5-lattices.aux'.
 
  (./sections/5-lattices.tex
@@ -1430,30 +1428,30 @@ Chapter 5.
 
 Underfull \vbox (badness 2142) has occurred while \output is active []
 
- [14
+ [15
 
 
 
 
-] [15] [16] [17] [18]) [19]
+] [16] [17] [18] [19]) [20]
 \openout2 = `sections/6-history.aux'.
 
  (./sections/6-history.tex
 Chapter 6.
-[20
+[21
 
 
 
 
-] [21]
+] [22]
 Underfull \vbox (badness 1189) has occurred while \output is active []
 
- [22]) [23]
+ [23]) [24]
 \openout2 = `sections/7-noise.aux'.
 
  (./sections/7-noise.tex
 Chapter 7.
-[24
+[25
 
 
 
@@ -1461,7 +1459,7 @@ Chapter 7.
 ]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [25]
+ [26]
 Overfull \hbox (19.7611pt too wide) detected at line 26
 [][]
  []
@@ -1469,25 +1467,21 @@ Overfull \hbox (19.7611pt too wide) detected at line 26
 (./figures/Bootstrapping.tex)
 Underfull \vbox (badness 4765) has occurred while \output is active []
 
- [26] [27] [28]) [29] [30] [31
+ [27] [28] [29]) [30] [31] [32
 
 
 
-] [32] [33] [34] [35]
+] [33] [34] [35] [36]
 \openout2 = `sections/appendices.aux'.
 
- (./sections/appendices.tex [36
+ (./sections/appendices.tex [37
 
-] (./main.toc)
-\tf@toc=\write6
-\openout6 = `main.toc'.
-
- [37]
+]
 Appendix A.
 (/usr/local/texlive/2023/texmf-dist/tex/latex/listings/lstlang1.sty
 File: lstlang1.sty 2023/02/27 1.9 listings language file
 )
-Package hyperref Info: bookmark level for unknown lstlisting defaults to 0 on input line 14.
+Package hyperref Info: bookmark level for unknown lstlisting defaults to 0 on input line 12.
  (./setup/D-G.py [38
 
 ])) [39]
@@ -1506,12 +1500,12 @@ Package logreq Info: Writing requests to 'main.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 45174 strings out of 476683
- 971703 string characters out of 5804048
+ 45168 strings out of 476683
+ 971685 string characters out of 5804048
  2010018 words of memory out of 5000000
- 64626 multiletter control sequences out of 15000+600000
+ 64627 multiletter control sequences out of 15000+600000
  524899 words of font info for 117 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
- 99i,18n,95p,1769b,5357s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 99i,18n,95p,1769b,5351s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on main.pdf (47 pages).
+Output written on main.pdf (46 pages).
