@@ -17,6 +17,11 @@
 \contentsline {chapter}{\numberline {7}Noise management}{25}{chapter.7}%
 \contentsline {section}{\numberline {7.1}Key-Switching}{25}{section.7.1}%
 \contentsline {section}{\numberline {7.2}Bootstrapping}{26}{section.7.2}%
-\contentsline {chapter}{References}{32}{Item.23}%
+\contentsline {chapter}{\numberline {8}Implementation}{32}{chapter.8}%
+\contentsline {section}{\numberline {8.1}GSW scheme}{32}{section.8.1}%
+\contentsline {section}{\numberline {8.2}Security of GSW}{32}{section.8.2}%
+\contentsline {section}{\numberline {8.3}Security, compactness and efficiency}{32}{section.8.3}%
+\contentsline {section}{\numberline {8.4}Bootstrappable}{32}{section.8.4}%
+\contentsline {chapter}{References}{33}{section.8.4}%
 \etoc@depthtag {mtappendix}
-\contentsline {chapter}{\numberline {A}Appendix}{38}{appendix.A}%
+\contentsline {chapter}{\numberline {A}Appendix}{39}{appendix.A}%

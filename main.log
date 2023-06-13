@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999995 (TeX Live 2023) (preloaded format=xelatex 2023.5.8)  7 JUN 2023 21:15
+This is XeTeX, Version 3.141592653-2.6-0.999995 (TeX Live 2023) (preloaded format=xelatex 2023.5.8)  12 JUN 2023 20:04
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1169,7 +1169,7 @@ Package: listings 2023/02/27 1.9 (Carsten Heinz)
 \@quotelevel=\count510
 \@quotereset=\count511
 Package translations Info: No language package found. I am going to use `english' as default language. on input line 13.
- (./main.aux (./setup/title-page.aux) (./sections/0-pre-content.aux) (./sections/1-introduction.aux) (./sections/2-computation-theory.aux) (./sections/3-prob-theory.aux) (./sections/4-cryptographic-primitives.aux) (./sections/5-lattices.aux) (./sections/6-history.aux) (./sections/7-noise.aux) (./sections/appendices.aux) (./setup/back-cover.aux))
+ (./main.aux (./setup/title-page.aux) (./sections/0-pre-content.aux) (./sections/1-introduction.aux) (./sections/2-computation-theory.aux) (./sections/3-prob-theory.aux) (./sections/4-cryptographic-primitives.aux) (./sections/5-lattices.aux) (./sections/6-history.aux) (./sections/7-noise.aux) (./sections/8-implementation.aux) (./sections/appendices.aux) (./setup/back-cover.aux))
 \openout1 = `main.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 13.
@@ -1367,11 +1367,11 @@ File: setup/img/kth-footer.png Graphic file (type bmp)
 
 ] [5
 
-] (./main.toc)
+] (./main.toc [6])
 \tf@toc=\write5
 \openout5 = `main.toc'.
 
- [6])
+ [7])
 \openout2 = `sections/1-introduction.aux'.
 
  (./sections/1-introduction.tex
@@ -1467,14 +1467,24 @@ Overfull \hbox (19.7611pt too wide) detected at line 26
 (./figures/Bootstrapping.tex)
 Underfull \vbox (badness 4765) has occurred while \output is active []
 
- [27] [28] [29]) [30] [31] [32
+ [27] [28] [29]) [30] [31]
+\openout2 = `sections/8-implementation.aux'.
+
+ (./sections/8-implementation.tex
+Chapter 8.
+) [32
 
 
 
-] [33] [34] [35] [36]
+
+] [33
+
+
+
+] [34] [35] [36] [37]
 \openout2 = `sections/appendices.aux'.
 
- (./sections/appendices.tex [37
+ (./sections/appendices.tex [38
 
 ]
 Appendix A.
@@ -1482,30 +1492,30 @@ Appendix A.
 File: lstlang1.sty 2023/02/27 1.9 listings language file
 )
 Package hyperref Info: bookmark level for unknown lstlisting defaults to 0 on input line 12.
- (./setup/D-G.py [38
+ (./setup/D-G.py [39
 
-])) [39]
+])) [40]
 \openout2 = `setup/back-cover.aux'.
 
  (./setup/back-cover.tex)
 File: setup/img/kth-footer.png Graphic file (type bmp)
 <setup/img/kth-footer.png>
- [40
+ [41
 
 
 
-] (./main.aux (./setup/title-page.aux) (./sections/0-pre-content.aux) (./sections/1-introduction.aux) (./sections/2-computation-theory.aux) (./sections/3-prob-theory.aux) (./sections/4-cryptographic-primitives.aux) (./sections/5-lattices.aux) (./sections/6-history.aux) (./sections/7-noise.aux) (./sections/appendices.aux) (./setup/back-cover.aux))
+] (./main.aux (./setup/title-page.aux) (./sections/0-pre-content.aux) (./sections/1-introduction.aux) (./sections/2-computation-theory.aux) (./sections/3-prob-theory.aux) (./sections/4-cryptographic-primitives.aux) (./sections/5-lattices.aux) (./sections/6-history.aux) (./sections/7-noise.aux) (./sections/8-implementation.aux) (./sections/appendices.aux) (./setup/back-cover.aux))
 Package logreq Info: Writing requests to 'main.run.xml'.
 \openout1 = `main.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 45168 strings out of 476683
- 971685 string characters out of 5804048
+ 45201 strings out of 476683
+ 972915 string characters out of 5804048
  2010018 words of memory out of 5000000
- 64627 multiletter control sequences out of 15000+600000
+ 64653 multiletter control sequences out of 15000+600000
  524899 words of font info for 117 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
- 99i,18n,95p,1769b,5351s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 99i,18n,95p,1769b,5353s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on main.pdf (46 pages).
+Output written on main.pdf (48 pages).
