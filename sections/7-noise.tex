@@ -50,7 +50,7 @@ Splitting the desired function $C$ into multiple components $C^1, \dots, C^m$ is
     \end{equation*}
 \end{definition}
 The augmented decryption circuits have the ciphertexts hard-wired into its description and takes as input an encryption of the secret key. A bootstrappable scheme correctly evaluates the set of all augmented decryption circuits. In particular, it correctly evaluates its own decryption circuit by letting $c_2$ be an encryption of the multiplicative or additive identity respectively.
-\begin{theorem}[Gentrys bootstrapping theorem, simplified by Vaikuntanathan \cite{Gentry-Thesis, Vai-survey}]
+\begin{theorem}[Gentrys bootstrapping theorem, simplified by Vaikuntanathan \cite{Gentry-Thesis, Vai-survey}] \label{thm:bootstrapping}
 Any bootstrappable scheme can be transformed into a leveled FHE. Furthermore, if circular security holds, it can be transformed into a pure FHE scheme.
 \end{theorem}
 \begin{remark}
@@ -82,8 +82,8 @@ Assume now that circular security does not hold. We construct a leveled FHE sche
 In the transformed circuit $C'$, the input ciphertexts to layer $i$ is encrypted under public key $i-1$. In other words, to decrypt the ciphertexts resulting from layer $i$, we use private key $sk_i$. Since the circuit has exactly $L$ layers, the last layer is decrypted using $sk_L$. Using the same notation as before, the correctness of the decryption algorithm follows by same argument:
 \begin{equation*}
     \begin{aligned}
-    \text{Dec}(sk_L, \text{Eval'}(pk, C, c)_k) &= \text{Dec}(sk_L, B_{z_1,z_2}^{(m)}(sk_{L-1}')) = B_{z_1,z_2}^{(m)}(sk{L-1}) \\
-    &= \operatorname{Dec}(sk{L-1}, z_1) \times \operatorname{Dec}(sk{L-1}, z_2) \\
+    \text{Dec}(sk_L, \text{Eval'}(pk, C, c)_k) &= \text{Dec}(sk_L, B_{z_1,z_2}^{(m)}(sk_{L-1}')) = B_{z_1,z_2}^{(m)}(sk_{L-1}) \\
+    &= \operatorname{Dec}(sk_{L-1}, z_1) \times \operatorname{Dec}(sk_{L-1}, z_2) \\
     &= C_1(m) \times C_2(m) = C(m)_k
     \end{aligned}
 \end{equation*}

@@ -2418,6 +2418,10 @@
     <bcf:citekey order="51" intorder="1">Gentry-Thesis</bcf:citekey>
     <bcf:citekey order="51" intorder="2">Vai-survey</bcf:citekey>
     <bcf:citekey order="52" intorder="1">BGV12-no-bootstrap</bcf:citekey>
+    <bcf:citekey order="53" intorder="1">GSW13</bcf:citekey>
+    <bcf:citekey order="54" intorder="1">Hal18</bcf:citekey>
+    <bcf:citekey order="55" intorder="1">Hal18</bcf:citekey>
+    <bcf:citekey order="56" intorder="1">Hal18</bcf:citekey>
   </bcf:section>
   <!-- SORTING TEMPLATES -->
   <bcf:sortingtemplate name="nty">

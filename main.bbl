@@ -994,6 +994,59 @@
       \field{volume}{II}
       \field{year}{2004}
     \endentry
+    \entry{Hal18}{incollection}{}
+      \name{author}{1}{}{%
+        {{hash=7c86404bf6ef06056efb632aff16d2c0}{%
+           family={Halevi},
+           familyi={H\bibinitperiod},
+           given={Shai},
+           giveni={S\bibinitperiod}}}%
+      }
+      \name{editor}{1}{}{%
+        {{hash=e20af851262c583d34b7a667a7039cb4}{%
+           family={Lindell},
+           familyi={L\bibinitperiod},
+           given={Yehuda},
+           giveni={Y\bibinitperiod}}}%
+      }
+      \list{location}{1}{%
+        {Cham}%
+      }
+      \list{publisher}{1}{%
+        {Springer International Publishing}%
+      }
+      \strng{namehash}{7c86404bf6ef06056efb632aff16d2c0}
+      \strng{fullhash}{7c86404bf6ef06056efb632aff16d2c0}
+      \strng{bibnamehash}{7c86404bf6ef06056efb632aff16d2c0}
+      \strng{authorbibnamehash}{7c86404bf6ef06056efb632aff16d2c0}
+      \strng{authornamehash}{7c86404bf6ef06056efb632aff16d2c0}
+      \strng{authorfullhash}{7c86404bf6ef06056efb632aff16d2c0}
+      \strng{editorbibnamehash}{e20af851262c583d34b7a667a7039cb4}
+      \strng{editornamehash}{e20af851262c583d34b7a667a7039cb4}
+      \strng{editorfullhash}{e20af851262c583d34b7a667a7039cb4}
+      \field{labelalpha}{Hal17}
+      \field{sortinit}{H}
+      \field{sortinithash}{23a3aa7c24e56cfa16945d55545109b5}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{Tutorials on the Foundations of Cryptography}
+      \field{chapter}{5}
+      \field{isbn}{978-3-319-57047-1}
+      \field{series}{Information Security and Cryptography}
+      \field{title}{Homomorphic Encryption}
+      \field{year}{2017}
+      \field{pages}{219\bibrangedash 268}
+      \range{pages}{50}
+      \verb{doi}
+      \verb 10.1007/978-3-319-57048-8
+      \endverb
+      \verb{urlraw}
+      \verb https://doi.org/10.1007/978-3-319-57048-8
+      \endverb
+      \verb{url}
+      \verb https://doi.org/10.1007/978-3-319-57048-8
+      \endverb
+    \endentry
     \entry{NTRU}{inproceedings}{}
       \name{author}{3}{}{%
         {{hash=c4c174b1abf76a48a5a282277d8a6831}{%

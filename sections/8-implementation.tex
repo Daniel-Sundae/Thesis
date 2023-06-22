@@ -1,14 +1,80 @@
 \chapter{Implementation}
 
-Flattening gadget $G$ and it's inverse (bit decomposition matrix $G^-1$)
-The invariant
-NAND (potentially XOR and AND)
+% Flattening gadget $G$ and it's inverse (bit decomposition matrix $G^-1$)
+% The invariant
+% NAND (potentially XOR and AND)
 
+In this chapter we will present a fully homomorphic encryption scheme, called GSW, developed by Gentry, Sahai and Waters \cite{GSW13}. The GSW scheme is based on approximate eigenvectors. The appeal of the scheme is its relative conceptual simplicity due to natural matrix addition and matrix multiplication operations. The scheme is leveled FHE even without bootstrapping but, just like every existing FHE scheme, requires bootstrapping and circular security assumption for pure FHE. Security is based on the LWE hardness assumption. Throughout this chapter, all parameters are chosen from LWE as before and the norm is assumed to be $\|A\| = \|A\|_{\infty} \stackrel{\mathrm{def}}{=} \max_{i} \sum_{j} |a_{i j}|$ for matrix or vector $A$ (manhattan norm for vector). Similar to Regev's scheme, the messages in GSW are bits. The ciphertexts in GSW are matrices where the secret key can be thought of as an approximate left eigenvector with the message bit as eigenvalue. Ideally, for a square ciphertext matrix $\textbf{C} \in \mathbb{Z}_q^{n \times n}$ and secret vector $s \in \mathbb{Z}_q^n$, a scheme should satisfy $s^T\textbf{C} = bs^T + e^T$ for some small error vector $e$ and some message bit $b$. Unfortunately however, multiplication in this scheme leads to rapid error growth:
+\begin{equation*}
+    \begin{aligned}
+    s^T(\textbf{C}_1 \times \textbf{C}_2) &= (s^T\textbf{C}_1)\textbf{C}_2 = b_1s^T\textbf{C}_2 + e_1^T\textbf{C}_2 \\
+    &= b_1(b_2s^T + e_2^T) + e_1^T(\textbf{C}_2) = b_1b_2s^T + b_1e_2^T + e_1^T\textbf{C}_2
+    \end{aligned}
+\end{equation*}
+Notice that the term $e_1^T\textbf{C}_2$ in the error is bounded by $n\frac{q}{2}\|e_1\|$, for some large $q$. The problem is that $\| \textbf{C}_2 \|$ has a large bound. If however, $\textbf{C}_2$ is instead defined over $\{-1,0,1\}$, then the new total error satisfies $\| b_1e_2^T + e_1^T\textbf{C}_2 \| \leq \| b_1e_2^T \| + \|e_1^T\textbf{C}_2\| \leq \|e_2^T\| + n\|e_1^T\| \leq (n+1) \max\{ \| e_1^T \| ,\|e_2^T\|\}$. This suggests transforming ciphertext matrices to lower norm. 
+
+% l is the max bits needed to represent any integer smaller than q.
+Define $l \stackrel{\mathrm{def}}{=} \lceil \log q \rceil$ and define the matrix $\textbf{G} \in \mathbb{Z}_q^{n \times nl}$ as follows:
+\begin{equation*}
+    \textbf{G} \stackrel{\mathrm{def}}{=}
+    \left[
+        \begin{array}{ccccccccccccc}
+        1 & 2 & \cdots & 2^{l-1} \\
+         & & & & 1 & 2 & \cdots  & 2^{l-1} \\
+         & & & & & & & & \ddots \\
+         & & & & & & & & & 1 & 2 & \cdots & 2^{l-1}
+        \end{array}
+    \right]
+\end{equation*}
+Define the function $G^{-1} \colon \mathbb{Z}_q^n \rightarrow \{-1, 0, 1\}^{nl}$ mapping an input column vector to a low norm, high dimension, decomposition column such that $\textbf{G}G^{-1}(x) = x$ for all $x \in \mathbb{Z}_q^n$. For a matrix input $\textbf{A} = [ a_1 | a_2 | \dots | a_m]$, we define $G^{-1}(\textbf{A}) \stackrel{\mathrm{def}}{=} [G^{-1}(a_1)|G^{-1}(a_2)| \dots |G^{-1}(a_n)]$.
+
+To make the dimensions match, we want the secret key $s \in \mathbb{Z}_q^n$ to be an approximate eigenvector in the sense that for any (fresh or evaluated) ciphertext $\textbf{C} \in \mathbb{Z}_q^{n \times nl}$ encrypting bit $b$, the following \emph{invariant equation} holds:
+\begin{equation*}
+    s^T \textbf{C} = b(s^T\textbf{G}) + e^T 
+\end{equation*}
+for some error $e \in \mathbb{Z}_q^{nl}$. Note that the error in the invariant equation always is of size $nl$, not to be confused with the error in the LWE samples that is of size $m$. To allow for homomorphic operations, we need to show how to add and multiply ciphertexts such that the corresponding bits are added and multiplied and that the invariant equation is preserved. In the GSW scheme, we define homomorphic addition as the normal matrix addition operation and homomorphic multiplication as the first ciphertext matrix multiplied with the decomposition of the second ciphertext matrix. The invariant equation is preserved under addition and multiplication:
+\begin{equation*}
+    \begin{aligned}
+    s^T (\textbf{C}_1 + \textbf{C}_2) &= s^T\textbf{C}_1 + s^T\textbf{C}_2 = b_1s^T\textbf{G} + e_1^T + b_2s^T\textbf{G} + e_2^T \\
+    &= (b_1 + b_2)s^T\textbf{G} + (e_1^T + e_2^T)\\
+    s^T (\textbf{C}_1 \times G^{-1}(\textbf{C}_2)) &= s^T\textbf{C}_1 \times G^{-1}(\textbf{C}_2) = (b_1s^T\textbf{G} + e_1^T) \times G^{-1}(\textbf{C}_2) \\
+    &= b_1s^T\textbf{G}G^{-1}(\textbf{C}_2) + e_1^TG^{-1}(\textbf{C}_2) = b_1s^T\textbf{C}_2 + e_1^TG^{-1}(\textbf{C}_2) \\
+    &= b_1(b_2s^T\textbf{G} + e_2^T) + e_1^TG^{-1}(\textbf{C}_2) = b_1b_2s^T\textbf{G} + b_1e_2^T + e_1^TG^{-1}(\textbf{C}_2)
+    \end{aligned}
+\end{equation*}
+Thus, both addition and multiplication preserve the invariant equation. For addition, the noise growth is bounded by $2\max\{\|e_1^T\|,\|e_2^T\|\}$ whereas for multiplication, $\| b_1e_2^T + e_1^TG^{-1}(\textbf{C}_2) \| \leq \|e_2^T\| + \|e_1^TG^{-1}(\textbf{C}_2)\| \leq \|e_2^T\| + nl\|e_1^T\| \leq (nl + 1) \max\{\|e_1^T\|,\|e_2^T\|\}$. Notice that noise growth from multiplication is larger than that of addition in the worst case.
 \section{GSW scheme}
-the actual scheme
+In this section, we present a leveled FHE version of the GSW scheme based on the work \cite{Hal18}. The message is a bit $b$ and the ciphertext is a matrix $\textbf{C} \in \mathbb{Z}_q^{n \times nl}$. The security is based on the LWE hardness assumption and shows high similarity to Regev's scheme. The error distribution is the discrete Gaussian $\chi = \textrm{D}_{\mathbb{Z}, \sqrt{n}, \vec{0}}$ with the error bound $\beta = n$. Notice that all parameters $n, q, \chi, m$ are functions polynomially bounded by both the security parameter $\lambda$ and depth parameter $L$.
+\begin{enumerate}
+    \item \textbf{Key generation}: Generate a uniformly random $\operatorname{LWE}$ secret $s' = (s_1, \dots, s_{n-1}) \leftarrow \mathbb{Z}_q^{n-1}$ and let $s = (s_1, \dots, s_{n-1}, s_n \stackrel{\mathrm{def}}{=} -1) \in \mathbb{Z}_q^{n}$. Using $s'$, generate the $n \times m$ matrix $\textbf{A}' \stackrel{\mathrm{def}}{=} (\textbf{A}, b^T) \leftarrow \operatorname{LWE}_{n-1,q,\chi,m}$. If $\|e^T\| = \|[s^T\textbf{A}']_q\|$ is not bounded by $n$, then resample (note that resampling is "rare" as $\mathbb{E}[\|e^T\|]) \approx \sqrt{n}$). Let $\text{KeyGen}(1^\lambda, 1^L)$ return $\textbf{A}' \in \mathbb{Z}_q^{n \times m}$ as the public key and $s \in \mathbb{Z}_q^n$ as the secret key. 
+    \item \textbf{Encryption}: Generate a random 'subset' matrix $\textbf{R} \leftarrow \{0,1\}^{m \times nl}$. To encrypt a bit $b$, compute $\textbf{C} \leftarrow \text{Enc}(\textbf{A}',b) \stackrel{\mathrm{def}}{=} [b \cdot \textbf{G} + \textbf{A}'\textbf{R}]_q \in \mathbb{Z}_q^{n\times nl}$.
+    \item \textbf{Evaluation}: For a given arithmetic circuit $C$, swap each addition gate to the standard matrix addition function $(\textbf{C}_1, \textbf{C}_2) \mapsto \textbf{C}_1 + \textbf{C}_2$ and swap each multiplication gate to $(\textbf{C}_1, \textbf{C}_2) \mapsto \textbf{C}_1 \times G^{-1}(\textbf{C}_2)$
+    \item \textbf{Decryption}: Define $w \stackrel{\mathrm{def}}{=} (0,0,\dots,0, - \lfloor q/2 \rfloor) \in \mathbb{Z}_q^n$. To decrypt, compute $z \stackrel{\mathrm{def}}{=} [s^T \times \textbf{C} \times G^{-1}(w)]_q$ and let $\text{Dec}(s,c)$ be $0$ if $|z| < q/4$ and $1$ otherwise.
+\end{enumerate}
+The encrypted bit satisfies the invariant equation since $s^T\textbf{C} = bs^T\textbf{G} + s^T\textbf{A}' \times \textbf{R}= bs^T\textbf{G} + e^T \textbf{R}$ where the ciphertext error $e^T \textbf{R}$ is bounded by $m \|e^T\| \leq m \times n$ from KeyGen process. Furthermore, the evaluated ciphertext also satisfies the invariant equation and the noise grows by at most by a factor $nl + 1$ per layer. Therefore, for any circuit $C$, the error at depth $d$ is bounded by $nm(nl+1)^d$.
 
-\section{Security of GSW}
-Assume A is uniformly random. Then it is enough to show that C is statistically close to a random matrix because we can use leftover hash lemma to show that C is statistically close to a random matrix even if A is pseudorandom, as per LWE assumption. 
+To argue correctness, we need to show that decryption works for all layers less than or equal to the permissible depth, $L$. Assume decryption at depth $d \leq L$, meaning $\|e^T\| \leq nm(nl+1)^d$. Then $s^T \times \textbf{C} \times G^{-1}(w) =  (bs^T\textbf{G} + e^T)G^{-1}(w) = bs^T\textbf{G}G^{-1}(w) + e^TG^{-1}(w) = b\langle s^T, w\rangle + \langle e^T, G^{-1}(w)\rangle = b\frac{q}{2} + \langle e^T, G^{-1}(w)\rangle$ where $|\langle e^T, G^{-1}(w)\rangle | \leq \|e^T\| \leq nm(nl+1)^d$. To ensure the scheme can handle circuits of depth $L$, the parameters must satisfy $nm(nl+1)^L < \frac{q}{4}$. In other words, the global modulus $q$ must be larger for greater depth parameter $L$. For explicit parameters $n, q, \chi, m$ that satisfies the above condition while maintaining LWE hardness assumption, see \cite{Hal18}. 
 
-\section{Security, compactness and efficiency}
-\section{Bootstrappable}
+The security of the scheme follows from the LWE hardness assumption; since $\textbf{A}'$ is pseudorandom and $\textbf{R}$ is a uniformly random matrix over $\{0,1\}$, the $n \times nl$ matrix $\textbf{A}'\textbf{R}$ simply contains $nl$ LWE samples. Therefore, adding $b\textbf{G}$ is computationally indistinguishable, meaning the ciphertext $C$ is pseudorandom.
+
+Notice that since $q$ is dependent on maximum depth $L$, the GSW scheme is leveled and not pure FHE as it currently stands. However, the bootstrapping theorem together with circular security assumption can be used to turn the leveled GSW scheme into a pure FHE scheme. To decrypt a ciphertext homomorphically, we first calculate $v \stackrel{\mathrm{def}}{=} \textbf{C} \times G^{-1}(w)$ using only public information as a pre-processing step. Then, the actual decryption is done by computing $[\langle s^T, v \rangle]_q$. It turns out that modular inner products can be calculated by circuits with depth logarithmic in the size of the inputs, meaning depth $O(\log(s + v)) = O(\log(n \log q))= O(\log n + \log\log(q))$.\footnote{To see how to construct such a circuit, see \cite{Hal18}.}
+\begin{theorem}
+    The GSW scheme is bootstrappable.
+\end{theorem}
+\begin{proof}
+We want to show that the augmented decryption function can be evaluated homomorphically for some set of parameters. Assume augmented decryption function has depth $d = O(\log(n) + \log\log(q))$ for some real number. Then, the parameters must satisfy $4nm(nl+1)^d < q$. Since $m,n = \operatorname{poly}(\lambda)$, there exists some integer $\gamma$ such that $4nm(nl+1)^{d} \leq (nl)^{\gamma + d} = (n\lceil\log q \rceil)^{\gamma + d} = (n \lceil\log q \rceil ) ^{O(\log(n) + \log\log(q))}$. Therefore, it is sufficient to show that there exists parameters such that $(n \lceil\log q \rceil ) ^{\delta (\log(n) + \log\log(q))} \leq q$ for some real value $\delta$ and sufficiently large $\lambda$. Let $q = 2^{3\delta\log^2(n)}$.
+\begin{equation*}
+    \begin{aligned}
+        (n \lceil \log q \rceil )^{\delta (\log n + \log \log q)} &= (n \lceil 3\delta \log^2(n) \rceil)^{\delta (\log n + \log^2 q)}\\
+        & \leq (2^{\log(n)})^{\delta (\log n + \log^2 q)}\\
+        & = (2^{\log(n)})^{\delta (\log n + \log (3\delta \log^2n))} \\
+        & \leq (2^{\log(n)})^{\delta (\log n + \log (3\delta) + \log^3n)} \\
+        & \leq (2^{\log(n)})^{\delta (3\log n)} \\
+        & = (2^{3\delta\log^2(n)})\\
+        & = q
+    \end{aligned} 
+\end{equation*}
+Since GSW is bootstrappable, it is pure FHE (under circular security) as per the bootstrapping theorem (see theorem \ref{thm:bootstrapping}).
+\end{proof}
+
+\section{Efficiency improvements}
