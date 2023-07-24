@@ -1605,6 +1605,33 @@
       \verb 10.1109/FOCS.2011.98
       \endverb
     \endentry
+    \entry{vershynin2011introduction}{misc}{}
+      \name{author}{1}{}{%
+        {{hash=711c5aa2fe76a4ff674a2c6e2c7a2d91}{%
+           family={Vershynin},
+           familyi={V\bibinitperiod},
+           given={Roman},
+           giveni={R\bibinitperiod}}}%
+      }
+      \strng{namehash}{711c5aa2fe76a4ff674a2c6e2c7a2d91}
+      \strng{fullhash}{711c5aa2fe76a4ff674a2c6e2c7a2d91}
+      \strng{bibnamehash}{711c5aa2fe76a4ff674a2c6e2c7a2d91}
+      \strng{authorbibnamehash}{711c5aa2fe76a4ff674a2c6e2c7a2d91}
+      \strng{authornamehash}{711c5aa2fe76a4ff674a2c6e2c7a2d91}
+      \strng{authorfullhash}{711c5aa2fe76a4ff674a2c6e2c7a2d91}
+      \field{labelalpha}{Ver11}
+      \field{sortinit}{V}
+      \field{sortinithash}{afb52128e5b4dc4b843768c0113d673b}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{eprintclass}{math.PR}
+      \field{eprinttype}{arXiv}
+      \field{title}{Introduction to the non-asymptotic analysis of random matrices}
+      \field{year}{2011}
+      \verb{eprint}
+      \verb 1011.3027
+      \endverb
+    \endentry
   \enddatalist
 \endrefsection
 \endinput

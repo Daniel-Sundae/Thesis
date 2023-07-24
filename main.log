@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999995 (TeX Live 2023) (preloaded format=xelatex 2023.5.8)  22 JUN 2023 16:56
+This is XeTeX, Version 3.141592653-2.6-0.999995 (TeX Live 2023) (preloaded format=xelatex 2023.5.8)  20 JUL 2023 15:38
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1169,7 +1169,7 @@ Package: listings 2023/02/27 1.9 (Carsten Heinz)
 \@quotelevel=\count510
 \@quotereset=\count511
 Package translations Info: No language package found. I am going to use `english' as default language. on input line 13.
- (./main.aux (./setup/title-page.aux) (./sections/0-pre-content.aux) (./sections/1-introduction.aux) (./sections/2-computation-theory.aux) (./sections/3-prob-theory.aux) (./sections/4-cryptographic-primitives.aux) (./sections/5-lattices.aux) (./sections/6-history.aux) (./sections/7-noise.aux) (./sections/8-implementation.aux) (./sections/appendices.aux) (./setup/back-cover.aux))
+ (./main.aux (./setup/title-page.aux) (./sections/0-pre-content.aux) (./sections/1-introduction.aux) (./sections/2-computation-theory.aux) (./sections/3-foundation.aux) (./sections/4-cryptographic-primitives.aux) (./sections/5-hard-problems.aux) (./sections/6-history.aux) (./sections/7-noise.aux) (./sections/8-implementation.aux) (./sections/appendices.aux) (./setup/back-cover.aux))
 \openout1 = `main.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 13.
@@ -1367,11 +1367,11 @@ File: setup/img/kth-footer.png Graphic file (type bmp)
 
 ] [5
 
-] (./main.toc)
+] (./main.toc [6])
 \tf@toc=\write5
 \openout5 = `main.toc'.
 
- [6] [7])
+ [7])
 \openout2 = `sections/1-introduction.aux'.
 
  (./sections/1-introduction.tex
@@ -1392,9 +1392,9 @@ Chapter 2.
 
 
 ] [4]) [5]
-\openout2 = `sections/3-prob-theory.aux'.
+\openout2 = `sections/3-foundation.aux'.
 
- (./sections/3-prob-theory.tex
+ (./sections/3-foundation.tex
 Chapter 3.
 [6
 
@@ -1402,17 +1402,23 @@ Chapter 3.
 
 
 ]
-Underfull \vbox (badness 2035) has occurred while \output is active []
+Underfull \vbox (badness 6063) has occurred while \output is active []
 
  [7] [8]
 File: figures/D-G-2d-a_is_100-n_1000000.pdf Graphic file (type pdf)
 <use figures/D-G-2d-a_is_100-n_1000000.pdf>
-) [9]
+ [9]
+Underfull \vbox (badness 1383) has occurred while \output is active []
+
+ [10] [11]
+Underfull \vbox (badness 2035) has occurred while \output is active []
+
+ [12] [13]) [14]
 \openout2 = `sections/4-cryptographic-primitives.aux'.
 
  (./sections/4-cryptographic-primitives.tex
 Chapter 4.
-(./figures/decryption-homomorphism.tex) [10
+(./figures/decryption-homomorphism.tex) [15
 
 
 
@@ -1420,38 +1426,38 @@ Chapter 4.
 ]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [11] [12] [13]) [14]
-\openout2 = `sections/5-lattices.aux'.
+ [16] [17] [18]) [19]
+\openout2 = `sections/5-hard-problems.aux'.
 
- (./sections/5-lattices.tex
+ (./sections/5-hard-problems.tex
 Chapter 5.
 
 Underfull \vbox (badness 2142) has occurred while \output is active []
 
- [15
+ [20
 
 
 
 
-] [16] [17] [18] [19]) [20]
+] [21] [22] [23] [24]) [25]
 \openout2 = `sections/6-history.aux'.
 
  (./sections/6-history.tex
 Chapter 6.
-[21
+[26
 
 
 
 
-] [22]
+] [27]
 Underfull \vbox (badness 1189) has occurred while \output is active []
 
- [23]) [24]
+ [28]) [29]
 \openout2 = `sections/7-noise.aux'.
 
  (./sections/7-noise.tex
 Chapter 7.
-[25
+[30
 
 
 
@@ -1459,7 +1465,7 @@ Chapter 7.
 ]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [26]
+ [31]
 Overfull \hbox (19.7611pt too wide) detected at line 26
 [][]
  []
@@ -1467,12 +1473,12 @@ Overfull \hbox (19.7611pt too wide) detected at line 26
 (./figures/Bootstrapping.tex)
 Underfull \vbox (badness 4765) has occurred while \output is active []
 
- [27] [28] [29]) [30] [31]
+ [32] [33] [34] [35]) [36]
 \openout2 = `sections/8-implementation.aux'.
 
  (./sections/8-implementation.tex
 Chapter 8.
-[32
+[37
 
 
 
@@ -1480,14 +1486,14 @@ Chapter 8.
 ]
 Underfull \vbox (badness 1546) has occurred while \output is active []
 
- [33] [34]) [35] [36
+ [38] [39]) [40] [41
 
 
 
-] [37] [38] [39] [40] [41]
+] [42] [43] [44] [45] [46]
 \openout2 = `sections/appendices.aux'.
 
- (./sections/appendices.tex [42
+ (./sections/appendices.tex [47
 
 ]
 Appendix A.
@@ -1495,30 +1501,30 @@ Appendix A.
 File: lstlang1.sty 2023/02/27 1.9 listings language file
 )
 Package hyperref Info: bookmark level for unknown lstlisting defaults to 0 on input line 12.
- (./setup/D-G.py [43
+ (./setup/D-G.py [48
 
-])) [44]
+])) [49]
 \openout2 = `setup/back-cover.aux'.
 
  (./setup/back-cover.tex)
 File: setup/img/kth-footer.png Graphic file (type bmp)
 <setup/img/kth-footer.png>
- [45
+ [50
 
 
 
-] (./main.aux (./setup/title-page.aux) (./sections/0-pre-content.aux) (./sections/1-introduction.aux) (./sections/2-computation-theory.aux) (./sections/3-prob-theory.aux) (./sections/4-cryptographic-primitives.aux) (./sections/5-lattices.aux) (./sections/6-history.aux) (./sections/7-noise.aux) (./sections/8-implementation.aux) (./sections/appendices.aux) (./setup/back-cover.aux))
+] (./main.aux (./setup/title-page.aux) (./sections/0-pre-content.aux) (./sections/1-introduction.aux) (./sections/2-computation-theory.aux) (./sections/3-foundation.aux) (./sections/4-cryptographic-primitives.aux) (./sections/5-hard-problems.aux) (./sections/6-history.aux) (./sections/7-noise.aux) (./sections/8-implementation.aux) (./sections/appendices.aux) (./setup/back-cover.aux))
 Package logreq Info: Writing requests to 'main.run.xml'.
 \openout1 = `main.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 45204 strings out of 476683
- 973057 string characters out of 5804048
+ 45222 strings out of 476683
+ 973622 string characters out of 5804048
  2010018 words of memory out of 5000000
- 64656 multiletter control sequences out of 15000+600000
- 524899 words of font info for 117 fonts, out of 8000000 for 9000
+ 64670 multiletter control sequences out of 15000+600000
+ 524915 words of font info for 119 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
  99i,18n,95p,1769b,5362s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on main.pdf (52 pages).
+Output written on main.pdf (57 pages).

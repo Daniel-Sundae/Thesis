@@ -92,5 +92,8 @@ The security of the scheme follows by the fact the each encrypted secret key is 
 
 The difference between the pure FHE scheme and the leveled FHE scheme is that in the former, there is only need for one key pair $(pk,sk)$, where the encrypted secret key can be made public (by circular security assumption) and used to bootstrap in every layer. This implies the transformed circuit can have arbitrary depth since each layer outputs a valid evaluated ciphertext. In the latter, circular security does not hold and the encrypted secret key cannot be reused. Therefore, every layer needs a new encrypted secret key. In general, any scheme generating a fixed amount of valid keys pairs can only bootstrap finitely many times. Since ciphertext noise grows for each operation, the depth of the circuit has to be bounded. In particular, for a set of circuits with depth at most $L$, $L+1$ valid keypairs is sufficient.
 
-\subsubsection*{Noise management in practice}
+\subsection*{Noise management in practice}
 As of today, pure FHE requires circular security. Circular security assumption improves the efficiency of the scheme since the key generation algorithm is run only once. However, the construction is still extremely inefficient. Bootstrapping is an expensive operation as it involves constructing and evaluating a decryption circuit. In practice, bootstrapping is only done when necessary, meaning when the noise is about to cause decryption to fail. When this is about to happen, the ciphertext $c \leftarrow \text{Enc}(pk, m)$ is "refreshed" by replacing it with the less noisy $\text{Dec}(sk',c)$. Note that this is essentially an augmented decryption circuit where the other ciphertext is an encryption of the multiplicative (or additive) identity. Indeed, $\text{Dec}(sk,\text{Dec}(\cdot,c), sk') = \text{Dec}(sk,c) = m$.
+
+- Talk about the intuition of bootstrapping
+- Explain that bootstrapping is essentially only a refreshing of the ciphertext

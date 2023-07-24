@@ -3,23 +3,27 @@
 \contentsline {chapter}{\numberline {2}Computation theory}{3}{chapter.2}%
 \contentsline {section}{\numberline {2.1}Digital logic}{3}{section.2.1}%
 \contentsline {section}{\numberline {2.2}Complexity classes}{4}{section.2.2}%
-\contentsline {chapter}{\numberline {3}Probability Theory}{6}{chapter.3}%
-\contentsline {chapter}{\numberline {4}Cryptographic primitives}{10}{chapter.4}%
-\contentsline {section}{\numberline {4.1}Security definitions}{13}{section.4.1}%
-\contentsline {chapter}{\numberline {5}Lattices}{15}{chapter.5}%
-\contentsline {section}{\numberline {5.1}LWE and RLWE}{15}{section.5.1}%
-\contentsline {section}{\numberline {5.2}RLWE}{19}{section.5.2}%
-\contentsline {chapter}{\numberline {6}History of fully homomorphic encryption}{21}{chapter.6}%
-\contentsline {section}{\numberline {6.1}First generation}{21}{section.6.1}%
-\contentsline {section}{\numberline {6.2}Second generation}{22}{section.6.2}%
-\contentsline {section}{\numberline {6.3}Third generation}{23}{section.6.3}%
-\contentsline {section}{\numberline {6.4}Fourth generation}{24}{section.6.4}%
-\contentsline {chapter}{\numberline {7}Noise management}{25}{chapter.7}%
-\contentsline {section}{\numberline {7.1}Key-Switching}{25}{section.7.1}%
-\contentsline {section}{\numberline {7.2}Bootstrapping}{26}{section.7.2}%
-\contentsline {chapter}{\numberline {8}Implementation}{32}{chapter.8}%
-\contentsline {section}{\numberline {8.1}GSW scheme}{33}{section.8.1}%
-\contentsline {section}{\numberline {8.2}Efficiency improvements}{35}{section.8.2}%
-\contentsline {chapter}{references}{36}{section.8.2}%
+\contentsline {chapter}{\numberline {3}Mathematical foundations}{6}{chapter.3}%
+\contentsline {section}{\numberline {3.1}Probability theory}{6}{section.3.1}%
+\contentsline {section}{\numberline {3.2}Discrete Gaussian Distribution}{8}{section.3.2}%
+\contentsline {section}{\numberline {3.3}Embedding integers as permutations}{11}{section.3.3}%
+\contentsline {subsection}{\numberline {3.3.1}Efficient representation of integers as cyclic shifts}{13}{subsection.3.3.1}%
+\contentsline {chapter}{\numberline {4}Cryptographic primitives}{15}{chapter.4}%
+\contentsline {section}{\numberline {4.1}Security definitions}{18}{section.4.1}%
+\contentsline {chapter}{\numberline {5}Hard problems}{20}{chapter.5}%
+\contentsline {section}{\numberline {5.1}LWE}{20}{section.5.1}%
+\contentsline {section}{\numberline {5.2}RLWE}{24}{section.5.2}%
+\contentsline {chapter}{\numberline {6}History of fully homomorphic encryption}{26}{chapter.6}%
+\contentsline {section}{\numberline {6.1}First generation}{26}{section.6.1}%
+\contentsline {section}{\numberline {6.2}Second generation}{27}{section.6.2}%
+\contentsline {section}{\numberline {6.3}Third generation}{28}{section.6.3}%
+\contentsline {section}{\numberline {6.4}Fourth generation}{29}{section.6.4}%
+\contentsline {chapter}{\numberline {7}Noise management}{30}{chapter.7}%
+\contentsline {section}{\numberline {7.1}Key-Switching}{30}{section.7.1}%
+\contentsline {section}{\numberline {7.2}Bootstrapping}{31}{section.7.2}%
+\contentsline {chapter}{\numberline {8}Implementation}{37}{chapter.8}%
+\contentsline {section}{\numberline {8.1}GSW scheme}{38}{section.8.1}%
+\contentsline {section}{\numberline {8.2}Efficiency improvements}{40}{section.8.2}%
+\contentsline {chapter}{references}{41}{section.8.2}%
 \etoc@depthtag {mtappendix}
-\contentsline {chapter}{\numberline {A}Appendix}{43}{appendix.A}%
+\contentsline {chapter}{\numberline {A}Appendix}{48}{appendix.A}%

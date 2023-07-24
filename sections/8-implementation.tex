@@ -1,8 +1,13 @@
-\chapter{Implementation}
+\chapter{Implementation}\label{ch:implementation}
 
-% Flattening gadget $G$ and it's inverse (bit decomposition matrix $G^-1$)
-% The invariant
-% NAND (potentially XOR and AND)
+% Mention that its the alperin-sheriff peikert implementation of GSW
+% The goal is to bootstrap by evaluating the decfryption algorithm. We need the the homomorphic version of inner product of two ciphertexts (s' and c) and we need the rounding function f:Z_q -> {0,1}
+% To do the inner product
+
+% Alperin-Sheriff-Peikert system implies hardness of LWE within O(n^2,5) approximation factor whereas Brakerski and Vaikuntanathan system implies hardness of LWE within O(n^1,5) which is optimal since this is the best (smallest) approximation factor for non homomorphic public key encryption schemes.
+
+% Mention natural isomorphism Z_q \equiv Z_r_1 x ... x Z_r_t. Then also write about embeddin of a in Z_r_1 -> S_r_1 as (0,...,0,1,0,..,0)
+
 
 In this chapter we will present a fully homomorphic encryption scheme, called GSW, developed by Gentry, Sahai and Waters \cite{GSW13}. The GSW scheme is based on approximate eigenvectors. The appeal of the scheme is its relative conceptual simplicity due to natural matrix addition and matrix multiplication operations. The scheme is leveled FHE even without bootstrapping but, just like every existing FHE scheme, requires bootstrapping and circular security assumption for pure FHE. Security is based on the LWE hardness assumption. Throughout this chapter, all parameters are chosen from LWE as before and the norm is assumed to be $\|A\| = \|A\|_{\infty} \stackrel{\mathrm{def}}{=} \max_{i} \sum_{j} |a_{i j}|$ for matrix or vector $A$ (manhattan norm for vector). Similar to Regev's scheme, the messages in GSW are bits. The ciphertexts in GSW are matrices where the secret key can be thought of as an approximate left eigenvector with the message bit as eigenvalue. Ideally, for a square ciphertext matrix $\textbf{C} \in \mathbb{Z}_q^{n \times n}$ and secret vector $s \in \mathbb{Z}_q^n$, a scheme should satisfy $s^T\textbf{C} = bs^T + e^T$ for some small error vector $e$ and some message bit $b$. Unfortunately however, multiplication in this scheme leads to rapid error growth:
 \begin{equation*}

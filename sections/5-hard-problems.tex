@@ -1,8 +1,8 @@
-\chapter{Lattices}\label{sec:lattices}
+\chapter{Hard problems}\label{sec:hard_problems}
 
 In this section, we assume every vector is a column vector and we denote a matrix $\textbf{A}$ with boldface. By $\textbf{A} \in \mathbb{F}^{n \times m}$ we mean $\textbf{A}$ is a $n \times m$ matrix with entries in $\mathbb{F}$. Consider a basis $\textbf{B} = \{b_1, \dots, b_k\}$. A lattice with basis $\textbf{B}$ is defined $L(\textbf{B}) \stackrel{\mathrm{def}}{=} \{ \sum_{i=1}^k a_i b_i \; \mid a_i \in \mathbb{Z}\}$. For any integer $q \geq 2$, we define $\mathbb{Z}_q \stackrel{\mathrm{def}}{=} (-\frac{q}{2}, \frac{q}{2}] \cap \mathbb{Z}$. For any tuple of integers $x$ (e.g., integer or matrix), we define $[x]_q$ as the tuple of integers over $\mathbb{Z}_q$ such that each element is congruent mod $q$ to the corresponding element in $x$. For example, $q = 3, x = (5,1,-2,6), [x]_q = (-1,1,1,0)$.
 
-\section{LWE and RLWE}\label{subsec:LWE}
+\section{LWE}\label{subsec:LWE}
 In 2005, Oded Regev introduced \cite{Reg05-LWE} a natural problem; solve a system of modular noisy linear equations. The problem is called learning with errors (LWE) and in 2012, a ring based version called ring-LWE (RLWE) was introduced \cite{RLWE}. Despite being easy to state, the LWE problem turns out to be hard even on average instances. For certain parameter choices, the LWE problem is reducible to extensively studied hard lattice based problems (e.g., GapSVP, SIVP) whereas RLWE is reducible to hard problems on ideal lattices (e.g., ideal-SVP, NTRU). Hardness of these problems are outside the scope of this thesis; we refer the reader to \cite{Reg05-LWE, LWE-classical-reduction, LWE-hardness, RLWE} for more details on hardness results and \cite{Pei16-decade} for a good rundown on hard lattice based problems. Today, essentially all homomorphic encryption schemes are based on LWE and RLWE.
 
 The parameters for $\operatorname{LWE}$ are the integers $n = n(\lambda)$ for the dimension, $q = q(n)$ for the global modulus, $m$ for number of samples and a discrete error distribution measure $\chi = \chi(\lambda)$ over $\mathbb{Z}$.
