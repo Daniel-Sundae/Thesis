@@ -1,4 +1,5 @@
 \chapter{Mathematical foundations}
+
 \section{Probability theory}
 Homomorphic encryption schemes are based on noise. As we will see in Subsection \ref{subsec:LWE}, noise can be sampled from discrete spaces in accordance with a distribution. Since distributions are central in cryptography, it is important they are understood. A distribution is a probability measure on a measurable space $(S, \mathcal{S})$. Typically, probability distributions are associated with random variables; however, in the absence of random variables, distributions are understood as a specified measure function on the given measurable space (See \cite[pp. 83]{kallenberg-probability}).
 \begin{definition}[Discrete distribution measure of a random variable]
@@ -62,8 +63,15 @@ Perfect distinguishability implies statistical indistinguishability as 0 is negl
 \end{aligned}
 \end{equation*}
 where the first inequality is due to the triangle inequality and the second is due to conditional probability being upper bounded by 1. Intuitively, there does not exist enough distinguishable outcomes to distinguish the ensembles even if there exists an adversary that always correctly recognize an outcome from $X$ and $Y$ respectively.
+
+\section{Distributions}
+When working over integer lattices, the errors need to be sampled from discrete distributions. Furthermore, the desire is to keep the errors small. In this section we introduce the discrete Gaussian distribution, which is the most common distribution used in lattice-based cryptography. We also introduce subgaussian distributions, which are used in the error analysis of the GSW scheme in Chapter \ref{ch:implementation}.
+
+
+
 \section{Discrete Gaussian Distribution}
-To add discrete noise to ciphertexts, it is typical to use the discretized Gaussian distribution introduced by Micciancio and Regev \cite{disc-gauss}. Since this distribution is used so frequently, we give a brief presentation of it here. A continuous Gaussian distribution in $\mathbb{R}^n$ centered at $\vec{c}$ where each coordinate is independently sampled from normal distirbution with standard deviation $\sigma$, then the multivariate Gaussian distribution is simplified to $\rho_{\vec{c}}(\vec{x}; \sigma)=\frac{1}{\left(2 \pi \sigma^2\right)^{n / 2}} \exp \left(-\frac{1}{2 \sigma^2} \| \vec{x}-\vec{c} \| ^2\right)$. By introducing the scale factor $s \stackrel{\mathrm{def}}{=} \sqrt{2\pi}\sigma$ we get $\rho_{s, \vec{c}}(\vec{x})=\frac{1}{s^n} \exp \left(-\frac{\pi}{s^2} \| \vec{x}-\vec{c} \| ^2\right)$.
+mrnote{REDO SOME OF THIS. REMOVE MULTIPLE DIMENSIONS AND MAKE PLOT OF DISC SUBGAUSSIAN IN 1 DIMENSION}
+To add discrete noise to ciphertexts, it is typical to use the discretized Gaussian distribution introduced by Micciancio and Regev \cite{disc-gauss}. Since this distribution is used so frequently, we give a brief presentation of it here. A continuous Gaussian distribution in $\mathbb{R}^n$ centered at $\vec{c}$ where each coordinate is independently sampled from normal distirbution with standard deviation $\sigma$, then the multivariate Gaussian distribution is simplified to $\rho_{\vec{c}}(\vec{x}; \sigma)=\frac{1}{\left(2 \pi \sigma^2\right)^{n / 2}} \exp \left( -\frac{1}{2 \sigma^2} \| \vec{x}-\vec{c} \| ^2\right)$. By introducing the scale factor $s \stackrel{\mathrm{def}}{=} \sqrt{2\pi}\sigma$ we get $\rho_{s, \vec{c}}(\vec{x})=\frac{1}{s^n} \exp \left(-\frac{\pi}{s^2} \| \vec{x}-\vec{c} \| ^2\right)$.
 The goal is to discretize the gaussian over lattices, see Section \ref{sec:hard_problems}, by restricting the domain to lattice points. For a given lattice $L \subset \mathbb{R}^n$ we define the normalization constant $\rho_{s, \vec{c}}(L) \stackrel{\mathrm{def}}{=} \sum_{\vec{x} \in L} \rho_{s, \vec{c}}(\vec{x})$.
 \begin{definition}[Discrete Gaussian distribution]\label{Disc-Gauss}
     Let $L \subset \mathbb{R}^n$ be a lattice. Then the discrete gaussian distribution is defined as
@@ -89,23 +97,35 @@ In this section we introduce subgaussian distributions. We use subgaussian distr
 \begin{definition}[Subgaussian distribution]
     A distribution $\chi$ over $\mathbb{R}$ is subgaussian with parameter $K > 0$ ($K$ not nesessarily constant) if for every non negative $t \in \mathbb{R}$.
     \begin{equation*}
-        \chi(\{x \in \mathbb{R} \text{ such that} \; |x| > t\}) \leq 2e^{- \pi \frac{t^2}{K^2}}
+        \chi(\{x \in \mathbb{R} \text{ such that} \; |x| > t\}) \leq 2\exp \left(- \pi \frac{t^2}{K^2} \right)
     \end{equation*}
     Or equivalently, a real valued random variable $X$ has subgaussian distribution if
     \begin{equation*}
-        \operatorname{Pr}[|X|>t] \leq 2e^{- \pi \frac{t^2}{K^2}}
+        \operatorname{Pr}[|X|>t] \leq 2\exp \left(- \pi \frac{t^2}{K^2} \right)
     \end{equation*}
     We say $X$ is a subgaussian random variable.
 \end{definition}
-The intuition of subgaussian distributions is that the probability of a random variable $X$ being taking a large value is less than the probability of a Gaussian taking the same value. In other words, the tails of a subgaussian distribution decays at least as fast as the tails of a Gaussian distribution. In particular, the $\beta$-bounded distributions are subgaussian with parameter $\beta \sqrt{2\pi}$. To see why, clearly, for all $t \geq \beta$, $\operatorname{Pr}[|X|>t] = 0$ whereas the exponential function is non-negative. Furthermore, for $t < \beta$ we have $2e^{- \pi \frac{t^2}{2\pi \beta^2}} > 2e^{- \pi \frac{\beta^2}{2\pi \beta^2}} = 2e^{-\frac{1}{2}} > 1 > \operatorname{Pr}[|X|>t]$. Hence, the definition is satisfied for all non-negative $t$.
+The intuition of subgaussian distributions is that the probability of a random variable $X$ being taking a large value is less than the probability of a Gaussian taking the same value. In other words, the tails of a subgaussian distribution decays at least as fast as the tails of a Gaussian distribution. In particular, the $\beta$-bounded distributions are subgaussian with parameter $\beta \sqrt{2\pi}$. To see why, clearly, for all $t \geq \beta$, $\operatorname{Pr}[|X|>t] = 0$ whereas the exponential function is non-negative. Furthermore, for $t < \beta$ we have $2\exp \left(- \pi \frac{t^2}{2\pi \beta^2} \right) > 2\exp \left(- \pi \frac{\beta^2}{2\pi \beta^2}\right) = 2\exp(-\frac{1}{2}) > 1 > \operatorname{Pr}[|X|>t]$. Hence, the definition is satisfied for all non-negative $t$.
 
-Subgaussian variables are closed under scalar multiplication in the sense that if $X$ is a subgaussian random variable with parameter $K$, then for any non-zero real number $a$, $aX$ is subgaussian with parameter $|a|K$. This follows from $\operatorname{Pr}[|aX|>t] = \operatorname{Pr}[|X|>\frac{t}{|a|}] \leq 2e^{- \pi \frac{t^2}{(|a|K)^2}}$. Furthermore, it can be shown by using moment generating functions that a finite sum of $n$ subgaussian random variables with parameters $K_1, \dots, K_n$ is subgaussian with parameter $\sqrt{\sum_{i=1}^n K_i^2}$.
+Subgaussian variables are closed under scalar multiplication in the sense that if $X$ is a subgaussian random variable with parameter $K$, then for any non-zero real number $a$, $aX$ is subgaussian with parameter $|a|K$. This follows from $\operatorname{Pr}[|aX|>t] = \operatorname{Pr}[|X|>\frac{t}{|a|}] \leq 2\exp\left(- \pi \frac{t^2}{(|a|K)^2}\right)$. Furthermore, it can be shown by using moment generating functions that a finite sum of $n$ subgaussian random variables with parameters $K_1, \dots, K_n$ is subgaussian with parameter $\sqrt{\sum_{i=1}^n K_i^2}$.
 
-We extend the definition of subgaussian random variables to vectors of subgaussian random variables. Let $u \in \mathbb{R}^n$ be any fixed unit vector and let $\vec{X} = (X_1, \dots, X_n)$ be a vector of random variables. We say $\vec{X}$ is subgaussian with parameter $K$ if $\left\langle u,\vec{X} \right\rangle$ is subgaussian with parameter $K$. The intuition is that for any direction, the probability of sampling points far away from origin decays at least as fast as a gaussian. Our focus is on random vectors of independent subgaussian entries. In this case, the vector is subgaussian with the same parameter as the maximum parameter of the entries (see Proposition 5.10 in \cite{vershynin2011introduction}). In other words, let $\vec{X} = (X_1, \dots, X_n)$ be a vector of independent subgaussian random variables with parameters $K_1, \dots, K_n$. Then $\vec{X}$ is subgaussian with parameter $\underset{i \in [n]}{\max} \ K_i$.
-
-By considering each element individually, it is clear that multiplication with non-negative scalar and addition of vectors preserves subgaussianity in the same way. An important application is the inner product of a vector with a subgaussian vector. Let $\vec{e} = (e_1, \dots, e_n)$ be a vector of independent entries where each entry is sampled from a $\beta$-bounded distribution (i.e., $\vec{e}$ is subgaussian). Let $\vec{X} = (X_1, \dots, X_n)$ be a vector of independent subgaussian random variables with parameters $K_1, \dots, K_n$ for some fixed constants $K_1, \dots, K_n$. Denoting $K = \underset{i \in [n]}{\max} \ K_i$ then gives $\left\langle \vec{e}, \vec{X} \right\rangle$ is subgaussian with parameter $\sqrt{\sum_{i=1}^n e_i^2 K_i^2} \leq K \sqrt{\sum_{i=1}^n e_i^2 } = K \| \vec{e} \| = O(\|\vec{e}\|)$. 
+We extend the definition of subgaussian random variables to vectors of subgaussian random variables. Let $u \in \mathbb{R}^n$ be any fixed unit vector and let $\vec{X} = (X_1, \dots, X_n)$ be a vector of random variables. We say $\vec{X}$ is subgaussian with parameter $K$ if $\left\langle u,\vec{X} \right\rangle$ is subgaussian with parameter $K$. The intuition is that for any direction, the probability of sampling points far away from origin decays at least as fast as a gaussian. In this paper, the focus is on random vectors of independent subgaussian entries. For such vectors, Proposition 5.10 in \cite{vershynin2011introduction} gives the following useful lemma.
+\begin{lemma}[Proposition 5.10 \cite{vershynin2011introduction}]\label{lemma:Ver12}
+    Let $\vec{X} = (X_1, \dots, X_n)$ be a vector of independent subgaussian random variables with parameters $K_1, \dots, K_n$. Then $\vec{X}$ is subgaussian with parameter $\underset{i \in [n]}{\max} \ K_i$. Furthermore, for any vector $\vec{e} = (e_1, \dots, e_n) \in \mathbb{R}^n$, the inner product $\left\langle \vec{e}, \vec{X} \right\rangle$ is subgaussian with parameter $O(K\|\vec{e}\|)$ where $K = \underset{i \in [n]}{\max} \ K_i$. 
+\end{lemma}
+By considering each element individually, it is clear that multiplication with non-negative scalar and addition of vectors preserves subgaussianity in the same way. In other words, subgaussianity satisfies the following important lemma
+\begin{lemma}[Additivity and homogenity]\label{lemma:add-subgaussian}
+    Let $x_1, \dots, x_n$ be any subgaussian random variables over the integers with parameters $k_1, \dots, k_n$. Let $\vec{X}_1, \dots, \vec{X}_m$ be any discrete subgaussian random vectors over the integers with parameters $K_1, \dots, K_m$ and let $a$ be a positive real number. Then
+    \begin{enumerate}
+        \item $\sum_{i=1}^n x_i$ is subgaussian with parameter $\|k\|$ where $k = (k_1, \dots, k_n) \in \mathbb{Z}^n$
+        \item $ax_i$ is subgaussian with parameter $ak_i$ for all $i$.
+        \item $\sum_{i=1}^m \vec{X}_i$ is subgaussian with parameter $\|K\|$ where $K = (K_1, \dots, K_m) \in \mathbb{Z}^m$
+        \item $a\vec{X_i}$ is subgaussian with parameter $aK_i$ for all $i$.
+    \end{enumerate}
+\end{lemma}
+We will use the previous two lemmas extensively throughout our analysis of the GSW scheme in Chapter \ref{ch:implementation}.
 As a last point, we introduce a bound on the euclidean norm of a subgaussian vector.
-\begin{theorem}[Lemma 2.1 \cite{A-S-P-boot}]
+\begin{theorem}[Lemma 2.1 \cite{A-S-P-boot}]\label{thm:length-subgaussian}
     Let $\vec{X}$ be an $n$ dimensional subgaussian vector with parameter $K$, containing mutually independent entries. Then there exists real positive constant $C$ such that 
     \begin{equation*}
         \operatorname{Pr}[\| \vec{X} \| > CK\sqrt{n}] \leq 2^{-\Omega(n)}
@@ -113,8 +133,8 @@ As a last point, we introduce a bound on the euclidean norm of a subgaussian vec
 \end{theorem}
 In particular, the length $\| \vec{X}\|$ is $O(K\sqrt{n})$ except with negligible probability.
 
-\section{Embedding integers as permutations}
-In this section we show how to embed integers in a finite group as a tuple of cyclic shifts by showing $\mathbb{Z}_q \cong S_{r_1} \times \dots \times S_{r_t}$ where $q = \prod_{i=1}^t r_i$ for pairwise coprime $r_i$. Representing integers in this way is nesessary for the error analysis in the implementation of the GSW scheme, see Chapter \ref{ch:implementation}. The isomorphism is established through the Chinese Remainder Theorem and Cayley's theorem.
+\section{Embedding integers as permutations}\label{sec:embedding}
+In this section we show how to embed integers in a finite group as a tuple of cyclic shifts by showing $\mathbb{Z}_q \cong S_{r_1} \times \dots \times S_{r_t}$ where $q = \prod_{i=1}^t r_i$ for pairwise coprime $r_i$. Representing integers in this way allows for substituting $n$ standard $q$-modular additions of integers to $t \times n$ compositions of permutation matrices. This is useful for the error analysis in the implementation of the GSW scheme, see Chapter \ref{ch:implementation}. The isomorphism is established through the Chinese Remainder Theorem and Cayley's theorem.
 \begin{theorem}[Chinese Remainder Theorem]
     Let $r_1, \dots, r_t$ be pairwise coprime integers and $q = \prod_{i=1}^t r_i$.
     The system of congruences
@@ -130,38 +150,87 @@ In this section we show how to embed integers in a finite group as a tuple of cy
 \end{theorem}
 The Chinese Remainder Theorem allows us to construct an isomorphism from $\mathbb{Z}_q$ to $\mathbb{Z}_{r_1} \times \dots \times \mathbb{Z}_{r_t}$.
 \begin{definition}[CRT isomorphism]
-    We define the \textit{CRT isomorphism} $\mathbb{Z}_q \rightarrow \mathbb{Z}_{r_1} \times \dots \times \mathbb{Z}_{r_t}$ as a mapping of $x$ to its RNS representation $(a_1, \dots, a_t)$ with respect to the moduli set $\{r_1, \dots, r_t\}$.
+    We define the \textit{CRT isomorphism} $\textrm{CRT} \colon \mathbb{Z}_q \rightarrow \mathbb{Z}_{r_1} \times \dots \times \mathbb{Z}_{r_t}$ as a mapping of $x$ to its RNS representation $(a_1, \dots, a_t)$ with respect to the moduli set $\{r_1, \dots, r_t\}$.
 \end{definition}
 \begin{remark}
-    To compute the CRT isomorphism on a given input $x$ we simply compute $x \bmod r_i$ for each $i$ (we will not need the inverse mapping but it can be computed using the Extended Euclidean Algorithm).
+    To compute the CRT isomorphism on a given input $x$ we simply compute $x \pmod r_i$ for each $i$ (we will not need the inverse mapping but it can be computed using the Extended Euclidean Algorithm).
 \end{remark}
-We will now discuss how to embed the finite additive group $\mathbb{Z}_r$ into the symmetric group $S_r$. The symmetric group $S_r$ is the group of all permutations of the set $\{1, \dots, q\}$. A standard way to represent a permutation $\pi \colon \{(x_1, \dots, x_r) \mid x_a \neq x_b, \; a,b \in [r]\} \to \{(x_1, \dots, x_r) \mid x_a \neq x_b, \; a,b \in [r]\}$ in $S_r$ is to list where each entry is mapped to; $(x_1,\dots,x_r) \stackrel{\pi}{\mapsto} (\pi(x_1), \dots, \pi(x_r))$. In this paper we will use a binary representation by using a square permutation matrix $M^{\pi} \in \{0,1\}^{r \times r}$ such that $M^{\pi}_{i, j} = 1$ if and only if $\pi$ maps the $j$:th entry to the $i$:th entry. In other words, column $j$ represents the mapping of element $j$. Since every entry is mapped to exactly one other entry, every column has exactly 1 non-zero entry. Since a permutations is a bijection, surjectivity implies every row has a non-zero entry. Therefore, every row and every column has exactly 1 non-zero element. $M^{\pi}$ contains exactly $r$ entries equal to 1 and $r^2 - r$ entries equal to 0. For example, consider a cyclic shift permutation $\pi \in S_3$ defined as $(\pi(x_1),\pi(x_2),\pi(x_3))=(x_3,x_1,x_2)$. Then the corresponding permutation matrix $M^{\pi}$ is
+Important to note is that addition of integers in $\mathbb{Z}_q$ is equivalent to element-wise addition in $\mathbb{Z}_{r_1} \times \dots \times \mathbb{Z}_{r_t}$. In other words, for $x, y \in \mathbb{Z}_q$ we have $x + y \equiv a_1 + b_1 \pmod{r_1}$, $\dots$, $x + y \equiv a_t + b_t \pmod{r_t}$ where $(a_1, \dots, a_t)$ and $(b_1, \dots, b_t)$ are the RNS representations of $x$ and $y$ respectively. We can therefore represent addition of integers in $\mathbb{Z}_q$ as addition of integers in $\mathbb{Z}_{r_1} \times \dots \times \mathbb{Z}_{r_t}$ by computing the RNS representation of the sum. This is useful since addition of integers in $\mathbb{Z}_{r_i}$ can be represented as compositions of cyclic shifts in $S_{r_i}$, as discussed below.
+Now we show how to embed the finite additive group $\mathbb{Z}_r$ into the symmetric group $S_r$. The symmetric group $S_r$ is the group of all permutations of the set $\{1, \dots, q\}$. A standard way to represent a permutation $\pi \colon \{(x_1, \dots, x_r) \mid x_a \neq x_b, \; a,b \in [r]\} \to \{(x_1, \dots, x_r) \mid x_a \neq x_b, \; a,b \in [r]\}$ in $S_r$ is to list where each entry is mapped to; $(x_1,\dots,x_r) \stackrel{\pi}{\mapsto} (\pi(x_1), \dots, \pi(x_r))$. For each seperate element we write $\pi(j) = i$ to mean that the $j$:th entry is mapped to the $i$:th entry (which in turn must be mapped somewhere else). In this paper we will also use a binary representation by using a square permutation matrix $\mathbf{P}^{\pi} = (p^{\pi}_{i,j}) \in \{0,1\}^{r \times r}$ such that $p^{\pi}_{i, j} = 1$ if and only if $\pi(j) = i$, or equivalently $\pi^{-1}(i) = j$. In particular, column $j$ represents the mapping of element $j$. Since every entry is mapped to exactly one other entry, every column has exactly 1 non-zero entry. Since a permutations is a bijection, surjectivity implies every row has a non-zero entry. Therefore, every row and every column has exactly 1 non-zero element. $\mathbf{P}^{\pi}$ contains exactly $r$ entries equal to 1 and $r^2 - r$ entries equal to 0. For example, consider a cyclic shift permutation $\pi \in S_3$ defined as $(\pi(x_1),\pi(x_2),\pi(x_3))=(x_2,x_3,x_1)$. Then the corresponding permutation matrix $\mathbf{P}^{\pi}$ is
 \begin{equation*}
-    M^{\pi} = \begin{pmatrix}
+    \mathbf{P}^{\pi} = \begin{pmatrix}
         0 & 0 & 1 \\
         1 & 0 & 0 \\
         0 & 1 & 0
     \end{pmatrix}.
 \end{equation*}
-A particular permutation group of interest is the cyclic shift group $C_r$. $C_r$ is the subgroup of the symmetric group $S_r$ consisting of permutations shifting the input sequence by a fixed number of positions. Every element of this group can be represented by only the first column of the permutation matrix since the shift of the first element in the sequence must be the same as the shift for every other element. In other words, every element of $C_r$ can be represented by a $r$ dimensional indicator vector $\pi \in \{0,1\}^r$. Our above example of a cyclic shift of 1 position to the right can therefore be represented by the indicator vector $\pi = (0,1,0)^T$.  
+The group operation of $S_r$ is simple matrix multiplication for a total of $r^3$ arithmetic operations. A particular permutation group of interest with more efficient implementation of the group operation is the cyclic shift group $C_r$. $C_r$ is the subgroup of the symmetric group $S_r$ consisting of permutations shifting the input sequence by a fixed number of positions. Every element of this group can be represented by only the first column of the permutation matrix since the shift of the first element in the sequence must be the same as the shift for every other element. In other words, every element of $C_r$ can also be represented by a $r$ dimensional indicator vector $\pi \in \{0,1\}^r$. Our above example of a cyclic shift of 1 position to the right can therefore be represented by the indicator vector $\pi = (0,1,0)^T$ or by $\pi(i) = i + 1 \pmod 3$ for $i = 1, 2, 3$. 
 \begin{theorem}[Cayley's theorem]
     Every group $G$ is isomorphic to a subgroup of the symmetric group $S_{|G|}$.
 \end{theorem}
 In particular, the additive group $\mathbb{Z}_r$ is isomorphic to $C_r$ through the following natural embedding isomorphism.
 \begin{definition}[Embedding isomorphism]
-    We define the \textit{embedding isomorphism} $\mathbb{Z}_r \rightarrow C_r$ as a mapping of $x$ to the indicator vector $(b_0, \dots, b_x, \dots, b_{r-1})$ where $b_i = 1$ if and only if $i = x$.
+    We define the \textit{embedding isomorphism} $\textrm{EMB} \colon \mathbb{Z}_r \rightarrow C_r$ as a mapping of $x$ to the indicator vector $(b_0, \dots, b_x, \dots, b_{r-1})$ where $b_i = 1$ if and only if $i = x$.
 \end{definition}
-By using the CRT isomorphism and the embedding isomorphism we can represent an element in $\mathbb{Z}_q$ as a direct sum of cyclic shifts.
-Consider the following example showing how to represent an element in $\mathbb{Z}_q$ into $S_{r_1} \times \dots \times S_{r_t}$.
-Say we want to represent the integer $7 \in \mathbb{Z}_{15}$ as a direct sum of cyclic shifts. I.e., $q = 15 = 3 \times 5$, $t = 2$, $r_1 = 3$ and $r_2 = 5$. We have $x \bmod 3 = 1$ and $x \bmod 5 = 2$. The RNS representation of $7$ is therefore $(1,2)$ with respect to the moduli set $\{3,5\}$. We can now represent $x$ in $S_3 \times S_5$ by using the embedding isomorphism on each element of the RNS representation. We have $(1,2) \mapsto ((0,1,0)^T, (0,0,1,0,0)^T)$. Thus, the element $7$ in $\mathbb{Z}_{15}$ is represented by a tuple of two cyclic shifts, $((0,1,0)^T, (0,0,1,0,0)^T) \in S_3 \times S_5$.
 
-\subsection{Efficient representation of integers as cyclic shifts}
-As it stands, representing integers as cyclic shifts can be innefficient. For instance, for a prime $q$, an element in $\mathbb{Z}_q$ is represented in binary using $\log q$ bits whereas the corresponding cyclic shift is represented with an indicator vector using $q$ bits, thus yielding an exponential expansion in the representation size. For cyclic shift representation to be efficient, we want to choose modulus $q$ yielding pseudo-constant bit size representation. In other words, the goal is to guarantee choise of $q$ such that representing an integer using a tuple of cyclic shifts requires $O(\operatorname{polylog(q)})$ bits. To do so, we want to find $q = \prod_{i=1}^t r_i$ such that $\underset{i \in [t]}{\max} \ r_i = O(\log q)$ and $t = O(\frac{\log q}{\log \log q})$. This would yield that every $x \in S_{r_1} \times \dots \times S_{r_t}$ can be represented in $O(\frac{\log^2q}{\log \log q}) = \tilde{O}(1)$. We will now show that such a modulus $q$ exists and how to find it.
+\begin{definition}[Canonical homomorphism]\label{def:canonical-homomorphism}
+    We define the \textit{canonical homomorphism} $\phi \colon \mathbb{Z}_q \to C_{r_1} \times \dots \times C_{r_t}$ as $\phi(x) \stackrel{\mathrm{def}}{=} \textrm{EMB} \circ \textrm{CRT} (x)$.\\
+    The coordinate function is defined $\phi_i(x) = \pi_i$, $i \in [t]$, where $\pi_i$ is the $i$:th cyclic shift in $C_{r_1} \times \dots \times C_{r_t}$.
+\end{definition}
+
+$\phi$ is an isomorphism mapping an integer $x$ to a tuple of cyclic shifts. In other words, there is a one-to-one correspondence between integers in $\mathbb{Z}_q$ and tuples of cyclic shifts in $S_{r_1} \times \dots \times S_{r_t}$ and thus we write $\phi(x) \sim x$.
+
+Consider the following example showing how to represent an element in $\mathbb{Z}_q$ into $S_{r_1} \times \dots \times S_{r_t}$.
+Say we want to represent the integer $7 \in \mathbb{Z}_{15}$ as a tuple of cyclic shifts with respect to the coprime modulo set $\{3,5\}$. In other words, we want to calculate $\phi(7)$. Then $t = 2$, $r_1 = 3$ and $r_2 = 5$. We have $x \pmod 3 = 1$ and $x \pmod 5 = 2$. The RNS representation of $7$ is therefore $(1,2)$. Applying the embedding isomorphism on each element of the RNS representation gives $1 \mapsto (0,1,0)^T$ and $2 \mapsto (0,0,1,0,0)^T$. Therefore, $\phi_1(7) = (0,1,0)^T$, $\phi_2(7) = (0,0,1,0,0)^T$ and
+\begin{equation*}
+    \begin{aligned}
+        \phi(7) = (\phi_1(7), \phi_2(7)) = (\begin{pmatrix}
+            0 \\
+            1 \\
+            0
+        \end{pmatrix}, \begin{pmatrix}
+            0 \\
+            0 \\
+            1 \\
+            0 \\
+            0
+        \end{pmatrix})
+    \end{aligned}
+\end{equation*}
+
+\subsubsection*{Addition as composition of cyclic shifts}\label{sec:composition_addition}
+To perform composition $\pi \circ \sigma$ of cyclic shifts we let $\pi$ be the square representation and $\sigma$ be the indicator vector representation and do standard matrix multiplication since this represents where the first element is mapped to under $\sigma$ and then $\pi$. In this way, composition of cyclic shifts requires $r^2$ operations instead of the $r^3$ operations required for an arbitrary permutation in $S_r$.\footnote{Composition can be computed in linear time if the elements of $\sigma$ and $\pi$ are unencrypted by simply observing where the non-zero entry is located for each cyclic shift} Note that shifting with $x$ positions followed by shifting with $y$ positions is the same as shifting with $x+y$ positions. In general, compositions of cyclic shifts can be used to calculate modular addition of integers by using the structure preserving property of the isomorphism $\phi$. Specifically, for $x,y \in \mathbb{Z}_q$, $\phi(x + y) = (\phi_1(x) \circ \phi_1(y), \dots, \phi_t(x) \circ \phi_t(y))$. This follows from applying the Chinese Remainder Theorem to the sum $x+y$ and observing that the remainder for any moduli is the sum of the remainders of the terms. By induction, the sum of $n$ integers $x_1, \dots, x_n \in \mathbb{Z}_q$ using cyclic shifts is
+\begin{equation}\label{cyclic-sum}
+    \sum_{j=1}^{n} x_i \sim \phi(\sum_{j=1}^{n} x_i) = (\bigcirc_{j=1}^n \phi_1(x_j), \dots, \bigcirc_{j=1}^n \phi_t(x_j)) \in S_{r_1} \times \dots \times S_{r_t}
+\end{equation}
+
+To illustrate this point, consider the sum $7 + 11$ in $\mathbb{Z}_{15}$ using the modulo set $\{3,5\}$. We have that $\phi_1(7) = (0,1,0)^T$, $\phi_2(7) = (0,0,1,0,0)^T$ and $\phi_1(11) = (0,0,1)^T$, $\phi_2(11) = (0,1,0,0,0)^T$. Then, 
+\begin{equation*}
+    \begin{aligned}
+        \phi_1(7) \circ \phi_1(11) = \begin{pmatrix}
+            0 & 0 & 1 \\
+            1 & 0 & 0 \\
+            0 & 1 & 0
+        \end{pmatrix} \begin{pmatrix}
+            0 \\
+            0 \\
+            1
+        \end{pmatrix} = \begin{pmatrix} 
+            1 \\
+            0 \\
+            0
+        \end{pmatrix}
+    \end{aligned}
+\end{equation*}
+Similarly, $\phi_2(7) \circ \phi_2(11) = (0,0,0,1,0)^T$. Therefore, $\phi(7 + 11) = ((1,0,0)^T, (0,0,0,1,0)^T) = \phi(3)$. By injectivity, $7 + 11 \equiv 3 \pmod{15}$.
+
+\subsection*{Efficient representation of integers as cyclic shifts}
+As it stands, representing integers as cyclic shifts can be inefficient. For instance, for a prime $q$, an element in $\mathbb{Z}_q$ is represented in binary using $\log q$ bits whereas the corresponding cyclic shift is represented with an indicator vector using $q$ bits, thus yielding an exponential expansion in the representation size. For cyclic shift representation to be efficient, we want to choose modulus $q$ yielding $\tilde{O}(1)$ bit size representation. In other words, the goal is to guarantee choise of $q$ such that representing an integer using a tuple of cyclic shifts requires $O(\operatorname{polylog(q)})$ bits. To do so, we want to find $q = \prod_{i=1}^t r_i$ such that $\underset{i \in [t]}{\max} \ r_i = O(\log q)$ and $t = O(\frac{\log q}{\log \log q})$. This would yield that every $x \in S_{r_1} \times \dots \times S_{r_t}$ can be represented in $O(\frac{\log^2q}{\log \log q}) = \tilde{O}(1)$. We will now show that such a modulus $q$ exists and how to find it.
 
 \begin{definition}
     The maximal prime powers bounded by an positive integer $r$ is defined as the set
     \begin{equation*}
-        \text{MPP}(r) \stackrel{\mathrm{def}}{=} \{p^{\lfloor \log_p r \rfloor} | \; p \leq r, \text{ p is prime}\}.
+        \text{MPP}(r) \stackrel{\mathrm{def}}{=} \{p^{\lfloor \log_p r \rfloor} | \; p \leq r, p \text{ is prime}\}.
     \end{equation*}
     An element in $\text{MPP}(r)$ is called a maximal prime power.
 \end{definition}
@@ -170,11 +239,11 @@ For example, the maximal prime powers bounded by $10$ is $\text{MPP}(10) = \{2^3
 \begin{theorem}[Lemma 2.2 \cite{A-S-P-boot}]\label{thm:lemma2.2}
     Let $r \geq 7$ be an integer. Then
     \begin{equation*}
-        \underset{r_i \in \text{MPP}(r)}{\prod} r_i \geq e^{\frac{3r}{4}}.
+        \underset{r_i \in \text{MPP}(r)}{\prod} r_i \geq \exp \left(\frac{3r}{4}\right).
     \end{equation*}
 \end{theorem}
 
-The idea is to choose $q$ as the product of maximal prime powers bounded by some $r = O(\log q)$. In other words, we consider $t = |\text{MPP}(r)|$ and $\{r_1, \dots, r_t\} = \text{MPP}(r)$. We can efficiently find such $q$ by first determining an acceptable lower bound $q_0 \leq q$. Since $r \geq 7$, we require $q_0 \geq e^{\frac{3 \times 7}{4}} > 190$. The second step is to find an $r$ such that the product of its maximal prime powers is greater than or equal to our lower bound $q_0$. Choosing $r = \lceil \frac{4}{3} \log q_0 \rceil$ works since $q = \underset{r_i \in \text{MPP}(r)}{\prod} r_i$ is, by Theorem \ref{thm:lemma2.2}, at least $e^{\frac{3r}{4}} = e^{\frac{3}{4} \lceil \frac{4}{3} \log q_0 \rceil} \geq e^{\log q_0} = q_0$.
+The idea is to choose $q$ as the product of maximal prime powers bounded by some $r = O(\log q)$. In other words, we consider $t = |\text{MPP}(r)|$ and $\{r_1, \dots, r_t\} = \text{MPP}(r)$. We can efficiently find such $q$ by first determining an acceptable lower bound $q_0 \leq q$. Since $r \geq 7$, we require $q_0 \geq \exp(\frac{3 \times 7}{4}) > 190$. The second step is to find an $r$ such that the product of its maximal prime powers is greater than or equal to our lower bound $q_0$. Choosing $r = \lceil \frac{4}{3} \log q_0 \rceil$ works since $q = \underset{r_i \in \text{MPP}(r)}{\prod} r_i$ is, by Theorem \ref{thm:lemma2.2}, at least $\exp \left(\frac{3r}{4}\right) = \exp \left( \frac{3}{4} \lceil \frac{4}{3} \log q_0 \rceil \right) \geq \exp \left( \log q_0 \right) = q_0$.
 
 Note that $r$ is logarithmic with respect to $q$, implying $\underset{i \in [t]}{\max} \ r_i = O(\log q)$.
 We now show that $t = O(\frac{\log q}{\log \log q})$.

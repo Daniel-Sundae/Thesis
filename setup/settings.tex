@@ -134,9 +134,29 @@
 \theoremstyle{remark}
 \newtheorem*{remark}{Remark}
 \newtheorem{claim}{Claim}
+\newtheorem{lemma}{Lemma}
+\newtheorem{corollary}{Corollary}
+
+% \newcommand{\bigboxdot}{\mathrel{\scalebox{1.5}{$\boxdot$}}} % Adjust the number 2 for scaling
+\DeclareMathOperator*{\bigboxdot}{\scalebox{1.5}{$\boxdot$}}
+% \newcommand{\bigboxplus}{\mathop{\scalebox{1.5}{$\boxplus$}\limits}}
+\DeclareMathOperator*{\bigboxplus}{\scalebox{1.5}{$\boxplus$}}
+\newcommand{\boxringhelp}{\ooalign{$\square$\cr\hidewidth\raisebox{.6ex}{\scalebox{.3}{\textcircled{\raisebox{-.9pt} {}}}}\hidewidth\cr}}
+\newcommand{\boxring}{\mathop{\boxringhelp}}
+\newcommand{\bigboxringhelp}{
+  \ooalign{
+    $\scalebox{1.8}{$\square$}$\cr
+    \hidewidth\raisebox{1.1ex}{\scalebox{0.6}{\textcircled{\raisebox{-0.9pt} {}}}}\hidewidth\cr
+  }
+}
+\newcommand{\bigboxring}{\mathop{\bigboxringhelp}}
+
+
+
 
 \usepackage{tikz-cd} % For diagram 
 \usepackage{enumitem} % For bullet enumeration
+\usepackage{circuitikz} % For circuits
 
 \usepackage{xcolor}
 \newcommand{\mrnote}[1]{\textcolor{red}{#1}}

@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999995 (TeX Live 2023) (preloaded format=xelatex 2023.5.8)  20 JUL 2023 15:38
+This is XeTeX, Version 3.141592653-2.6-0.999995 (TeX Live 2023) (preloaded format=xelatex 2023.5.8)  17 AUG 2023 12:54
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1110,6 +1110,8 @@ Package: amsthm 2020/05/29 v2.20.6
 \c@theorem=\count497
 \c@definition=\count498
 \c@claim=\count499
+\c@lemma=\count500
+\c@corollary=\count501
  (/usr/local/texlive/2023/texmf-dist/tex/latex/tikz-cd/tikz-cd.sty
 Package: tikz-cd 2021/05/04 v1.0 Commutative diagrams with TikZ
  (/usr/local/texlive/2023/texmf-dist/tex/generic/tikz-cd/tikzlibrarycd.code.tex (/usr/local/texlive/2023/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarymatrix.code.tex
@@ -1128,46 +1130,87 @@ Package: enumitem 2019/06/20 v3.9 Customized lists
 \enit@outerparindent=\dimen333
 \enit@toks=\toks48
 \enit@inbox=\box134
-\enit@count@id=\count500
-\enitdp@description=\count501
-) (/usr/local/texlive/2023/texmf-dist/tex/latex/relsize/relsize.sty
+\enit@count@id=\count502
+\enitdp@description=\count503
+) (/usr/local/texlive/2023/texmf-dist/tex/latex/circuitikz/circuitikz.sty
+Package: circuitikz 2023/02/11{} The CircuiTikz circuit drawing package version 1.6.1
+ (/usr/local/texlive/2023/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarycalc.code.tex
+File: tikzlibrarycalc.code.tex 2023-01-15 v3.1.10 (3.1.10)
+) (/usr/local/texlive/2023/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarybending.code.tex
+File: tikzlibrarybending.code.tex 2023-01-15 v3.1.10 (3.1.10)
+ (/usr/local/texlive/2023/texmf-dist/tex/generic/pgf/modules/pgfmodulebending.code.tex
+File: pgfmodulebending.code.tex 2023-01-15 v3.1.10 (3.1.10)
+ (/usr/local/texlive/2023/texmf-dist/tex/generic/pgf/modules/pgfmodulenonlineartransformations.code.tex
+File: pgfmodulenonlineartransformations.code.tex 2023-01-15 v3.1.10 (3.1.10)
+\pgftransformnonlinearflatness=\dimen334
+) (/usr/local/texlive/2023/texmf-dist/tex/generic/pgf/libraries/pgflibrarycurvilinear.code.tex
+File: pgflibrarycurvilinear.code.tex 2023-01-15 v3.1.10 (3.1.10)
+\pgf@curvilinear@time@a=\dimen335
+\pgf@curvilinear@length@a=\dimen336
+\pgf@curvilinear@length@b=\dimen337
+\pgf@curvilinear@length@c=\dimen338
+\pgf@curvilinear@length@d=\dimen339
+)
+\pgf@arrows@the@rigidity=\dimen340
+)) (/usr/local/texlive/2023/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibraryfpu.code.tex (/usr/local/texlive/2023/texmf-dist/tex/generic/pgf/libraries/pgflibraryfpu.code.tex)) (/usr/local/texlive/2023/texmf-dist/tex/generic/circuitikz/pgfcirc.defines.tex
+\pgf@circ@count@a=\count504
+\pgf@circ@count@b=\count505
+\pgf@circ@count@c=\count506
+\pgf@circ@res@up=\dimen341
+\pgf@circ@res@down=\dimen342
+\pgf@circ@res@zero=\dimen343
+\pgf@circ@res@left=\dimen344
+\pgf@circ@res@right=\dimen345
+\pgf@circ@res@other=\dimen346
+\pgf@circ@res@step=\dimen347
+\pgf@circ@res@temp=\dimen348
+\pgf@circ@Rlen=\dimen349
+\pgf@circ@scaled@Rlen=\dimen350
+\pgfstartlinewidth=\dimen351
+) (/usr/local/texlive/2023/texmf-dist/tex/generic/circuitikz/pgfcircutils.tex
+\ctikz@scratchbox=\box135
+) (/usr/local/texlive/2023/texmf-dist/tex/generic/circuitikz/pgfcircpath.tex) (/usr/local/texlive/2023/texmf-dist/tex/generic/circuitikz/pgfcircshapes.tex) (/usr/local/texlive/2023/texmf-dist/tex/generic/circuitikz/pgfcircmonopoles.tex) (/usr/local/texlive/2023/texmf-dist/tex/generic/circuitikz/pgfcircbipoles.tex) (/usr/local/texlive/2023/texmf-dist/tex/generic/circuitikz/pgfcirctripoles.tex
+\pgf@circ@res@count=\count507
+) (/usr/local/texlive/2023/texmf-dist/tex/generic/circuitikz/pgfcircquadpoles.tex) (/usr/local/texlive/2023/texmf-dist/tex/generic/circuitikz/pgfcircmultipoles.tex) (/usr/local/texlive/2023/texmf-dist/tex/generic/circuitikz/pgfcirclabel.tex) (/usr/local/texlive/2023/texmf-dist/tex/generic/circuitikz/pgfcircvoltage.tex
+\pgfcirc@labelshift=\dimen352
+) (/usr/local/texlive/2023/texmf-dist/tex/generic/circuitikz/pgfcirccurrent.tex) (/usr/local/texlive/2023/texmf-dist/tex/generic/circuitikz/pgfcircflow.tex)) (/usr/local/texlive/2023/texmf-dist/tex/latex/relsize/relsize.sty
 Package: relsize 2013/03/29 ver 4.1
 ) (/usr/local/texlive/2023/texmf-dist/tex/latex/titlesec/titlesec.sty
 Package: titlesec 2021/07/05 v2.14 Sectioning titles
-\ttl@box=\box135
+\ttl@box=\box136
 \beforetitleunit=\skip133
 \aftertitleunit=\skip134
-\ttl@plus=\dimen334
-\ttl@minus=\dimen335
+\ttl@plus=\dimen353
+\ttl@minus=\dimen354
 \ttl@toksa=\toks49
-\titlewidth=\dimen336
-\titlewidthlast=\dimen337
-\titlewidthfirst=\dimen338
+\titlewidth=\dimen355
+\titlewidthlast=\dimen356
+\titlewidthfirst=\dimen357
 ) (/usr/local/texlive/2023/texmf-dist/tex/latex/listings/listings.sty
-\lst@mode=\count502
-\lst@gtempboxa=\box136
+\lst@mode=\count508
+\lst@gtempboxa=\box137
 \lst@token=\toks50
-\lst@length=\count503
-\lst@currlwidth=\dimen339
-\lst@column=\count504
-\lst@pos=\count505
-\lst@lostspace=\dimen340
-\lst@width=\dimen341
-\lst@newlines=\count506
-\lst@lineno=\count507
-\lst@maxwidth=\dimen342
+\lst@length=\count509
+\lst@currlwidth=\dimen358
+\lst@column=\count510
+\lst@pos=\count511
+\lst@lostspace=\dimen359
+\lst@width=\dimen360
+\lst@newlines=\count512
+\lst@lineno=\count513
+\lst@maxwidth=\dimen361
  (/usr/local/texlive/2023/texmf-dist/tex/latex/listings/lstmisc.sty
 File: lstmisc.sty 2023/02/27 1.9 (Carsten Heinz)
-\c@lstnumber=\count508
-\lst@skipnumbers=\count509
-\lst@framebox=\box137
+\c@lstnumber=\count514
+\lst@skipnumbers=\count515
+\lst@framebox=\box138
 ) (/usr/local/texlive/2023/texmf-dist/tex/latex/listings/listings.cfg
 File: listings.cfg 2023/02/27 1.9 listings configuration
 ))
 Package: listings 2023/02/27 1.9 (Carsten Heinz)
 )
-\@quotelevel=\count510
-\@quotereset=\count511
+\@quotelevel=\count516
+\@quotereset=\count517
 Package translations Info: No language package found. I am going to use `english' as default language. on input line 13.
  (./main.aux (./setup/title-page.aux) (./sections/0-pre-content.aux) (./sections/1-introduction.aux) (./sections/2-computation-theory.aux) (./sections/3-foundation.aux) (./sections/4-cryptographic-primitives.aux) (./sections/5-hard-problems.aux) (./sections/6-history.aux) (./sections/7-noise.aux) (./sections/8-implementation.aux) (./sections/appendices.aux) (./setup/back-cover.aux))
 \openout1 = `main.aux'.
@@ -1323,7 +1366,7 @@ Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: listings package is loaded.
 Package caption Info: End \AtBeginDocument code.
 \Etoc@tf=\read5
-\c@lstlisting=\count512
+\c@lstlisting=\count518
 \openout2 = `setup/title-page.aux'.
 
  (./setup/title-page.tex
@@ -1376,6 +1419,12 @@ File: setup/img/kth-footer.png Graphic file (type bmp)
 
  (./sections/1-introduction.tex
 Chapter 1.
+
+LaTeX Warning: Citation 'Gartner2023' on page 1 undefined on input line 3.
+
+
+LaTeX Warning: Citation 'Gentry-Thesis' on page 1 undefined on input line 7.
+
 ) [1
 
 
@@ -1386,39 +1435,99 @@ Chapter 1.
 
  (./sections/2-computation-theory.tex
 Chapter 2.
+
+LaTeX Warning: Citation 'Gol01' on page 3 undefined on input line 2.
+
+
+LaTeX Warning: Citation 'goldreich_2008' on page 3 undefined on input line 10.
+
+
+LaTeX Warning: Citation 'MF21' on page 3 undefined on input line 10.
+
+
+LaTeX Warning: Citation 'MF21' on page 3 undefined on input line 15.
+
 [3
 
 
 
 
-] [4]) [5]
+]
+
+LaTeX Warning: Citation 'Arora' on page 4 undefined on input line 41.
+
+
+LaTeX Warning: Citation 'Gol01' on page 4 undefined on input line 41.
+
+[4]
+
+LaTeX Warning: Citation 'Arora' on page 5 undefined on input line 43.
+
+
+LaTeX Warning: Citation 'Arora' on page 5 undefined on input line 43.
+
+
+LaTeX Warning: Citation 'Arora' on page 5 undefined on input line 49.
+
+) [5]
 \openout2 = `sections/3-foundation.aux'.
 
  (./sections/3-foundation.tex
 Chapter 3.
+
+LaTeX Warning: Citation 'kallenberg-probability' on page 6 undefined on input line 4.
+
 [6
 
 
 
 
 ]
+
+LaTeX Warning: Citation 'Gol01' on page 7 undefined on input line 51.
+
+
 Underfull \vbox (badness 6063) has occurred while \output is active []
 
  [7] [8]
+
+LaTeX Warning: Citation 'disc-gauss' on page 9 undefined on input line 74.
+
 File: figures/D-G-2d-a_is_100-n_1000000.pdf Graphic file (type pdf)
 <use figures/D-G-2d-a_is_100-n_1000000.pdf>
- [9]
-Underfull \vbox (badness 1383) has occurred while \output is active []
 
- [10] [11]
-Underfull \vbox (badness 2035) has occurred while \output is active []
+LaTeX Warning: Citation 'A-S-P-boot' on page 9 undefined on input line 96.
 
- [12] [13]) [14]
+[9]
+
+LaTeX Warning: Citation 'vershynin2011introduction' on page 10 undefined on input line 112.
+
+[10]
+
+LaTeX Warning: Citation 'vershynin2011introduction' on page 11 undefined on input line 113.
+
+
+LaTeX Warning: Citation 'A-S-P-boot' on page 11 undefined on input line 128.
+
+
+Underfull \vbox (badness 2057) has occurred while \output is active []
+
+ [11] [12]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [13]
+Underfull \vbox (badness 5622) has occurred while \output is active []
+
+ [14] [15]
+
+LaTeX Warning: Citation 'A-S-P-boot' on page 16 undefined on input line 239.
+
+) [16] [17]
 \openout2 = `sections/4-cryptographic-primitives.aux'.
 
  (./sections/4-cryptographic-primitives.tex
 Chapter 4.
-(./figures/decryption-homomorphism.tex) [15
+(./figures/decryption-homomorphism.tex) [18
 
 
 
@@ -1426,46 +1535,171 @@ Chapter 4.
 ]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [16] [17] [18]) [19]
+ [19] [20]
+
+LaTeX Warning: Citation 'Gol04' on page 21 undefined on input line 83.
+
+[21]
+
+LaTeX Warning: Citation 'Bra18-survey' on page 22 undefined on input line 98.
+
+[22]) [23]
 \openout2 = `sections/5-hard-problems.aux'.
 
  (./sections/5-hard-problems.tex
 Chapter 5.
 
-Underfull \vbox (badness 2142) has occurred while \output is active []
-
- [20
+LaTeX Warning: Citation 'Reg05-LWE' on page 24 undefined on input line 6.
 
 
+LaTeX Warning: Citation 'RLWE' on page 24 undefined on input line 6.
 
 
-] [21] [22] [23] [24]) [25]
+LaTeX Warning: Citation 'Reg05-LWE' on page 24 undefined on input line 6.
+
+
+LaTeX Warning: Citation 'LWE-classical-reduction' on page 24 undefined on input line 6.
+
+
+LaTeX Warning: Citation 'LWE-hardness' on page 24 undefined on input line 6.
+
+
+LaTeX Warning: Citation 'RLWE' on page 24 undefined on input line 6.
+
+
+LaTeX Warning: Citation 'Pei16-decade' on page 24 undefined on input line 6.
+
+
+LaTeX Warning: Citation 'Applebaum' on page 24 undefined on input line 10.
+
+[24
+
+
+
+
+]
+
+LaTeX Warning: Citation 'LWE-hardness' on page 25 undefined on input line 49.
+
+[25] [26]
+
+LaTeX Warning: Citation 'Pei16-decade' on page 27 undefined on input line 78.
+
+[27]
+
+LaTeX Warning: Citation 'RLWE' on page 28 undefined on input line 81.
+
+[28]) [29]
 \openout2 = `sections/6-history.aux'.
 
  (./sections/6-history.tex
 Chapter 6.
-[26
+
+LaTeX Warning: Citation 'rivest1978' on page 30 undefined on input line 3.
 
 
+LaTeX Warning: Citation 'Gentry-Thesis' on page 30 undefined on input line 3.
 
 
-] [27]
-Underfull \vbox (badness 1189) has occurred while \output is active []
+LaTeX Warning: Citation 'Gentry-Thesis' on page 30 undefined on input line 6.
 
- [28]) [29]
-\openout2 = `sections/7-noise.aux'.
 
- (./sections/7-noise.tex
-Chapter 7.
+LaTeX Warning: Citation 'SV09-batch' on page 30 undefined on input line 8.
+
+
+LaTeX Warning: Citation 'GS10-impl' on page 30 undefined on input line 8.
+
+
+LaTeX Warning: Citation 'SS11-keygen' on page 30 undefined on input line 8.
+
 [30
 
 
 
 
 ]
+
+LaTeX Warning: Citation 'DGHV10' on page 31 undefined on input line 10.
+
+
+LaTeX Warning: Citation 'DGHV-modswitch' on page 31 undefined on input line 10.
+
+
+LaTeX Warning: Citation 'DGHV-batch1' on page 31 undefined on input line 10.
+
+
+LaTeX Warning: Citation 'DGHV-batch2' on page 31 undefined on input line 10.
+
+
+LaTeX Warning: Citation 'BV11' on page 31 undefined on input line 13.
+
+
+LaTeX Warning: Citation 'Gen-Hal-no-squash' on page 31 undefined on input line 13.
+
+[31]
+
+LaTeX Warning: Citation 'Bra12-BFV' on page 32 undefined on input line 15.
+
+
+LaTeX Warning: Citation 'FV12-BFV' on page 32 undefined on input line 15.
+
+
+LaTeX Warning: Citation 'NTRU' on page 32 undefined on input line 15.
+
+
+LaTeX Warning: Citation 'NTRU-attack' on page 32 undefined on input line 15.
+
+
+LaTeX Warning: Citation 'GSW13' on page 32 undefined on input line 18.
+
+
+LaTeX Warning: Citation 'A-S-P-boot' on page 32 undefined on input line 20.
+
+
+LaTeX Warning: Citation 'Gama-boot' on page 32 undefined on input line 20.
+
+
+LaTeX Warning: Citation 'FHEW' on page 32 undefined on input line 20.
+
+
+LaTeX Warning: Citation 'TFHE' on page 32 undefined on input line 20.
+
+
+LaTeX Warning: Citation 'MP-fhew-tfhe' on page 32 undefined on input line 20.
+
+
+Underfull \vbox (badness 1189) has occurred while \output is active []
+
+ [32]
+
+LaTeX Warning: Citation 'CKKS16' on page 33 undefined on input line 23.
+
+
+LaTeX Warning: Citation 'CKKS-boot' on page 33 undefined on input line 23.
+
+
+LaTeX Warning: Citation 'CKKS-attack' on page 33 undefined on input line 25.
+
+) [33]
+\openout2 = `sections/7-noise.aux'.
+
+ (./sections/7-noise.tex
+Chapter 7.
+
+LaTeX Warning: Citation 'Gentry-Thesis' on page 34 undefined on input line 4.
+
+
+LaTeX Warning: Citation 'Bra18-survey' on page 34 undefined on input line 9.
+
+[34
+
+
+
+
+]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [31]
+ [35]
 Overfull \hbox (19.7611pt too wide) detected at line 26
 [][]
  []
@@ -1473,27 +1707,78 @@ Overfull \hbox (19.7611pt too wide) detected at line 26
 (./figures/Bootstrapping.tex)
 Underfull \vbox (badness 4765) has occurred while \output is active []
 
- [32] [33] [34] [35]) [36]
+ [36]
+
+LaTeX Warning: Citation 'Gentry-Thesis' on page 37 undefined on input line 53.
+
+
+LaTeX Warning: Citation 'Vai-survey' on page 37 undefined on input line 53.
+
+
+LaTeX Warning: Citation 'BGV12-no-bootstrap' on page 37 undefined on input line 57.
+
+[37] [38] [39]) [40]
 \openout2 = `sections/8-implementation.aux'.
 
  (./sections/8-implementation.tex
 Chapter 8.
-[37
+
+LaTeX Warning: Citation 'GSW13' on page 41 undefined on input line 10.
+
+
+LaTeX Warning: Citation 'A-S-P-boot' on page 41 undefined on input line 10.
+
+
+LaTeX Warning: Citation 'A-S-P-boot' on page 41 undefined on input line 10.
+
+[41
 
 
 
 
 ]
-Underfull \vbox (badness 1546) has occurred while \output is active []
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [38] [39]) [40] [41
+ [42]
+
+LaTeX Warning: Citation 'GSW13' on page 43 undefined on input line 32.
 
 
+LaTeX Warning: Citation 'A-S-P-boot' on page 43 undefined on input line 32.
 
-] [42] [43] [44] [45] [46]
+
+LaTeX Warning: Citation 'A-S-P-boot' on page 43 undefined on input line 34.
+
+[43] [44] [45] [46]
+Underfull \vbox (badness 2626) has occurred while \output is active []
+
+ [47] [48] [49]
+LaTeX Font Info:    Trying to load font information for OMS+lmr on input line 125.
+ (/usr/local/texlive/2023/texmf-dist/tex/latex/lm/omslmr.fd
+File: omslmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
+)
+LaTeX Font Info:    Trying to load font information for OMS+lmsy on input line 125.
+ (/usr/local/texlive/2023/texmf-dist/tex/latex/lm/omslmsy.fd
+File: omslmsy.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
+)
+LaTeX Font Info:    Font shape `OMS/lmr/m/n' in size <12> not available
+(Font)              Font shape `OMS/lmsy/m/n' tried instead on input line 125.
+ [50] [51]
+LaTeX Font Info:    Font shape `OMS/lmr/m/it' in size <12> not available
+(Font)              Font shape `OMS/lmsy/m/n' tried instead on input line 154.
+ [52] [53]
+
+LaTeX Warning: Citation 'A-S-P-boot' on page 54 undefined on input line 181.
+
+[54] [55] [56]) [57] [58]
+
+LaTeX Warning: Empty bibliography on input line 33.
+
 \openout2 = `sections/appendices.aux'.
 
- (./sections/appendices.tex [47
+(./sections/appendices.tex [59
+
+
 
 ]
 Appendix A.
@@ -1501,30 +1786,38 @@ Appendix A.
 File: lstlang1.sty 2023/02/27 1.9 listings language file
 )
 Package hyperref Info: bookmark level for unknown lstlisting defaults to 0 on input line 12.
- (./setup/D-G.py [48
+ (./setup/D-G.py [60
 
-])) [49]
+])) [61]
 \openout2 = `setup/back-cover.aux'.
 
  (./setup/back-cover.tex)
 File: setup/img/kth-footer.png Graphic file (type bmp)
 <setup/img/kth-footer.png>
- [50
+ [62
 
 
 
 ] (./main.aux (./setup/title-page.aux) (./sections/0-pre-content.aux) (./sections/1-introduction.aux) (./sections/2-computation-theory.aux) (./sections/3-foundation.aux) (./sections/4-cryptographic-primitives.aux) (./sections/5-hard-problems.aux) (./sections/6-history.aux) (./sections/7-noise.aux) (./sections/8-implementation.aux) (./sections/appendices.aux) (./setup/back-cover.aux))
+
+LaTeX Warning: There were undefined references.
+
+
+Package biblatex Warning: Please (re)run Biber on the file:
+(biblatex)                main
+(biblatex)                and rerun LaTeX afterwards.
+
 Package logreq Info: Writing requests to 'main.run.xml'.
 \openout1 = `main.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 45222 strings out of 476683
- 973622 string characters out of 5804048
- 2010018 words of memory out of 5000000
- 64670 multiletter control sequences out of 15000+600000
- 524915 words of font info for 119 fonts, out of 8000000 for 9000
+ 61321 strings out of 476683
+ 1458713 string characters out of 5804048
+ 2661529 words of memory out of 5000000
+ 80690 multiletter control sequences out of 15000+600000
+ 525266 words of font info for 126 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
- 99i,18n,95p,1769b,5362s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 99i,18n,95p,1819b,2483s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on main.pdf (57 pages).
+Output written on main.pdf (69 pages).
