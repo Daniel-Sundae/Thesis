@@ -1,9 +1,0 @@
-[0] Config.pm:307> INFO - This is Biber 2.19
-[0] Config.pm:310> INFO - Logfile is 'main.blg'
-[43] biber-darwin:340> INFO - === Thu Aug 17, 2023, 12:55:03
-[52] Biber.pm:419> INFO - Reading 'main.bcf'
-[102] Biber.pm:979> INFO - Found 42 citekeys in bib section 0
-[110] Biber.pm:4419> INFO - Processing section 0
-[116] Biber.pm:4610> INFO - Looking for bibtex file 'references.bib' for section 0
-[118] bibtex.pm:1713> INFO - LaTeX decoding ...
-[139] bibtex.pm:1519> INFO - Found BibTeX data source 'references.bib'

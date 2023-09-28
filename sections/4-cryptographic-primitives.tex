@@ -9,7 +9,7 @@ A correct asymmetric \emph{encryption scheme} $\mathcal{E} = (\text{KeyGen, Enc,
 \end{enumerate}
 \end{definition}
 \begin{remark}
-This paper is only concerned with encryption schemes where decryption always works (correct) and where more than one key is used (asymmetric). Thus, every encryption scheme is assumed to be a correct asymmetric encryption scheme. Furthermore, the decryption algorithm can be considered a PPT algorithm that with probability 1 outputs the correct message for the correct secret key. In other words, the algorithm ignores the input coin toss sequence.
+We also allow the decryption function to decrypt incorrectly with negligible probability. Furthermore, the decryption algorithm can be considered a PPT algorithm that with probability 1 outputs the correct message for the correct secret key. In other words, the algorithm ignores the input coin toss sequence.
 \end{remark}
 In this paper, we consider homomorphic encryption (HE) schemes. These schemes include a fourth algorithm, Eval, called the evaluation algorithm which is used by the server calculating on encrypted data.
 \begin{definition}[$\mathcal{C}$-homomorphic encryption scheme]
